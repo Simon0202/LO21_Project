@@ -31,6 +31,37 @@ private slots:
     void on_pushButton9_released();
 
 
+    //*************
+    //ClavierLettre
+    //*************
+    void on_pushButtonA_released();
+    void on_pushButtonB_released();
+    void on_pushButtonC_released();
+    void on_pushButtonD_released();
+    void on_pushButtonE_released();
+    void on_pushButtonF_released();
+    void on_pushButtonG_released();
+    void on_pushButtonH_released();
+    void on_pushButtonI_released();
+    void on_pushButtonJ_released();
+    void on_pushButtonK_released();
+    void on_pushButtonL_released();
+    void on_pushButtonM_released();
+    void on_pushButtonN_released();
+    void on_pushButtonO_released();
+    void on_pushButtonP_released();
+    void on_pushButtonQ_released();
+    void on_pushButtonR_released();
+    void on_pushButtonS_released();
+    void on_pushButtonT_released();
+    void on_pushButtonU_released();
+    void on_pushButtonV_released();
+    void on_pushButtonW_released();
+    void on_pushButtonX_released();
+    void on_pushButtonY_released();
+    void on_pushButtonZ_released();
+
+
     //********
     //LineEdit
     //********
@@ -54,12 +85,25 @@ private slots:
     void on_pushButtonUndo_released();
     void on_pushButtonRedo_released();
 
+    //**********************
+    //ClavierBouttonSpeciaux
+    //**********************
+    void on_pushButtonDollar_released();
+    void on_pushButtonDiv_released();
+    void on_pushButtonNeg_released();
 
 
     void on_checkBoxClavier_clicked();
 
+
+    //**************
+    //Méthode Static
+    //**************
+    static void afficheTexte(QString& text);
+
 private:
     Ui::MainWindow *ui;
+    unsigned int nbLabel = 5;
 };
 
 #endif // MAINWINDOW_H
