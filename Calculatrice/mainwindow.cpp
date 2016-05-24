@@ -16,11 +16,7 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::afficheTexte(QString &text){
-    for(unsigned int i=0; i<5 ; i++){
-        //Implementation de la pile avec QStack
-    }
-}
+
 
 //*********
 //Clavier09
@@ -107,7 +103,9 @@ void MainWindow::on_pushButtonDiv_released(){ui->lineEdit->insert("DIV");}
 void MainWindow::on_pushButtonNeg_released(){ui->lineEdit->insert("NEG");}
 
 
-
+//********
+//CheckBox
+//********
 void MainWindow::on_checkBoxClavier_clicked()
 {
   ui->vue4CalcClavier->setDisabled(ui->checkBoxClavier->isChecked());

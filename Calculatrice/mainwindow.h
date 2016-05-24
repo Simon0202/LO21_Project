@@ -92,14 +92,13 @@ private slots:
     void on_pushButtonDiv_released();
     void on_pushButtonNeg_released();
 
-
+    //********
+    //CheckBox
+    //********
     void on_checkBoxClavier_clicked();
 
 
-    //**************
-    //Méthode Static
-    //**************
-    static void afficheTexte(QString& text);
+
 
 private:
     Ui::MainWindow *ui;
