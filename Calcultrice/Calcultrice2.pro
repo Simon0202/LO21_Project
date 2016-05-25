@@ -17,12 +17,16 @@ SOURCES += main.cpp\
     litteraleabstraite.cpp \
     numerique.cpp \
     entier.cpp \
-    rationnel.cpp
+    rationnel.cpp \
+    reel.cpp \
+    complexe.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
     numerique.h \
     entier.h \
-    rationnel.h
+    rationnel.h \
+    reel.h \
+    complexe.h
 
 FORMS    += mainwindow.ui

@@ -6,6 +6,7 @@
 #include <typeinfo>
 
 
+
 class LitteraleAbstraite
 {
 public:

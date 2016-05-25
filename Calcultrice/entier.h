@@ -10,6 +10,8 @@ private:
 public:
     //conversion implicite effectuee a l'initialisation de l'attribut.
     Entier(double val=1):_val(val){}
+
+    //Accesseurs
     double getVal(){return _val;}
     void setVal(double val){_val=val;}
     virtual void setSign(){_val = -_val;}
@@ -18,7 +20,7 @@ public:
     virtual void afficher(std::ostream& f=std::cout) const { f<<_val; }
     LitteraleAbstraite *clone() const;
 
-    //Permettre l'affectation Entier-Entier
+    //Permet l'affectation Entier-Entier
     Entier& operator=(const Entier& val);
 };
 
