@@ -13,8 +13,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    litteraleabstraite.cpp \
+    numerique.cpp \
+    entier.cpp \
+    rationnel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    litteraleabstraite.h \
+    numerique.h \
+    entier.h \
+    rationnel.h
 
 FORMS    += mainwindow.ui
