@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     expression.cpp \
     atome.cpp \
     pile.cpp \
-    factory.cpp
+    factory.cpp \
+    memento.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
@@ -35,6 +36,7 @@ HEADERS  += mainwindow.h \
     expression.h \
     atome.h \
     pile.h \
-    factory.h
+    factory.h \
+    memento.h
 
 FORMS    += mainwindow.ui
