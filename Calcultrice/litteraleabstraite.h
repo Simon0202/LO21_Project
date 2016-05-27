@@ -12,7 +12,7 @@ class LitteraleAbstraite
 public:
     //Affichage d'une donnee.
         virtual void afficher(std::ostream& f=std::cout) const = 0;
-    //Clonage d'une donnee pour la dupliquer ou autre.
+    //Clonage d'une donnee (DUP)
         virtual LitteraleAbstraite* clone() const = 0;
 };
 

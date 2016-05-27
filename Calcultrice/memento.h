@@ -21,8 +21,7 @@ public :
 };
 
 
-//Pile de pointeurs vers des etats successifs de la Pile
-//Design pattern Memento
+//Pile de pointeurs vers des etats successifs de la Pile (Design pattern Memento)
 class Memento
 {
 private :
