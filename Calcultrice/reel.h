@@ -17,11 +17,12 @@ public:
     //Accesseurs
     float getVal() const {return _val;}
     void setVal(double val){_val=val;}
-    virtual void setSign() {_val=(-_val);}
+
 
     //Héritage de Numerique
     void afficher(std::ostream& f=std::cout) const { f<<_val; }
     virtual LitteraleAbstraite *clone() const;
+    virtual void setSign() {_val=(-_val);}
 
     //Permet l'affectation Reel-Reel
     Reel& operator=(const Reel& n);

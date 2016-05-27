@@ -16,14 +16,16 @@ public:
     Complexe();
     Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
     inline void setSign(){a->setSign();b->setSign();}
-    //On considere qu'on cree un complexe a partir d'un nombre reel.
-    //La partie imaginaire est initialisee a zero. */
+    //On cree un complexe a partir d'un nombre reel et on met b a zero. */
     Complexe(Numerique* d);
 
-    //Hériage
+    //Héritage
     void afficher(std::ostream& f=std::cout) const;
-    //Pb de fonction ci dessous
+
+
+    //***Pb de fonction ci dessous
     //virtual Numerique* clone() const;
+    //virtual void setSign();
 
 
 
