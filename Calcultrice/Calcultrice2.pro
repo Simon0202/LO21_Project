@@ -19,7 +19,11 @@ SOURCES += main.cpp\
     entier.cpp \
     rationnel.cpp \
     reel.cpp \
-    complexe.cpp
+    complexe.cpp \
+    expression.cpp \
+    atome.cpp \
+    pile.cpp \
+    factory.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
@@ -27,6 +31,10 @@ HEADERS  += mainwindow.h \
     entier.h \
     rationnel.h \
     reel.h \
-    complexe.h
+    complexe.h \
+    expression.h \
+    atome.h \
+    pile.h \
+    factory.h
 
 FORMS    += mainwindow.ui
