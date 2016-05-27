@@ -11,7 +11,7 @@ public :
     virtual LitteraleAbstraite* clone() const = 0;
 
     //inverse le signe d'un Numerique.
-    virtual void setSign() =0;
+    //virtual void setSign() =0;
 
 };
 

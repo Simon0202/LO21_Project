@@ -19,7 +19,7 @@ void Complexe::afficher(std::ostream& f) const
 
     return new Complexe(a->clone(),b->clone());
 }*/
-
+/*
 Complexe::Complexe(Numerique *d)
 {
         // On identifie le type numerique de la donnee entree en parametre.
@@ -49,3 +49,4 @@ Complexe::Complexe(Numerique *d)
         else throw "Erreur inattendue au niveau de la formation d'un complexe par une donne. Cf complexe.cpp";
 
 }
+*/

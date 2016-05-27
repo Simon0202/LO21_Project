@@ -7,6 +7,8 @@
 #include "reel.h"
 #include "rationnel.h"
 
+//Rajouter un destructeur
+
 class Complexe : public Numerique{
 private:
     Numerique *a;
@@ -15,9 +17,12 @@ private:
 public:
     Complexe();
     Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
-    inline void setSign(){a->setSign();b->setSign();}
+
+    //A implémenter dans stratégie
+    //inline void setSign(){a->setSign();b->setSign();}
     //On cree un complexe a partir d'un nombre reel et on met b a zero. */
-    Complexe(Numerique* d);
+    //A revoir
+    //Complexe(Numerique* d);
 
     //Héritage
     void afficher(std::ostream& f=std::cout) const;

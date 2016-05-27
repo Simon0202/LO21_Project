@@ -1,7 +1,7 @@
 #ifndef LITTERALEABSTRAITE_H
 #define LITTERALEABSTRAITE_H
 
-#include <string>
+#include <Qstring>
 #include <iostream>
 #include <typeinfo>
 

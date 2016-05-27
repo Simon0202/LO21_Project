@@ -11,7 +11,7 @@ Entier& Entier::operator=(const Entier& n)
         _val = n._val;
     return *this;
 }
-
+/*
 Entier operator+(Entier& a,  Entier& b){
 
     double valeur=a.getVal()+b.getVal();
@@ -46,4 +46,4 @@ Entier operator%( Entier& a,  Entier& b){
     return resultat;
 }
 
-
+*/

@@ -19,16 +19,16 @@ public:
     //Héritage de Numerique
     virtual void afficher(std::ostream& f=std::cout) const { f<<_val; }
     LitteraleAbstraite *clone() const;
-    virtual void setSign(){_val = -_val;}
+    //virtual void setSign(){_val = -_val;}
 
     //Permet l'affectation Entier-Entier
     Entier& operator=(const Entier& val);
 };
-
+/*
 Entier operator+( Entier  &a,  Entier  &b);
 Entier operator-( Entier  &a,  Entier  &b);
 Entier operator*( Entier  &a,  Entier  &b);
 Entier operator/( Entier  &a,  Entier  &b);
 Entier operator%( Entier  &a,  Entier  &b);
-
+*/
 #endif // ENTIER_H
