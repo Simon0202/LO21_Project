@@ -1,3 +1,4 @@
+/*
 #include "factory.h"
 #include "entier.h"
 #include "reel.h"
@@ -34,4 +35,4 @@ Rationnel* Factory::make_rationnel(std::string str)
     if (denum==0) throw "Fraction avec denominateur nul impossible.";
     return new Rationnel(num,denum);
 }
-
+*/

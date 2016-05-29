@@ -12,7 +12,7 @@ public:
     Entier(double val=1):_val(val){}
 
     //Accesseurs
-    double getVal(){return _val;}
+    long int getVal(){return _val;}
     void setVal(double val){_val=val;}
 
 
@@ -23,6 +23,12 @@ public:
 
     //Permet l'affectation Entier-Entier
     Entier& operator=(const Entier& val);
+
+    //Preciser le type quand on a affaire à une litterale numerique (downcasting)
+    virtual QString type(){return "entier";}
+
+    //Savoir si la litterale est nulle
+    virtual bool EstNul(){return _val==0;}
 };
 /*
 Entier operator+( Entier  &a,  Entier  &b);

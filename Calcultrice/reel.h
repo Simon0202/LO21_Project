@@ -25,6 +25,12 @@ public:
 
     //Permet l'affectation Reel-Reel
     Reel& operator=(const Reel& n);
+
+    //Preciser le type quand on a affaire à une litterale numerique (downcasting)
+    virtual QString type(){return "reel";}
+
+    //Savoir si la litterale est nulle
+    virtual bool EstNul(){return _val==0;}
 };
 
    Reel operator+( Reel& a,  Reel& b);

@@ -1,25 +1,28 @@
 #include "complexe.h"
 
+/*
 Complexe::Complexe(){
-   a=new Reel;
-   b=new Reel;
+   R=new Reel;
+   I=new Reel;
 }
+
+
 
 void Complexe::afficher(std::ostream& f) const
 {
-    a->afficher(f);
+    R->afficher(f);
     f<<"+";
-    b->afficher(f);
+    I->afficher(f);
     f<<"i";
 }
 
 //Pb fonction ci dessous;
-/*Numerique* Complexe::clone() const
+Numerique* Complexe::clone() const
 {
 
-    return new Complexe(a->clone(),b->clone());
-}*/
-/*
+    return new Complexe(R->clone(),b->clone());
+}
+
 Complexe::Complexe(Numerique *d)
 {
         // On identifie le type numerique de la donnee entree en parametre.
@@ -30,19 +33,19 @@ Complexe::Complexe(Numerique *d)
 
         //selon le type entree, la conversion s'effectue.
         if (test) {
-                    a=test->a;
+                    R=test->R;
                     b=test->b;
         }
         else if (test1){
-                   a=test1;
+                   R=test1;
                    b=new Reel;
                   }
         else if (test2){
-                   a=test2;
+                   R=test2;
                    b= new Rationnel;
                   }
         else if (test3){
-                   a=test3;
+                   R=test3;
                    b=new Entier;
                   }
 
@@ -50,3 +53,5 @@ Complexe::Complexe(Numerique *d)
 
 }
 */
+
+

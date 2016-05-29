@@ -24,7 +24,12 @@ SOURCES += main.cpp\
     atome.cpp \
     pile.cpp \
     factory.cpp \
-    memento.cpp
+    memento.cpp \
+    ../../Strategie_calcul/fabrique.cpp \
+    ../../Strategie_calcul/strategie.cpp \
+    fabrique.cpp \
+    strategie.cpp \
+    strategieaddition.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
@@ -37,6 +42,11 @@ HEADERS  += mainwindow.h \
     atome.h \
     pile.h \
     factory.h \
-    memento.h
+    memento.h \
+    ../../Strategie_calcul/fabrique.h \
+    ../../Strategie_calcul/strategie.h \
+    fabrique.h \
+    strategie.h \
+    litterale.h
 
 FORMS    += mainwindow.ui

@@ -1,14 +1,15 @@
 #ifndef LITTERALEABSTRAITE_H
 #define LITTERALEABSTRAITE_H
 
-#include <Qstring>
+#include <QString>
 #include <iostream>
 #include <typeinfo>
 
 
 
-class LitteraleAbstraite
-{
+
+class LitteraleAbstraite{
+
 public:
     //Affichage d'une donnee.
         virtual void afficher(std::ostream& f=std::cout) const = 0;

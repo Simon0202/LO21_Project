@@ -3,12 +3,15 @@
 
 #include "litteraleabstraite.h"
 
-class Numerique : public LitteraleAbstraite {
+class Numerique : public LitteraleAbstraite{
 
 public :
     virtual void afficher(std::ostream& f=std::cout) const = 0;
-    std::ostream& operator<<(std::ostream& f) { afficher(f); return f; }
+    //std::ostream& operator<<(std::ostream& f) { afficher(f); return f; }
     virtual LitteraleAbstraite* clone() const = 0;
+
+    virtual QString type()=0;
+    virtual bool EstNul()=0;
 
     //inverse le signe d'un Numerique.
     //virtual void setSign() =0;
