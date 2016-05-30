@@ -39,6 +39,7 @@ HEADERS  += mainwindow.h \
     pile.h \
     factory.h \
     memento.h \
-    fabrique.h
+    fabrique.h \
+    litterales.h
 
 FORMS    += mainwindow.ui

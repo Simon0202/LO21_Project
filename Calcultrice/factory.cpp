@@ -1,3 +1,4 @@
+/*
 #include "factory.h"
 #include "entier.h"
 #include "reel.h"
@@ -35,3 +36,4 @@ Rationnel* Factory::make_rationnel(std::string str)
     return new Rationnel(num,denum);
 }
 
+*/

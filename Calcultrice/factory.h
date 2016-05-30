@@ -1,3 +1,4 @@
+/*
 #ifndef FACTORY_H
 #define FACTORY_H
 
@@ -20,3 +21,4 @@ public:
 };
 
 #endif // FACTORY_H
+*/

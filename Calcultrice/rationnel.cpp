@@ -14,25 +14,25 @@ double Rationnel::pgcd(unsigned long int a,unsigned long int b)
 
 void Rationnel::simplifier(){
 
-        if(_num.getVal() != 0)
+        if(_num->getVal() != 0)
             {
-                double p = pgcd(_num.getVal(),_denum.getVal());
-                _num.setVal(_num.getVal()/p);
-                _denum.setVal(_denum.getVal()/p);
-                if (_denum.getVal()<0 && _num.getVal()<0 )
+                double p = pgcd(_num->getVal(),_denum->getVal());
+                _num->setVal(_num->getVal()/p);
+                _denum->setVal(_denum->getVal()/p);
+                if (_denum->getVal()<0 && _num->getVal()<0 )
                 {
-                    _num.setVal(-1*_num.getVal());
-                    _denum.setVal(-1*_denum.getVal());
+                    _num->setVal(-1*_num->getVal());
+                    _denum->setVal(-1*_denum->getVal());
                 }
-                if (_denum.getVal() < 0)
+                if (_denum->getVal() < 0)
                 {
-                    _num.setVal(-1*_num.getVal());
-                    _denum.setVal(-1*_denum.getVal());
+                    _num->setVal(-1*_num->getVal());
+                    _denum->setVal(-1*_denum->getVal());
                 }
 
             }
             else
-                 _denum.setVal(1);
+                 _denum->setVal(1);
 }
 
 
@@ -52,7 +52,7 @@ Rationnel& Rationnel::operator=(const Rationnel& n){
     return *this;
 }
 
-
+/*
 Rationnel operator+( Rationnel& a,  Rationnel& b){
 
 
@@ -88,3 +88,4 @@ Rationnel operator/( Rationnel& a,  Rationnel& b){
     Rationnel resultat(valNum, valDenum);
     return resultat;
 }
+*/

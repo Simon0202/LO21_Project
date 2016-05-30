@@ -2,7 +2,7 @@
 #define MEMENTO_H
 
 #include "pile.h"
-
+/*
 //Classe Cellule adaptee pour la classe Memento car son contenu ne pointe pas vers une Donnee mais vers une Pile
 
 class CellMem
@@ -43,4 +43,7 @@ public :
     void reset();
 };
 
+*/
+
 #endif // MEMENTO_H
+

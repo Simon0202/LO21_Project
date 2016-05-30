@@ -8,7 +8,8 @@ class Numerique : public LitteraleAbstraite {
 public :
     virtual void afficher(std::ostream& f=std::cout) const = 0;
     std::ostream& operator<<(std::ostream& f) { afficher(f); return f; }
-    virtual LitteraleAbstraite* clone() const = 0;
+    //virtual LitteraleAbstraite* clone() const = 0;
+    //COMMENTE CAR A DEFINIR DANS COMPLEXE (rend complexe abstraite)
 
     //inverse le signe d'un Numerique.
     //virtual void setSign() =0;

@@ -1,6 +1,8 @@
 #ifndef PILE_H
 #define PILE_H
 
+/*
+
 #include "litteraleabstraite.h"
 #include <iostream>
 
@@ -64,5 +66,5 @@ public :
     void swap();
     void mean();
 };
-
+*/
 #endif // PILE_H

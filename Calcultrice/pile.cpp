@@ -5,7 +5,7 @@
 #include "reel.h"
 #include "factory.h"
 
-
+/*
 void Pile::afficher(std::ostream& f) const
 {
     int compteur = 0;
@@ -78,3 +78,4 @@ void Pile::swap()
         tete = newhead;
     }
 }
+*/

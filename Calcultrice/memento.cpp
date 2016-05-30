@@ -1,5 +1,7 @@
 #include "memento.h"
 
+/*
+
 void Memento::save(Pile* stack)
 {
     tete = new CellMem(stack->clone(),tete);
@@ -24,3 +26,4 @@ void Memento::reset()
 {
     while(tete) restore();
 }
+*/

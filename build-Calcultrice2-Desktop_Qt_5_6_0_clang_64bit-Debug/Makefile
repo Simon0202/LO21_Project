@@ -60,7 +60,8 @@ SOURCES       = ../Calcultrice/main.cpp \
 		../Calcultrice/atome.cpp \
 		../Calcultrice/pile.cpp \
 		../Calcultrice/factory.cpp \
-		../Calcultrice/memento.cpp moc_mainwindow.cpp
+		../Calcultrice/memento.cpp \
+		../Calcultrice/fabrique.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		litteraleabstraite.o \
@@ -74,6 +75,7 @@ OBJECTS       = main.o \
 		pile.o \
 		factory.o \
 		memento.o \
+		fabrique.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/qdevice.pri \
@@ -194,6 +196,7 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf \
+		../Calcultrice/.qmake.stash \
 		../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -226,7 +229,9 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../Calcultrice/atome.h \
 		../Calcultrice/pile.h \
 		../Calcultrice/factory.h \
-		../Calcultrice/memento.h ../Calcultrice/main.cpp \
+		../Calcultrice/memento.h \
+		../Calcultrice/fabrique.h \
+		../Calcultrice/litterales.h ../Calcultrice/main.cpp \
 		../Calcultrice/mainwindow.cpp \
 		../Calcultrice/litteraleabstraite.cpp \
 		../Calcultrice/numerique.cpp \
@@ -238,7 +243,8 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../Calcultrice/atome.cpp \
 		../Calcultrice/pile.cpp \
 		../Calcultrice/factory.cpp \
-		../Calcultrice/memento.cpp
+		../Calcultrice/memento.cpp \
+		../Calcultrice/fabrique.cpp
 QMAKE_TARGET  = Calcultrice2
 DESTDIR       = 
 TARGET        = Calcultrice2.app/Contents/MacOS/Calcultrice2
@@ -370,6 +376,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 		../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -515,6 +522,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 ../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -569,8 +577,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calcultrice/mainwindow.h ../Calcultrice/litteraleabstraite.h ../Calcultrice/numerique.h ../Calcultrice/entier.h ../Calcultrice/rationnel.h ../Calcultrice/reel.h ../Calcultrice/complexe.h ../Calcultrice/expression.h ../Calcultrice/atome.h ../Calcultrice/pile.h ../Calcultrice/factory.h ../Calcultrice/memento.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calcultrice/main.cpp ../Calcultrice/mainwindow.cpp ../Calcultrice/litteraleabstraite.cpp ../Calcultrice/numerique.cpp ../Calcultrice/entier.cpp ../Calcultrice/rationnel.cpp ../Calcultrice/reel.cpp ../Calcultrice/complexe.cpp ../Calcultrice/expression.cpp ../Calcultrice/atome.cpp ../Calcultrice/pile.cpp ../Calcultrice/factory.cpp ../Calcultrice/memento.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calcultrice/mainwindow.h ../Calcultrice/litteraleabstraite.h ../Calcultrice/numerique.h ../Calcultrice/entier.h ../Calcultrice/rationnel.h ../Calcultrice/reel.h ../Calcultrice/complexe.h ../Calcultrice/expression.h ../Calcultrice/atome.h ../Calcultrice/pile.h ../Calcultrice/factory.h ../Calcultrice/memento.h ../Calcultrice/fabrique.h ../Calcultrice/litterales.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calcultrice/main.cpp ../Calcultrice/mainwindow.cpp ../Calcultrice/litteraleabstraite.cpp ../Calcultrice/numerique.cpp ../Calcultrice/entier.cpp ../Calcultrice/rationnel.cpp ../Calcultrice/reel.cpp ../Calcultrice/complexe.cpp ../Calcultrice/expression.cpp ../Calcultrice/atome.cpp ../Calcultrice/pile.cpp ../Calcultrice/factory.cpp ../Calcultrice/memento.cpp ../Calcultrice/fabrique.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calcultrice/mainwindow.ui $(DISTDIR)/
 
 
@@ -707,21 +715,10 @@ pile.o: ../Calcultrice/pile.cpp ../Calcultrice/pile.h \
 		../Calcultrice/entier.h \
 		../Calcultrice/reel.h \
 		../Calcultrice/rationnel.h \
-		../Calcultrice/factory.h \
-		../Calcultrice/expression.h
+		../Calcultrice/factory.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pile.o ../Calcultrice/pile.cpp
 
-factory.o: ../Calcultrice/factory.cpp ../Calcultrice/factory.h \
-		../Calcultrice/litteraleabstraite.h \
-		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
-		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../Calcultrice/numerique.h \
-		../Calcultrice/rationnel.h \
-		../Calcultrice/entier.h \
-		../Calcultrice/reel.h \
-		../Calcultrice/expression.h \
-		../Calcultrice/complexe.h \
-		../Calcultrice/pile.h
+factory.o: ../Calcultrice/factory.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o factory.o ../Calcultrice/factory.cpp
 
 memento.o: ../Calcultrice/memento.cpp ../Calcultrice/memento.h \
@@ -730,6 +727,18 @@ memento.o: ../Calcultrice/memento.cpp ../Calcultrice/memento.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o memento.o ../Calcultrice/memento.cpp
+
+fabrique.o: ../Calcultrice/fabrique.cpp ../Calcultrice/fabrique.h \
+		../Calcultrice/litterales.h \
+		../Calcultrice/litteraleabstraite.h \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Calcultrice/numerique.h \
+		../Calcultrice/entier.h \
+		../Calcultrice/reel.h \
+		../Calcultrice/rationnel.h \
+		../Calcultrice/complexe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fabrique.o ../Calcultrice/fabrique.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
