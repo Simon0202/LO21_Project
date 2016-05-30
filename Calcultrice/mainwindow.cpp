@@ -113,3 +113,6 @@ void MainWindow::on_checkBoxClavier_clicked()
 
 }
 
+
+void MainWindow::on_pushButtonSpace_released()
+{    ui->lineEdit->insert(" ");}

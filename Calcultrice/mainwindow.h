@@ -100,6 +100,8 @@ private slots:
 
 
 
+    void on_pushButtonSpace_released();
+
 private:
     Ui::MainWindow *ui;
     unsigned int nbLabel = 5;
