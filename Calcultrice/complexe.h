@@ -16,13 +16,16 @@ private:
 
 public:
     Complexe();
+    ~Complexe(){
+        delete a;
+        delete b;
+    }
     Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
     Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
     //A implémenter dans stratégie
     //inline void setSign(){a->setSign();b->setSign();}
+
     //On cree un complexe a partir d'un nombre reel et on met b a zero. */
-
-
     //Complexe(Numerique* d);
 
     //Héritage

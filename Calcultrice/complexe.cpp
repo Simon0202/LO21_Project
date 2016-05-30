@@ -19,6 +19,7 @@ LitteraleAbstraite* Complexe::clone() const
     return new Complexe(a->clone(),b->clone());
 }
 
+
 Complexe::Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im)
 {
     Numerique* num1 = dynamic_cast <Numerique*>(Re);

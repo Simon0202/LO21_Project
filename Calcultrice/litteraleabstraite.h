@@ -10,6 +10,8 @@
 class LitteraleAbstraite
 {
 public:
+    //Destructeur
+        virtual ~LitteraleAbstraite(){}
     //Affichage d'une donnee.
         virtual void afficher(std::ostream& f=std::cout) const = 0;
     //Clonage d'une donnee (DUP)
