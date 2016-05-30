@@ -14,6 +14,9 @@ public :
     //inverse le signe d'un Numerique.
     //virtual void setSign() =0;
 
+    //Clonage d'une donnee (DUP)
+        virtual LitteraleAbstraite* clone() const = 0;
+
 };
 
 #endif // NUMERIQUE_H

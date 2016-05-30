@@ -14,11 +14,24 @@ void Complexe::afficher(std::ostream& f) const
 }
 
 //Pb fonction ci dessous;
-/*Numerique* Complexe::clone() const
+LitteraleAbstraite* Complexe::clone() const
 {
-
     return new Complexe(a->clone(),b->clone());
-}*/
+}
+
+Complexe::Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im)
+{
+    Numerique* num1 = dynamic_cast <Numerique*>(Re);
+    Numerique* num2 = dynamic_cast <Numerique*>(Im);
+    if(num1&&num2)
+    {
+        a=num1;
+        b=num2;
+    }
+    else
+        throw "Un complexe ne peut etre forme que de nombres.";
+}
+
 /*
 Complexe::Complexe(Numerique *d)
 {
