@@ -1,0 +1,2 @@
+#include "strategiecalcul.h"
+

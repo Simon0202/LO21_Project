@@ -33,6 +33,10 @@ public:
 
     //Autorise affectation Rationnel-Rationnel
     Rationnel& operator=(const Rationnel& n);
+
+    bool EstNul(){return (_num->getVal()==0 && _denum->getVal()==0);}
+
+    QString type(){return "rationnel";}
 };
 
 //Rationnel operator+( Rationnel& a,  Rationnel& b);

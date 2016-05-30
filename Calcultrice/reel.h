@@ -25,6 +25,10 @@ public:
 
     //Permet l'affectation Reel-Reel
     Reel& operator=(const Reel& n);
+
+    bool EstNul(){return _val==0;}
+
+    QString type(){return "reel";}
 };
 
    Reel operator+( Reel& a,  Reel& b);

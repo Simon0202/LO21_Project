@@ -1,4 +1,5 @@
 #include "complexe.h"
+#include"reel.h"
 
 Complexe::Complexe(){
    a=new Reel;

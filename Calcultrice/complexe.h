@@ -3,9 +3,6 @@
 
 
 #include "numerique.h"
-#include "entier.h"
-#include "reel.h"
-#include "rationnel.h"
 
 //Rajouter un destructeur
 
@@ -22,6 +19,10 @@ public:
     }
     Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
     Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
+
+    Numerique* getR(){return a;}
+    Numerique* getI(){return b;}
+
     //A implémenter dans stratégie
     //inline void setSign(){a->setSign();b->setSign();}
 
@@ -37,6 +38,9 @@ public:
     //Pb de fonction ci dessous
     virtual LitteraleAbstraite* clone() const;
 
+    bool EstNul(){return (a->EstNul() && b->EstNul());}
+
+    QString type(){return "complexe";}
 
 };
 

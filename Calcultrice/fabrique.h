@@ -1,7 +1,12 @@
 #ifndef FABRIQUE_H
 #define FABRIQUE_H
 
-#include"litterales.h"
+#include"litteraleabstraite.h"
+#include"numerique.h"
+#include"entier.h"
+#include"reel.h"
+#include"rationnel.h"
+#include"complexe.h"
 
 
 class Fabrique

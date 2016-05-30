@@ -3,6 +3,8 @@
 
 #include "litteraleabstraite.h"
 
+
+
 class Numerique : public LitteraleAbstraite {
 
 public :
@@ -18,6 +20,11 @@ public :
 
     //Clonage d'une donnee (DUP)
         virtual LitteraleAbstraite* clone() const = 0;
+
+    virtual bool EstNul();
+
+
+    virtual QString type()=0;
 
 };
 

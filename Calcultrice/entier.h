@@ -23,6 +23,10 @@ public:
 
     //Permet l'affectation Entier-Entier
     Entier& operator=(const Entier& val);
+
+    bool EstNul(){return _val==0;}
+
+    QString type(){return "entier";}
 };
 /*
 Entier operator+( Entier  &a,  Entier  &b);
