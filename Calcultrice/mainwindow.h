@@ -102,6 +102,8 @@ private slots:
 
     void on_pushButtonSpace_released();
 
+    void on_lineEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
     unsigned int nbLabel = 5;
