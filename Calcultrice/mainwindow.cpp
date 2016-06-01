@@ -70,6 +70,7 @@ void MainWindow::on_pushBoutonDel_clicked()
 }
 
 
+
 //**********
 //ClavierOpe
 //**********
@@ -113,3 +114,15 @@ void MainWindow::on_checkBoxClavier_clicked()
 
 }
 
+
+void MainWindow::on_pushButtonSpace_released()
+{    ui->lineEdit->insert(" ");}
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    QString const text = ui->lineEdit->text();
+    ui->lineEdit->clear();
+    if (text != ""){
+        ui->labelPile1->setText(text);
+    }
+}

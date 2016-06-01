@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>620</width>
     <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>600</width>
+    <width>620</width>
     <height>720</height>
    </size>
   </property>
@@ -28,7 +28,7 @@
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
     <size>
-     <width>593</width>
+     <width>610</width>
      <height>581</height>
     </size>
    </property>
@@ -37,8 +37,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>571</width>
-      <height>690</height>
+      <width>690</width>
+      <height>700</height>
      </rect>
     </property>
     <property name="tabShape">
@@ -59,7 +59,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>570</width>
+        <width>594</width>
         <height>678</height>
        </rect>
       </property>
@@ -1043,6 +1043,13 @@
                   </property>
                   <property name="text">
                    <string>G</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="6">
+                 <widget class="QPushButton" name="pushButtonSpace">
+                  <property name="text">
+                   <string>__</string>
                   </property>
                  </widget>
                 </item>
