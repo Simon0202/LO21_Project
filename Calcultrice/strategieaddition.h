@@ -13,7 +13,7 @@ public:
 
        virtual  Entier* Calcul(Entier* l1,Entier* l2);
        virtual  Reel* Calcul(Reel* l1,Reel* l2);
-       //virtual  Numerique* Calcul(Complexe* l1,Complexe* l2);
+       virtual  Numerique* Calcul(Complexe* l1,Complexe* l2);
        //virtual  Numerique* Calcul(Rationnel* l1,Rationnel* l2);
        //virtual  Expression* Calcul(Expression* l1,Expression* l2);
        virtual  Reel* Calcul(Entier* l1,Reel* l2);
