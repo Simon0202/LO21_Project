@@ -11,6 +11,7 @@ public:
     //conversion implicite lors de l'initialisation de l'attribut.
     Entier(double val=1):_val(val){}
 
+
     //Accesseurs
     double getVal(){return _val;}
     void setVal(double val){_val=val;}

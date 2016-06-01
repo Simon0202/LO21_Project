@@ -63,7 +63,10 @@ SOURCES       = ../Calcultrice/main.cpp \
 		../Calcultrice/memento.cpp \
 		../Calcultrice/fabrique.cpp \
 		../Calcultrice/strategiecalcul.cpp \
-		../Calcultrice/strategieaddition.cpp moc_mainwindow.cpp
+		../Calcultrice/strategieaddition.cpp \
+		../Calcultrice/strategiemultiplication.cpp \
+		../Calcultrice/strategiesoustraction.cpp \
+		../Calcultrice/strategiedivision.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		litteraleabstraite.o \
@@ -80,6 +83,9 @@ OBJECTS       = main.o \
 		fabrique.o \
 		strategiecalcul.o \
 		strategieaddition.o \
+		strategiemultiplication.o \
+		strategiesoustraction.o \
+		strategiedivision.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/qdevice.pri \
@@ -236,7 +242,10 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../Calcultrice/memento.h \
 		../Calcultrice/fabrique.h \
 		../Calcultrice/strategiecalcul.h \
-		../Calcultrice/strategieaddition.h ../Calcultrice/main.cpp \
+		../Calcultrice/strategieaddition.h \
+		../Calcultrice/strategiemultiplication.h \
+		../Calcultrice/strategiesoustraction.h \
+		../Calcultrice/strategiedivision.h ../Calcultrice/main.cpp \
 		../Calcultrice/mainwindow.cpp \
 		../Calcultrice/litteraleabstraite.cpp \
 		../Calcultrice/numerique.cpp \
@@ -251,7 +260,10 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../Calcultrice/memento.cpp \
 		../Calcultrice/fabrique.cpp \
 		../Calcultrice/strategiecalcul.cpp \
-		../Calcultrice/strategieaddition.cpp
+		../Calcultrice/strategieaddition.cpp \
+		../Calcultrice/strategiemultiplication.cpp \
+		../Calcultrice/strategiesoustraction.cpp \
+		../Calcultrice/strategiedivision.cpp
 QMAKE_TARGET  = Calcultrice2
 DESTDIR       = 
 TARGET        = Calcultrice2.app/Contents/MacOS/Calcultrice2
@@ -571,7 +583,7 @@ Calcultrice2.app/Contents/Resources/empty.lproj:
 Calcultrice2.app/Contents/Info.plist: 
 	@test -d Calcultrice2.app/Contents || mkdir -p Calcultrice2.app/Contents
 	@$(DEL_FILE) Calcultrice2.app/Contents/Info.plist
-	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,@BUNDLEIDENTIFIER@,SR02.Calcultrice2,g" -e "s,@ICON@,,g" -e "s,@EXECUTABLE@,Calcultrice2,g" -e "s,@LIBRARY@,Calcultrice2,g" -e "s,@TYPEINFO@,????,g" ../../../../Qt/5.6/clang_64/mkspecs/macx-clang/Info.plist.app >Calcultrice2.app/Contents/Info.plist
+	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,@BUNDLEIDENTIFIER@,LO21.Calcultrice2,g" -e "s,@ICON@,,g" -e "s,@EXECUTABLE@,Calcultrice2,g" -e "s,@LIBRARY@,Calcultrice2,g" -e "s,@TYPEINFO@,????,g" ../../../../Qt/5.6/clang_64/mkspecs/macx-clang/Info.plist.app >Calcultrice2.app/Contents/Info.plist
 
 all: Makefile \
 		Calcultrice2.app/Contents/PkgInfo \
@@ -584,8 +596,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calcultrice/mainwindow.h ../Calcultrice/litteraleabstraite.h ../Calcultrice/numerique.h ../Calcultrice/entier.h ../Calcultrice/rationnel.h ../Calcultrice/reel.h ../Calcultrice/complexe.h ../Calcultrice/expression.h ../Calcultrice/atome.h ../Calcultrice/pile.h ../Calcultrice/factory.h ../Calcultrice/memento.h ../Calcultrice/fabrique.h ../Calcultrice/strategiecalcul.h ../Calcultrice/strategieaddition.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Calcultrice/main.cpp ../Calcultrice/mainwindow.cpp ../Calcultrice/litteraleabstraite.cpp ../Calcultrice/numerique.cpp ../Calcultrice/entier.cpp ../Calcultrice/rationnel.cpp ../Calcultrice/reel.cpp ../Calcultrice/complexe.cpp ../Calcultrice/expression.cpp ../Calcultrice/atome.cpp ../Calcultrice/pile.cpp ../Calcultrice/factory.cpp ../Calcultrice/memento.cpp ../Calcultrice/fabrique.cpp ../Calcultrice/strategiecalcul.cpp ../Calcultrice/strategieaddition.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calcultrice/mainwindow.h ../Calcultrice/litteraleabstraite.h ../Calcultrice/numerique.h ../Calcultrice/entier.h ../Calcultrice/rationnel.h ../Calcultrice/reel.h ../Calcultrice/complexe.h ../Calcultrice/expression.h ../Calcultrice/atome.h ../Calcultrice/pile.h ../Calcultrice/factory.h ../Calcultrice/memento.h ../Calcultrice/fabrique.h ../Calcultrice/strategiecalcul.h ../Calcultrice/strategieaddition.h ../Calcultrice/strategiemultiplication.h ../Calcultrice/strategiesoustraction.h ../Calcultrice/strategiedivision.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calcultrice/main.cpp ../Calcultrice/mainwindow.cpp ../Calcultrice/litteraleabstraite.cpp ../Calcultrice/numerique.cpp ../Calcultrice/entier.cpp ../Calcultrice/rationnel.cpp ../Calcultrice/reel.cpp ../Calcultrice/complexe.cpp ../Calcultrice/expression.cpp ../Calcultrice/atome.cpp ../Calcultrice/pile.cpp ../Calcultrice/factory.cpp ../Calcultrice/memento.cpp ../Calcultrice/fabrique.cpp ../Calcultrice/strategiecalcul.cpp ../Calcultrice/strategieaddition.cpp ../Calcultrice/strategiemultiplication.cpp ../Calcultrice/strategiesoustraction.cpp ../Calcultrice/strategiedivision.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calcultrice/mainwindow.ui $(DISTDIR)/
 
 
@@ -662,18 +674,15 @@ numerique.o: ../Calcultrice/numerique.cpp ../Calcultrice/numerique.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../Calcultrice/entier.h \
 		../Calcultrice/reel.h \
-		../Calcultrice/rationnel.h \
-		../Calcultrice/complexe.h
+		../Calcultrice/complexe.h \
+		../Calcultrice/rationnel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o numerique.o ../Calcultrice/numerique.cpp
 
 entier.o: ../Calcultrice/entier.cpp ../Calcultrice/entier.h \
 		../Calcultrice/numerique.h \
 		../Calcultrice/litteraleabstraite.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
-		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../Calcultrice/reel.h \
-		../Calcultrice/rationnel.h \
-		../Calcultrice/complexe.h
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entier.o ../Calcultrice/entier.cpp
 
 rationnel.o: ../Calcultrice/rationnel.cpp ../Calcultrice/rationnel.h \
@@ -681,19 +690,14 @@ rationnel.o: ../Calcultrice/rationnel.cpp ../Calcultrice/rationnel.h \
 		../Calcultrice/numerique.h \
 		../Calcultrice/litteraleabstraite.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
-		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../Calcultrice/reel.h \
-		../Calcultrice/complexe.h
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rationnel.o ../Calcultrice/rationnel.cpp
 
 reel.o: ../Calcultrice/reel.cpp ../Calcultrice/reel.h \
 		../Calcultrice/numerique.h \
 		../Calcultrice/litteraleabstraite.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
-		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../Calcultrice/entier.h \
-		../Calcultrice/rationnel.h \
-		../Calcultrice/complexe.h
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reel.o ../Calcultrice/reel.cpp
 
 complexe.o: ../Calcultrice/complexe.cpp ../Calcultrice/complexe.h \
@@ -701,9 +705,7 @@ complexe.o: ../Calcultrice/complexe.cpp ../Calcultrice/complexe.h \
 		../Calcultrice/litteraleabstraite.h \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../Calcultrice/entier.h \
-		../Calcultrice/reel.h \
-		../Calcultrice/rationnel.h
+		../Calcultrice/reel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o complexe.o ../Calcultrice/complexe.cpp
 
 expression.o: ../Calcultrice/expression.cpp ../Calcultrice/expression.h \
@@ -733,7 +735,6 @@ pile.o: ../Calcultrice/pile.cpp ../Calcultrice/pile.h \
 		../Calcultrice/numerique.h \
 		../Calcultrice/entier.h \
 		../Calcultrice/reel.h \
-		../Calcultrice/rationnel.h \
 		../Calcultrice/factory.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pile.o ../Calcultrice/pile.cpp
 
@@ -777,8 +778,50 @@ strategieaddition.o: ../Calcultrice/strategieaddition.cpp ../Calcultrice/strateg
 		../Calcultrice/reel.h \
 		../Calcultrice/rationnel.h \
 		../Calcultrice/complexe.h \
-		../Calcultrice/fabrique.h
+		../Calcultrice/fabrique.h \
+		../Calcultrice/strategiemultiplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategieaddition.o ../Calcultrice/strategieaddition.cpp
+
+strategiemultiplication.o: ../Calcultrice/strategiemultiplication.cpp ../Calcultrice/strategiemultiplication.h \
+		../Calcultrice/strategiecalcul.h \
+		../Calcultrice/litteraleabstraite.h \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Calcultrice/numerique.h \
+		../Calcultrice/entier.h \
+		../Calcultrice/reel.h \
+		../Calcultrice/rationnel.h \
+		../Calcultrice/complexe.h \
+		../Calcultrice/fabrique.h \
+		../Calcultrice/strategieaddition.h \
+		../Calcultrice/strategiesoustraction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategiemultiplication.o ../Calcultrice/strategiemultiplication.cpp
+
+strategiesoustraction.o: ../Calcultrice/strategiesoustraction.cpp ../Calcultrice/strategiesoustraction.h \
+		../Calcultrice/strategiecalcul.h \
+		../Calcultrice/litteraleabstraite.h \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Calcultrice/numerique.h \
+		../Calcultrice/entier.h \
+		../Calcultrice/reel.h \
+		../Calcultrice/rationnel.h \
+		../Calcultrice/complexe.h \
+		../Calcultrice/fabrique.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategiesoustraction.o ../Calcultrice/strategiesoustraction.cpp
+
+strategiedivision.o: ../Calcultrice/strategiedivision.cpp ../Calcultrice/strategiedivision.h \
+		../Calcultrice/strategiecalcul.h \
+		../Calcultrice/litteraleabstraite.h \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/Qstring \
+		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Calcultrice/numerique.h \
+		../Calcultrice/entier.h \
+		../Calcultrice/reel.h \
+		../Calcultrice/rationnel.h \
+		../Calcultrice/complexe.h \
+		../Calcultrice/fabrique.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategiedivision.o ../Calcultrice/strategiedivision.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

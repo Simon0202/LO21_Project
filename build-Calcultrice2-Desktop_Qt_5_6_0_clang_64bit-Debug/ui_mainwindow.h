@@ -134,6 +134,7 @@ public:
     QPushButton *pushButtonM;
     QPushButton *pushButtonY;
     QPushButton *pushButtonG;
+    QPushButton *pushButtonSpace;
     QWidget *param;
     QWidget *layoutWidget1;
     QVBoxLayout *vue1Param;
@@ -153,22 +154,22 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(600, 720);
-        MainWindow->setMinimumSize(QSize(600, 720));
+        MainWindow->resize(620, 720);
+        MainWindow->setMinimumSize(QSize(620, 720));
         MainWindow->setMaximumSize(QSize(600, 720));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        centralWidget->setMinimumSize(QSize(593, 581));
+        centralWidget->setMinimumSize(QSize(610, 581));
         Application = new QTabWidget(centralWidget);
         Application->setObjectName(QStringLiteral("Application"));
-        Application->setGeometry(QRect(10, 10, 571, 690));
+        Application->setGeometry(QRect(10, 10, 690, 700));
         Application->setTabShape(QTabWidget::Rounded);
         Application->setUsesScrollButtons(false);
         calc = new QWidget();
         calc->setObjectName(QStringLiteral("calc"));
         layoutWidget = new QWidget(calc);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 0, 570, 678));
+        layoutWidget->setGeometry(QRect(0, 0, 594, 678));
         vue1Calc = new QVBoxLayout(layoutWidget);
         vue1Calc->setSpacing(6);
         vue1Calc->setContentsMargins(11, 11, 11, 11);
@@ -743,6 +744,11 @@ public:
 
         clavierLettres->addWidget(pushButtonG, 0, 6, 1, 1);
 
+        pushButtonSpace = new QPushButton(vue4CalcClavier);
+        pushButtonSpace->setObjectName(QStringLiteral("pushButtonSpace"));
+
+        clavierLettres->addWidget(pushButtonSpace, 3, 6, 1, 1);
+
 
         vue4Calc->addLayout(clavierLettres);
 
@@ -931,6 +937,7 @@ public:
         pushButtonM->setText(QApplication::translate("MainWindow", "M", 0));
         pushButtonY->setText(QApplication::translate("MainWindow", "Y", 0));
         pushButtonG->setText(QApplication::translate("MainWindow", "G", 0));
+        pushButtonSpace->setText(QApplication::translate("MainWindow", "__", 0));
         Application->setTabText(Application->indexOf(calc), QApplication::translate("MainWindow", "Calc", 0));
         labelParam->setText(QApplication::translate("MainWindow", "Param\303\250tres :", 0));
         checkBoxClavier->setText(QApplication::translate("MainWindow", "Clavier Cliquable", 0));
