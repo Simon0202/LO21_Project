@@ -31,7 +31,7 @@ public:
        //virtual  Expression* Calcul(Reel* l1,Expression* l2);
        //virtual  Expression* Calcul(Expression* l1,Reel* l2);
        virtual  Complexe* Calcul(Rationnel* l1,Complexe* l2);
-       //virtual  Complexe* Calcul(Complexe* l1,Rationnel* l2);
+       virtual  Complexe* Calcul(Complexe* l1,Rationnel* l2);
        //virtual  Expression* Calcul(Rationnel* l1,Expression* l2);
        //virtual  Expression* Calcul(Expression* l1,Rationnel* l2);
        //virtual  Expression* Calcul(Complexe* l1,Expression* l2);
