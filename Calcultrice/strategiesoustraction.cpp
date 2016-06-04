@@ -1,4 +1,6 @@
 #include "strategiesoustraction.h"
+#include "strategiemultiplication.h"
+#include "strategiedivision.h"
 
 Entier* StrategieSoustraction::Calcul(Entier* l1,Entier* l2){
     FabEntier f;
@@ -10,11 +12,16 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Reel* l2){
     return f.Fabriquer(l1->getVal()-l2->getVal());
 }
 
-/*
-Numerique* Calcul(Complexe* l1,Complexe* l2){
+
+Numerique* StrategieSoustraction::Calcul(Complexe* l1,Complexe* l2){
 
     FabComplexe f;
     StrategieSoustraction c;
+
+    //Conversion dynamique des pointeurs vers numerique pour pouvoir choisir la bonne strategie de calcul
+
+    //Conversion
+    Numerique *numR,*numI;
 
     Entier *er1,*er2,*ei1,*ei2;
     Reel *rr1,*rr2,*ri1,*ri2;
@@ -119,7 +126,7 @@ Numerique* Calcul(Complexe* l1,Complexe* l2){
 
 
 }
-*/
+
 Reel* StrategieSoustraction::Calcul(Entier* l1,Reel* l2){
 
     FabReel f;
@@ -211,5 +218,146 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
 
 
  }
+
+Numerique* StrategieSoustraction::Calcul(Rationnel* l1,Rationnel* l2){
+
+    // LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
+
+        FabRationnel f;
+        StrategieMultiplication m;
+        StrategieSoustraction a;
+        Rationnel* res;
+        Entier* res_intermediaire1 = m.Calcul(l1->getNumerateur(),l2->getDenumerateur());
+        Entier* res_intermediaire2 = m.Calcul(l2->getNumerateur(),l1->getDenumerateur());
+
+        res = f.Fabriquer(a.Calcul(res_intermediaire1,res_intermediaire2),m.Calcul(l1->getDenumerateur(), l2->getDenumerateur()));
+        if (res->getDenumerateur()->getVal() ==1){
+
+                FabEntier f;
+                Entier* nouv;
+                nouv = f.Fabriquer(res->getNumerateur()->getVal());
+                delete(res);
+                delete res_intermediaire1;
+                delete res_intermediaire2;
+                return nouv;
+        }
+        else {
+        delete res_intermediaire1;
+        delete res_intermediaire2;
+        return res;
+        }
+
+
+
+
+
+
+}
+
+
+Numerique* StrategieSoustraction::Calcul(Entier* l1,Rationnel* l2){
+
+    //LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
+
+        FabRationnel f;
+        StrategieMultiplication m;
+        StrategieSoustraction a;
+        Rationnel* res;
+        Entier* res_intermediaire1 = m.Calcul(l1,l2->getDenumerateur());
+        res = f.Fabriquer(a.Calcul(res_intermediaire1,l2->getNumerateur()),l2->getDenumerateur());
+        if(res->getDenumerateur()->getVal() == 1){
+            FabEntier f;
+            Entier* nouv;
+            nouv = f.Fabriquer(res->getNumerateur()->getVal());
+            delete res;
+            return nouv;
+        }
+        else {return res;}
+
+
+
+
+
+}
+
+Numerique* StrategieSoustraction::Calcul(Rationnel* l1,Entier* l2){
+
+    StrategieSoustraction a;
+    return a.Calcul(l2,l1);
+
+}
+
+
+Reel* StrategieSoustraction::Calcul(Reel* l1,Rationnel* l2){
+//LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
+
+    StrategieDivision d;
+    StrategieSoustraction a;
+    Numerique* res_intermediaire = d.Calcul(l2->getNumerateur(),l2->getDenumerateur());
+    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
+    Entier* e= dynamic_cast<Entier*>(res_intermediaire);
+    Reel* res = a.Calcul(l1,e);
+    delete e;
+    return res;
+    }
+    else{
+        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
+        Reel* res = a.Calcul(l1,r);
+        delete r;
+        return res;
+    }
+
+
+}
+
+Reel* StrategieSoustraction::Calcul(Rationnel* l1,Reel* l2){
+
+    StrategieSoustraction a;
+    return a.Calcul(l2,l1);
+
+}
+
+
+Complexe* StrategieSoustraction::Calcul(Rationnel* l1,Complexe* l2){
+
+    FabComplexe f;
+    StrategieSoustraction c;
+    Numerique* numR;
+    Entier* er2;
+    Reel* rr2;
+    Rationnel* rar2;
+
+    er2=dynamic_cast<Entier*>(l2->getR());
+    rr2=dynamic_cast<Reel*>(l2->getR());
+    rar2=dynamic_cast<Rationnel*>(l2->getR());
+
+    if (er2 != NULL){
+        numR= c.Calcul(l1,er2);
+    }
+    else if (rr2 != NULL){
+        numR= c.Calcul(l1,rr2);
+    }
+    else if (rar2 != NULL){
+        numR= c.Calcul(l1,rar2);
+    }
+
+
+    return f.Fabriquer(numR,l2->getI());
+
+
+
+}
+
+Complexe* StrategieSoustraction::Calcul(Complexe* l1,Rationnel* l2){
+
+    StrategieSoustraction a;
+    return a.Calcul(l2,l1);
+}
+
+
+
+
+
+
 
 
