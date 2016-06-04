@@ -5,13 +5,14 @@
 #include <QChar>
 #include <QString>
 
-class Atome : public LitteraleAbstraite
-{
+class Atome : public LitteraleAbstraite {
 private:
     QString val;
 public:
     Atome(QString atm);
     virtual void afficher(std::ostream& f=std::cout) const;
+    QString getVal() const{return val;}
 };
 
 #endif // ATOME_H
+

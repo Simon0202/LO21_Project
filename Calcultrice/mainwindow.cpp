@@ -1,22 +1,86 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "pile.h"
+#include "litteraleabstraite.h"
+#include <QVector>
+#include <qiterator.h>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    Pile* pile = Pile::getInstance();
+    QSettings settings;
     ui->setupUi(this);
-    ui->checkBoxClavier->setChecked(true);
-    ui->checkBoxBip->setChecked(true);
+
+    ui->vuePile->setRowCount(pile->getMaxAffiche());
+    settings.setValue("Pile", pile->getMaxAffiche());
+    ui->vuePile->setColumnCount(1);
+    ui->vuePile->verticalHeader()->setSectionResizeMode (QHeaderView::Fixed);
+
+    QStringList numberList;
+    for(unsigned int i = pile->getMaxAffiche(); i>0; i--) {
+        QString str = QString::number(i);
+        str += " :";
+        numberList << str;
+        // creation of the item of each line initialized with an empty string (chaine vide).
+        ui->vuePile->setItem(i-1, 0, new QTableWidgetItem(""));
+    }
+    ui->vuePile->setVerticalHeaderLabels(numberList);
+    ui->vuePile->setFixedHeight(pile->getMaxAffiche() * ui->vuePile->rowHeight(0)+2);
+
+    // inhibit modification
+    ui->vuePile->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    // connection
+    connect(pile,SIGNAL(modificationEtat()),this,SLOT(refresh()));
+
+    // first message
+    pile->setMessage("Bienvenue !");
+
+    //keyboard enabled at start
+    settings.setValue("Clavier", true);
+
+    refresh();
 }
+
+void MainWindow::refresh(){
+    Pile* pile = Pile::getInstance();
+    unsigned int nb = 0;
+    // delete everything
+    for(unsigned int i=0; i<pile->getMaxAffiche(); i++)
+        ui->vuePile->item(i,0)->setText("");
+    // update
+    QVectorIterator<LitteraleAbstraite*> it(*pile->getStack());
+    for(it.toBack() ; it.hasPrevious() && nb<pile->getMaxAffiche(); nb++){
+    ui->vuePile->item(pile->getMaxAffiche()-1-nb,0)->setText(it.previous()->toString());
+    }
+}
+
+void MainWindow::setMaxAffiche(int i) {
+    Pile* pile = Pile::getInstance();
+    pile->setMaxAffiche(i);
+    ui->vuePile->setRowCount(i);
+    QStringList numberList;
+    for(unsigned int i = pile->getMaxAffiche(); i>0; i--) {
+        QString str = QString::number(i);
+        str += " :";
+        numberList << str;
+        // creation of the item of each line initialized with an empty string (chaine vide).
+        ui->vuePile->setItem(i-1, 0, new QTableWidgetItem(""));
+    }
+    ui->vuePile->setVerticalHeaderLabels(numberList);
+    ui->vuePile->setFixedHeight(pile->getMaxAffiche() * ui->vuePile->rowHeight(0)+2);
+    emit pile->modificationEtat();
+
+}
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
-
 
 //*********
 //Clavier09
@@ -85,13 +149,7 @@ void MainWindow::on_pushButtonPlus_released(){ui->lineEdit->insert("+");}
 //******************************
 void MainWindow::on_pushButtonClear_released(){ui->lineEdit->clear();}
 
-void MainWindow::on_pushButtonEnter_released(){
-    QString const text = ui->lineEdit->text();
-    ui->lineEdit->clear();
-    if (text != ""){
-        ui->labelPile1->setText(text);
-    }
-}
+//void MainWindow::on_pushButtonEnter_released(){}
 void MainWindow::on_pushButtonUndo_released(){ui->lineEdit->undo();}
 void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->redo();}
 
@@ -107,22 +165,10 @@ void MainWindow::on_pushButtonNeg_released(){ui->lineEdit->insert("NEG");}
 //********
 //CheckBox
 //********
-void MainWindow::on_checkBoxClavier_clicked()
-{
-  ui->vue4CalcClavier->setDisabled(ui->checkBoxClavier->isChecked());
-  ui->vue4CalcClavier->setEnabled(ui->checkBoxClavier->isChecked());
-
-}
-
-
 void MainWindow::on_pushButtonSpace_released()
-{    ui->lineEdit->insert(" ");}
-
-void MainWindow::on_lineEdit_returnPressed()
-{
-    QString const text = ui->lineEdit->text();
-    ui->lineEdit->clear();
-    if (text != ""){
-        ui->labelPile1->setText(text);
-    }
+{    ui->lineEdit->insert(" ");
 }
+
+
+
+

@@ -41,7 +41,7 @@ class FabComplexe: public Fabrique{
 
 public:
 
-    //virtual const LitteraleAbstraite* creer(QString c);
+   //virtual const LitteraleAbstraite* creer(QString c);
    Complexe* Fabriquer(Numerique* l1, Numerique* l2);
 
 

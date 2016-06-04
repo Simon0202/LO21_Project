@@ -13,27 +13,20 @@ private:
 
 public:
     Complexe();
+    Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
+    Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
     ~Complexe(){
         delete a;
         delete b;
     }
-    Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
-    Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
 
-    Numerique* getR(){return a;}
-    Numerique* getI(){return b;}
 
-    //A implémenter dans stratégie
-    //inline void setSign(){a->setSign();b->setSign();}
-
-    //On cree un complexe a partir d'un nombre reel et on met b a zero. */
-    //Complexe(Numerique* d);
+    Numerique* getR() const {return a;}
+    Numerique* getI() const {return b;}
 
     //Héritage
     void afficher(std::ostream& f=std::cout) const;
-
-
-    //virtual void setSign();
+    //virtual QString toString() const;
 
     //Pb de fonction ci dessous
     virtual LitteraleAbstraite* clone() const;

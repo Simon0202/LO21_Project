@@ -21,6 +21,7 @@ public:
     virtual void afficher(std::ostream& f=std::cout) const { f<<_val; }
     LitteraleAbstraite *clone() const;
     //virtual void setSign(){_val = -_val;}
+    virtual QString toString() const;
 
     //Permet l'affectation Entier-Entier
     Entier& operator=(const Entier& val);
@@ -29,11 +30,5 @@ public:
 
     QString type(){return "entier";}
 };
-/*
-Entier operator+( Entier  &a,  Entier  &b);
-Entier operator-( Entier  &a,  Entier  &b);
-Entier operator*( Entier  &a,  Entier  &b);
-Entier operator/( Entier  &a,  Entier  &b);
-Entier operator%( Entier  &a,  Entier  &b);
-*/
+
 #endif // ENTIER_H

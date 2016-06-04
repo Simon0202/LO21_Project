@@ -41,10 +41,6 @@ Reel operator/( Reel& a,  Reel& b){
     return resultat;
 }
 
-
-
-
-
-
-
-
+QString Reel::toString() const {
+    return QString::number(_val);
+}

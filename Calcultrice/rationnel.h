@@ -30,6 +30,7 @@ public:
     //virtual void setSign() {_num.setSign();}
     void afficher(std::ostream& f=std::cout) const { _num->afficher(f); f<<"/"; _denum->afficher(f); }
     virtual LitteraleAbstraite* clone() const;
+    virtual QString toString() const;
 
     //Autorise affectation Rationnel-Rationnel
     Rationnel& operator=(const Rationnel& n);

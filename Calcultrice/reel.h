@@ -19,6 +19,7 @@ public:
     //Héritage de Numerique
     void afficher(std::ostream& f=std::cout) const { f<<_val; }
     virtual LitteraleAbstraite *clone() const;
+    virtual QString toString() const;
 
     //A implémenter dans stratégie
     //virtual void setSign() {_val=(-_val);}

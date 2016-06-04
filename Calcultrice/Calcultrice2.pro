@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,7 +15,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    litteraleabstraite.cpp \
     numerique.cpp \
     entier.cpp \
     rationnel.cpp \
@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     expression.cpp \
     atome.cpp \
     pile.cpp \
-    factory.cpp \
     memento.cpp \
     fabrique.cpp \
     strategiecalcul.cpp \
@@ -42,7 +41,6 @@ HEADERS  += mainwindow.h \
     expression.h \
     atome.h \
     pile.h \
-    factory.h \
     memento.h \
     fabrique.h \
     strategiecalcul.h \

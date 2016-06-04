@@ -52,6 +52,24 @@ Rationnel& Rationnel::operator=(const Rationnel& n){
     return *this;
 }
 
+
+
+QString Rationnel::toString() const {
+    return _num->toString() + "/" + _denum->toString();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 Rationnel operator+( Rationnel& a,  Rationnel& b){
 

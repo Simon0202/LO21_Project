@@ -17,6 +17,9 @@ public:
         virtual void afficher(std::ostream& f=std::cout) const = 0;
     //Clonage d'une donnee (DUP)
         virtual LitteraleAbstraite* clone() const = 0;
+    //Transformation en String
+        virtual QString toString() const = 0;
 };
+
 
 #endif // LITTERALEABSTRAITE_H

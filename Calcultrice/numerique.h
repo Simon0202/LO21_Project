@@ -4,7 +4,6 @@
 #include "litteraleabstraite.h"
 
 
-
 class Numerique : public LitteraleAbstraite {
 
 public :
@@ -19,12 +18,17 @@ public :
     //virtual void setSign() =0;
 
     //Clonage d'une donnee (DUP)
-        virtual LitteraleAbstraite* clone() const = 0;
+    virtual LitteraleAbstraite* clone() const = 0;
 
     virtual bool EstNul();
 
+    //Passage en string pour la pile
+    virtual QString toString() const = 0;
 
     virtual QString type()=0;
+
+    //Permet de vérifier qu'une fonction est positive
+    //virtual int isPositive();
 
 };
 
