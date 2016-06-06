@@ -14,16 +14,17 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -33,80 +34,30 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QTabWidget *Application;
-    QWidget *calc;
-    QWidget *layoutWidget;
-    QVBoxLayout *vue1Calc;
-    QLabel *AffichagePile;
-    QVBoxLayout *vue2Calc;
-    QFormLayout *etatPile;
-    QLabel *label5;
-    QLabel *labelPile5;
-    QLabel *label4;
-    QLabel *labelPile4;
-    QLabel *label3;
-    QLabel *label2;
-    QLabel *labelPile2;
-    QLabel *label1;
-    QLabel *labelPile1;
-    QLabel *labelPile3;
-    QVBoxLayout *vue3Calc;
-    QHBoxLayout *saisieClavier;
+    QTabWidget *tabWidget;
+    QWidget *Calculatrice;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *ligneSaisie;
     QLineEdit *lineEdit;
     QPushButton *pushBoutonDel;
-    QWidget *vue4CalcClavier;
-    QVBoxLayout *vue4Calc;
-    QHBoxLayout *vue5Calc;
-    QVBoxLayout *clavierNumerique09;
-    QHBoxLayout *clavierNumerique19;
-    QVBoxLayout *verticalLayout_6;
-    QPushButton *pushButton1;
-    QPushButton *pushButton4;
+    QWidget *clavierSaisie1;
+    QHBoxLayout *clavierSaisie;
+    QGridLayout *clavierNumerique;
     QPushButton *pushButton7;
-    QVBoxLayout *verticalLayout_7;
+    QPushButton *pushButton4;
+    QPushButton *pushButton9;
+    QPushButton *pushButton1;
+    QPushButton *pushButton6;
+    QPushButton *pushButton8;
+    QPushButton *pushButton3;
     QPushButton *pushButton2;
     QPushButton *pushButton5;
-    QPushButton *pushButton8;
-    QVBoxLayout *verticalLayout_8;
-    QPushButton *pushButton3;
-    QPushButton *pushButton6;
-    QPushButton *pushButton9;
     QPushButton *pushButton0;
-    QVBoxLayout *clavierOp;
+    QVBoxLayout *operateurBase;
     QPushButton *pushButtonPlus;
     QPushButton *pushButtonMoins;
     QPushButton *pushButtonMul;
     QPushButton *pushButtonDiv1;
-    QHBoxLayout *clavierUndoRedoEnter;
-    QHBoxLayout *clavierUndoRedo;
-    QVBoxLayout *clavierUndo;
-    QPushButton *pushButtonEval;
-    QPushButton *pushButtonSto;
-    QPushButton *pushButtonUndo;
-    QVBoxLayout *clavierRedo;
-    QPushButton *pushButtonEdit;
-    QPushButton *pushButtonForget;
-    QPushButton *pushButtonRedo;
-    QPushButton *pushButtonEnter;
-    QHBoxLayout *vue6Calc;
-    QGridLayout *boutonSpeciaux;
-    QPushButton *pushButtonSwap;
-    QPushButton *pushButtonDen;
-    QPushButton *pushButtonLastArg;
-    QPushButton *pushButtoNot;
-    QPushButton *pushButtonAnd;
-    QPushButton *pushButtonNeg;
-    QPushButton *pushButtonNum;
-    QPushButton *pushButtonDup;
-    QPushButton *pushButtonDrop;
-    QPushButton *pushButtonIm;
-    QPushButton *pushButtonLastop;
-    QPushButton *pushButtonIft;
-    QPushButton *pushButtonDollar;
-    QPushButton *pushButtonRe;
-    QPushButton *pushButtonOr;
-    QPushButton *pushButtonDiv;
-    QPushButton *pushButtonClear;
     QGridLayout *clavierLettres;
     QPushButton *pushButtonQ;
     QPushButton *pushButtonR;
@@ -135,319 +86,349 @@ public:
     QPushButton *pushButtonY;
     QPushButton *pushButtonG;
     QPushButton *pushButtonSpace;
-    QWidget *param;
-    QWidget *layoutWidget1;
-    QVBoxLayout *vue1Param;
-    QVBoxLayout *parametre;
-    QLabel *labelParam;
-    QCheckBox *checkBoxClavier;
-    QCheckBox *checkBoxBip;
-    QHBoxLayout *vue2Param;
-    QVBoxLayout *variables;
-    QLabel *labelVar;
-    QTextEdit *textEditVar;
-    QVBoxLayout *programmes;
-    QLabel *labelProg;
-    QTextEdit *textEditProg;
+    QWidget *layoutWidget;
+    QHBoxLayout *operateurSpeciaux;
+    QGridLayout *boutonSpeciaux;
+    QPushButton *pushButtonSwap;
+    QPushButton *pushButtonDen;
+    QPushButton *pushButtonLastArg;
+    QPushButton *pushButtoNot;
+    QPushButton *pushButtonAnd;
+    QPushButton *pushButtonNeg;
+    QPushButton *pushButtonNum;
+    QPushButton *pushButtonDup;
+    QPushButton *pushButtonDrop;
+    QPushButton *pushButtonIm;
+    QPushButton *pushButtonLastop;
+    QPushButton *pushButtonIft;
+    QPushButton *pushButtonDollar;
+    QPushButton *pushButtonRe;
+    QPushButton *pushButtonOr;
+    QPushButton *pushButtonDiv;
+    QVBoxLayout *EvEdStFo;
+    QPushButton *pushButtonEval;
+    QPushButton *pushButtonEdit;
+    QPushButton *pushButtonSto;
+    QPushButton *pushButtonForget;
+    QVBoxLayout *EntCleUndRed;
+    QPushButton *pushButtonEnter;
+    QPushButton *pushButtonClear;
+    QPushButton *pushButtonUndo;
+    QPushButton *pushButtonRedo;
+    QTableWidget *vuePile;
+    QWidget *Options;
+    QWidget *layoutWidget_3;
+    QVBoxLayout *formulaireParam;
+    QLabel *label1;
+    QVBoxLayout *checkBoxPar;
+    QCheckBox *checkClavier;
+    QCheckBox *checkSond;
+    QLCDNumber *lcdNumber;
+    QHBoxLayout *taillePile;
+    QLabel *label2;
+    QSlider *verticalSlider;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(620, 720);
-        MainWindow->setMinimumSize(QSize(620, 720));
-        MainWindow->setMaximumSize(QSize(600, 720));
+        MainWindow->resize(722, 581);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setMinimumSize(QSize(610, 581));
-        Application = new QTabWidget(centralWidget);
-        Application->setObjectName(QStringLiteral("Application"));
-        Application->setGeometry(QRect(10, 10, 690, 700));
-        Application->setTabShape(QTabWidget::Rounded);
-        Application->setUsesScrollButtons(false);
-        calc = new QWidget();
-        calc->setObjectName(QStringLiteral("calc"));
-        layoutWidget = new QWidget(calc);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 0, 594, 678));
-        vue1Calc = new QVBoxLayout(layoutWidget);
-        vue1Calc->setSpacing(6);
-        vue1Calc->setContentsMargins(11, 11, 11, 11);
-        vue1Calc->setObjectName(QStringLiteral("vue1Calc"));
-        vue1Calc->setContentsMargins(0, 0, 0, 0);
-        AffichagePile = new QLabel(layoutWidget);
-        AffichagePile->setObjectName(QStringLiteral("AffichagePile"));
-        AffichagePile->setMinimumSize(QSize(546, 0));
-
-        vue1Calc->addWidget(AffichagePile);
-
-        vue2Calc = new QVBoxLayout();
-        vue2Calc->setSpacing(6);
-        vue2Calc->setObjectName(QStringLiteral("vue2Calc"));
-        etatPile = new QFormLayout();
-        etatPile->setSpacing(6);
-        etatPile->setObjectName(QStringLiteral("etatPile"));
-        label5 = new QLabel(layoutWidget);
-        label5->setObjectName(QStringLiteral("label5"));
-
-        etatPile->setWidget(0, QFormLayout::LabelRole, label5);
-
-        labelPile5 = new QLabel(layoutWidget);
-        labelPile5->setObjectName(QStringLiteral("labelPile5"));
-        labelPile5->setMinimumSize(QSize(525, 0));
-
-        etatPile->setWidget(0, QFormLayout::FieldRole, labelPile5);
-
-        label4 = new QLabel(layoutWidget);
-        label4->setObjectName(QStringLiteral("label4"));
-
-        etatPile->setWidget(1, QFormLayout::LabelRole, label4);
-
-        labelPile4 = new QLabel(layoutWidget);
-        labelPile4->setObjectName(QStringLiteral("labelPile4"));
-        labelPile4->setMinimumSize(QSize(525, 0));
-
-        etatPile->setWidget(1, QFormLayout::FieldRole, labelPile4);
-
-        label3 = new QLabel(layoutWidget);
-        label3->setObjectName(QStringLiteral("label3"));
-
-        etatPile->setWidget(2, QFormLayout::LabelRole, label3);
-
-        label2 = new QLabel(layoutWidget);
-        label2->setObjectName(QStringLiteral("label2"));
-
-        etatPile->setWidget(3, QFormLayout::LabelRole, label2);
-
-        labelPile2 = new QLabel(layoutWidget);
-        labelPile2->setObjectName(QStringLiteral("labelPile2"));
-        labelPile2->setMinimumSize(QSize(525, 0));
-
-        etatPile->setWidget(3, QFormLayout::FieldRole, labelPile2);
-
-        label1 = new QLabel(layoutWidget);
-        label1->setObjectName(QStringLiteral("label1"));
-
-        etatPile->setWidget(4, QFormLayout::LabelRole, label1);
-
-        labelPile1 = new QLabel(layoutWidget);
-        labelPile1->setObjectName(QStringLiteral("labelPile1"));
-        labelPile1->setMinimumSize(QSize(525, 0));
-
-        etatPile->setWidget(4, QFormLayout::FieldRole, labelPile1);
-
-        labelPile3 = new QLabel(layoutWidget);
-        labelPile3->setObjectName(QStringLiteral("labelPile3"));
-        labelPile3->setMinimumSize(QSize(525, 0));
-
-        etatPile->setWidget(2, QFormLayout::FieldRole, labelPile3);
-
-
-        vue2Calc->addLayout(etatPile);
-
-        vue3Calc = new QVBoxLayout();
-        vue3Calc->setSpacing(6);
-        vue3Calc->setObjectName(QStringLiteral("vue3Calc"));
-        saisieClavier = new QHBoxLayout();
-        saisieClavier->setSpacing(6);
-        saisieClavier->setObjectName(QStringLiteral("saisieClavier"));
-        lineEdit = new QLineEdit(layoutWidget);
+        tabWidget = new QTabWidget(centralWidget);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setGeometry(QRect(20, 10, 681, 551));
+        tabWidget->setMinimumSize(QSize(650, 550));
+        Calculatrice = new QWidget();
+        Calculatrice->setObjectName(QStringLiteral("Calculatrice"));
+        horizontalLayoutWidget = new QWidget(Calculatrice);
+        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(39, 190, 601, 33));
+        horizontalLayoutWidget->setMinimumSize(QSize(601, 0));
+        ligneSaisie = new QHBoxLayout(horizontalLayoutWidget);
+        ligneSaisie->setSpacing(6);
+        ligneSaisie->setContentsMargins(11, 11, 11, 11);
+        ligneSaisie->setObjectName(QStringLiteral("ligneSaisie"));
+        ligneSaisie->setContentsMargins(0, 0, 0, 0);
+        lineEdit = new QLineEdit(horizontalLayoutWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        saisieClavier->addWidget(lineEdit);
+        ligneSaisie->addWidget(lineEdit);
 
-        pushBoutonDel = new QPushButton(layoutWidget);
+        pushBoutonDel = new QPushButton(horizontalLayoutWidget);
         pushBoutonDel->setObjectName(QStringLiteral("pushBoutonDel"));
 
-        saisieClavier->addWidget(pushBoutonDel);
+        ligneSaisie->addWidget(pushBoutonDel);
 
-
-        vue3Calc->addLayout(saisieClavier);
-
-        vue4CalcClavier = new QWidget(layoutWidget);
-        vue4CalcClavier->setObjectName(QStringLiteral("vue4CalcClavier"));
-        vue4Calc = new QVBoxLayout(vue4CalcClavier);
-        vue4Calc->setSpacing(6);
-        vue4Calc->setContentsMargins(11, 11, 11, 11);
-        vue4Calc->setObjectName(QStringLiteral("vue4Calc"));
-        vue5Calc = new QHBoxLayout();
-        vue5Calc->setSpacing(6);
-        vue5Calc->setObjectName(QStringLiteral("vue5Calc"));
-        clavierNumerique09 = new QVBoxLayout();
-        clavierNumerique09->setSpacing(6);
-        clavierNumerique09->setObjectName(QStringLiteral("clavierNumerique09"));
-        clavierNumerique19 = new QHBoxLayout();
-        clavierNumerique19->setSpacing(6);
-        clavierNumerique19->setObjectName(QStringLiteral("clavierNumerique19"));
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setSpacing(6);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        pushButton1 = new QPushButton(vue4CalcClavier);
-        pushButton1->setObjectName(QStringLiteral("pushButton1"));
-
-        verticalLayout_6->addWidget(pushButton1);
-
-        pushButton4 = new QPushButton(vue4CalcClavier);
-        pushButton4->setObjectName(QStringLiteral("pushButton4"));
-
-        verticalLayout_6->addWidget(pushButton4);
-
-        pushButton7 = new QPushButton(vue4CalcClavier);
+        clavierSaisie1 = new QWidget(Calculatrice);
+        clavierSaisie1->setObjectName(QStringLiteral("clavierSaisie1"));
+        clavierSaisie1->setGeometry(QRect(30, 370, 621, 136));
+        clavierSaisie = new QHBoxLayout(clavierSaisie1);
+        clavierSaisie->setSpacing(6);
+        clavierSaisie->setContentsMargins(11, 11, 11, 11);
+        clavierSaisie->setObjectName(QStringLiteral("clavierSaisie"));
+        clavierNumerique = new QGridLayout();
+        clavierNumerique->setSpacing(6);
+        clavierNumerique->setObjectName(QStringLiteral("clavierNumerique"));
+        pushButton7 = new QPushButton(clavierSaisie1);
         pushButton7->setObjectName(QStringLiteral("pushButton7"));
 
-        verticalLayout_6->addWidget(pushButton7);
+        clavierNumerique->addWidget(pushButton7, 2, 0, 1, 1);
 
+        pushButton4 = new QPushButton(clavierSaisie1);
+        pushButton4->setObjectName(QStringLiteral("pushButton4"));
 
-        clavierNumerique19->addLayout(verticalLayout_6);
+        clavierNumerique->addWidget(pushButton4, 1, 0, 1, 1);
 
-        verticalLayout_7 = new QVBoxLayout();
-        verticalLayout_7->setSpacing(6);
-        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        pushButton2 = new QPushButton(vue4CalcClavier);
-        pushButton2->setObjectName(QStringLiteral("pushButton2"));
-
-        verticalLayout_7->addWidget(pushButton2);
-
-        pushButton5 = new QPushButton(vue4CalcClavier);
-        pushButton5->setObjectName(QStringLiteral("pushButton5"));
-
-        verticalLayout_7->addWidget(pushButton5);
-
-        pushButton8 = new QPushButton(vue4CalcClavier);
-        pushButton8->setObjectName(QStringLiteral("pushButton8"));
-
-        verticalLayout_7->addWidget(pushButton8);
-
-
-        clavierNumerique19->addLayout(verticalLayout_7);
-
-        verticalLayout_8 = new QVBoxLayout();
-        verticalLayout_8->setSpacing(6);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        pushButton3 = new QPushButton(vue4CalcClavier);
-        pushButton3->setObjectName(QStringLiteral("pushButton3"));
-
-        verticalLayout_8->addWidget(pushButton3);
-
-        pushButton6 = new QPushButton(vue4CalcClavier);
-        pushButton6->setObjectName(QStringLiteral("pushButton6"));
-
-        verticalLayout_8->addWidget(pushButton6);
-
-        pushButton9 = new QPushButton(vue4CalcClavier);
+        pushButton9 = new QPushButton(clavierSaisie1);
         pushButton9->setObjectName(QStringLiteral("pushButton9"));
 
-        verticalLayout_8->addWidget(pushButton9);
+        clavierNumerique->addWidget(pushButton9, 2, 2, 1, 1);
 
+        pushButton1 = new QPushButton(clavierSaisie1);
+        pushButton1->setObjectName(QStringLiteral("pushButton1"));
 
-        clavierNumerique19->addLayout(verticalLayout_8);
+        clavierNumerique->addWidget(pushButton1, 0, 0, 1, 1);
 
+        pushButton6 = new QPushButton(clavierSaisie1);
+        pushButton6->setObjectName(QStringLiteral("pushButton6"));
 
-        clavierNumerique09->addLayout(clavierNumerique19);
+        clavierNumerique->addWidget(pushButton6, 1, 2, 1, 1);
 
-        pushButton0 = new QPushButton(vue4CalcClavier);
+        pushButton8 = new QPushButton(clavierSaisie1);
+        pushButton8->setObjectName(QStringLiteral("pushButton8"));
+
+        clavierNumerique->addWidget(pushButton8, 2, 1, 1, 1);
+
+        pushButton3 = new QPushButton(clavierSaisie1);
+        pushButton3->setObjectName(QStringLiteral("pushButton3"));
+
+        clavierNumerique->addWidget(pushButton3, 0, 2, 1, 1);
+
+        pushButton2 = new QPushButton(clavierSaisie1);
+        pushButton2->setObjectName(QStringLiteral("pushButton2"));
+
+        clavierNumerique->addWidget(pushButton2, 0, 1, 1, 1);
+
+        pushButton5 = new QPushButton(clavierSaisie1);
+        pushButton5->setObjectName(QStringLiteral("pushButton5"));
+
+        clavierNumerique->addWidget(pushButton5, 1, 1, 1, 1);
+
+        pushButton0 = new QPushButton(clavierSaisie1);
         pushButton0->setObjectName(QStringLiteral("pushButton0"));
 
-        clavierNumerique09->addWidget(pushButton0);
+        clavierNumerique->addWidget(pushButton0, 3, 1, 1, 1);
 
 
-        vue5Calc->addLayout(clavierNumerique09);
+        clavierSaisie->addLayout(clavierNumerique);
 
-        clavierOp = new QVBoxLayout();
-        clavierOp->setSpacing(6);
-        clavierOp->setObjectName(QStringLiteral("clavierOp"));
-        pushButtonPlus = new QPushButton(vue4CalcClavier);
+        operateurBase = new QVBoxLayout();
+        operateurBase->setSpacing(6);
+        operateurBase->setObjectName(QStringLiteral("operateurBase"));
+        pushButtonPlus = new QPushButton(clavierSaisie1);
         pushButtonPlus->setObjectName(QStringLiteral("pushButtonPlus"));
 
-        clavierOp->addWidget(pushButtonPlus);
+        operateurBase->addWidget(pushButtonPlus);
 
-        pushButtonMoins = new QPushButton(vue4CalcClavier);
+        pushButtonMoins = new QPushButton(clavierSaisie1);
         pushButtonMoins->setObjectName(QStringLiteral("pushButtonMoins"));
 
-        clavierOp->addWidget(pushButtonMoins);
+        operateurBase->addWidget(pushButtonMoins);
 
-        pushButtonMul = new QPushButton(vue4CalcClavier);
+        pushButtonMul = new QPushButton(clavierSaisie1);
         pushButtonMul->setObjectName(QStringLiteral("pushButtonMul"));
 
-        clavierOp->addWidget(pushButtonMul);
+        operateurBase->addWidget(pushButtonMul);
 
-        pushButtonDiv1 = new QPushButton(vue4CalcClavier);
+        pushButtonDiv1 = new QPushButton(clavierSaisie1);
         pushButtonDiv1->setObjectName(QStringLiteral("pushButtonDiv1"));
 
-        clavierOp->addWidget(pushButtonDiv1);
+        operateurBase->addWidget(pushButtonDiv1);
 
 
-        vue5Calc->addLayout(clavierOp);
+        clavierSaisie->addLayout(operateurBase);
 
-        clavierUndoRedoEnter = new QHBoxLayout();
-        clavierUndoRedoEnter->setSpacing(6);
-        clavierUndoRedoEnter->setObjectName(QStringLiteral("clavierUndoRedoEnter"));
-        clavierUndoRedo = new QHBoxLayout();
-        clavierUndoRedo->setSpacing(6);
-        clavierUndoRedo->setObjectName(QStringLiteral("clavierUndoRedo"));
-        clavierUndo = new QVBoxLayout();
-        clavierUndo->setSpacing(6);
-        clavierUndo->setObjectName(QStringLiteral("clavierUndo"));
-        pushButtonEval = new QPushButton(vue4CalcClavier);
-        pushButtonEval->setObjectName(QStringLiteral("pushButtonEval"));
+        clavierLettres = new QGridLayout();
+        clavierLettres->setSpacing(6);
+        clavierLettres->setObjectName(QStringLiteral("clavierLettres"));
+        pushButtonQ = new QPushButton(clavierSaisie1);
+        pushButtonQ->setObjectName(QStringLiteral("pushButtonQ"));
+        pushButtonQ->setMaximumSize(QSize(50, 16777215));
 
-        clavierUndo->addWidget(pushButtonEval);
+        clavierLettres->addWidget(pushButtonQ, 2, 2, 1, 1);
 
-        pushButtonSto = new QPushButton(vue4CalcClavier);
-        pushButtonSto->setObjectName(QStringLiteral("pushButtonSto"));
+        pushButtonR = new QPushButton(clavierSaisie1);
+        pushButtonR->setObjectName(QStringLiteral("pushButtonR"));
+        pushButtonR->setMaximumSize(QSize(50, 16777215));
 
-        clavierUndo->addWidget(pushButtonSto);
+        clavierLettres->addWidget(pushButtonR, 2, 3, 1, 1);
 
-        pushButtonUndo = new QPushButton(vue4CalcClavier);
-        pushButtonUndo->setObjectName(QStringLiteral("pushButtonUndo"));
+        pushButtonJ = new QPushButton(clavierSaisie1);
+        pushButtonJ->setObjectName(QStringLiteral("pushButtonJ"));
+        pushButtonJ->setMaximumSize(QSize(50, 16777215));
 
-        clavierUndo->addWidget(pushButtonUndo);
+        clavierLettres->addWidget(pushButtonJ, 1, 2, 1, 1);
+
+        pushButtonO = new QPushButton(clavierSaisie1);
+        pushButtonO->setObjectName(QStringLiteral("pushButtonO"));
+        pushButtonO->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonO, 2, 0, 1, 1);
+
+        pushButtonX = new QPushButton(clavierSaisie1);
+        pushButtonX->setObjectName(QStringLiteral("pushButtonX"));
+        pushButtonX->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonX, 3, 2, 1, 1);
+
+        pushButtonS = new QPushButton(clavierSaisie1);
+        pushButtonS->setObjectName(QStringLiteral("pushButtonS"));
+        pushButtonS->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonS, 2, 4, 1, 1);
+
+        pushButtonD = new QPushButton(clavierSaisie1);
+        pushButtonD->setObjectName(QStringLiteral("pushButtonD"));
+        pushButtonD->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonD, 0, 3, 1, 1);
+
+        pushButtonH = new QPushButton(clavierSaisie1);
+        pushButtonH->setObjectName(QStringLiteral("pushButtonH"));
+        pushButtonH->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonH, 1, 0, 1, 1);
+
+        pushButtonN = new QPushButton(clavierSaisie1);
+        pushButtonN->setObjectName(QStringLiteral("pushButtonN"));
+        pushButtonN->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonN, 1, 6, 1, 1);
+
+        pushButtonZ = new QPushButton(clavierSaisie1);
+        pushButtonZ->setObjectName(QStringLiteral("pushButtonZ"));
+        pushButtonZ->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonZ, 3, 4, 1, 1);
+
+        pushButtonV = new QPushButton(clavierSaisie1);
+        pushButtonV->setObjectName(QStringLiteral("pushButtonV"));
+        pushButtonV->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonV, 3, 0, 1, 1);
+
+        pushButtonI = new QPushButton(clavierSaisie1);
+        pushButtonI->setObjectName(QStringLiteral("pushButtonI"));
+        pushButtonI->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonI, 1, 1, 1, 1);
+
+        pushButtonK = new QPushButton(clavierSaisie1);
+        pushButtonK->setObjectName(QStringLiteral("pushButtonK"));
+        pushButtonK->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonK, 1, 3, 1, 1);
+
+        pushButtonP = new QPushButton(clavierSaisie1);
+        pushButtonP->setObjectName(QStringLiteral("pushButtonP"));
+        pushButtonP->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonP, 2, 1, 1, 1);
+
+        pushButtonB = new QPushButton(clavierSaisie1);
+        pushButtonB->setObjectName(QStringLiteral("pushButtonB"));
+        pushButtonB->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonB, 0, 1, 1, 1);
+
+        pushButtonF = new QPushButton(clavierSaisie1);
+        pushButtonF->setObjectName(QStringLiteral("pushButtonF"));
+        pushButtonF->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonF, 0, 5, 1, 1);
+
+        pushButtonW = new QPushButton(clavierSaisie1);
+        pushButtonW->setObjectName(QStringLiteral("pushButtonW"));
+        pushButtonW->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonW, 3, 1, 1, 1);
+
+        pushButtonL = new QPushButton(clavierSaisie1);
+        pushButtonL->setObjectName(QStringLiteral("pushButtonL"));
+        pushButtonL->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonL, 1, 4, 1, 1);
+
+        pushButtonC = new QPushButton(clavierSaisie1);
+        pushButtonC->setObjectName(QStringLiteral("pushButtonC"));
+        pushButtonC->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonC, 0, 2, 1, 1);
+
+        pushButtonA = new QPushButton(clavierSaisie1);
+        pushButtonA->setObjectName(QStringLiteral("pushButtonA"));
+        pushButtonA->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonA, 0, 0, 1, 1);
+
+        pushButtonU = new QPushButton(clavierSaisie1);
+        pushButtonU->setObjectName(QStringLiteral("pushButtonU"));
+
+        clavierLettres->addWidget(pushButtonU, 2, 6, 1, 1);
+
+        pushButtonT = new QPushButton(clavierSaisie1);
+        pushButtonT->setObjectName(QStringLiteral("pushButtonT"));
+        pushButtonT->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonT, 2, 5, 1, 1);
+
+        pushButtonE = new QPushButton(clavierSaisie1);
+        pushButtonE->setObjectName(QStringLiteral("pushButtonE"));
+        pushButtonE->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonE, 0, 4, 1, 1);
+
+        pushButtonM = new QPushButton(clavierSaisie1);
+        pushButtonM->setObjectName(QStringLiteral("pushButtonM"));
+        pushButtonM->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonM, 1, 5, 1, 1);
+
+        pushButtonY = new QPushButton(clavierSaisie1);
+        pushButtonY->setObjectName(QStringLiteral("pushButtonY"));
+        pushButtonY->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonY, 3, 3, 1, 1);
+
+        pushButtonG = new QPushButton(clavierSaisie1);
+        pushButtonG->setObjectName(QStringLiteral("pushButtonG"));
+        pushButtonG->setMaximumSize(QSize(50, 16777215));
+
+        clavierLettres->addWidget(pushButtonG, 0, 6, 1, 1);
+
+        pushButtonSpace = new QPushButton(clavierSaisie1);
+        pushButtonSpace->setObjectName(QStringLiteral("pushButtonSpace"));
+
+        clavierLettres->addWidget(pushButtonSpace, 3, 6, 1, 1);
 
 
-        clavierUndoRedo->addLayout(clavierUndo);
+        clavierSaisie->addLayout(clavierLettres);
 
-        clavierRedo = new QVBoxLayout();
-        clavierRedo->setSpacing(6);
-        clavierRedo->setObjectName(QStringLiteral("clavierRedo"));
-        pushButtonEdit = new QPushButton(vue4CalcClavier);
-        pushButtonEdit->setObjectName(QStringLiteral("pushButtonEdit"));
-
-        clavierRedo->addWidget(pushButtonEdit);
-
-        pushButtonForget = new QPushButton(vue4CalcClavier);
-        pushButtonForget->setObjectName(QStringLiteral("pushButtonForget"));
-
-        clavierRedo->addWidget(pushButtonForget);
-
-        pushButtonRedo = new QPushButton(vue4CalcClavier);
-        pushButtonRedo->setObjectName(QStringLiteral("pushButtonRedo"));
-
-        clavierRedo->addWidget(pushButtonRedo);
-
-
-        clavierUndoRedo->addLayout(clavierRedo);
-
-
-        clavierUndoRedoEnter->addLayout(clavierUndoRedo);
-
-        pushButtonEnter = new QPushButton(vue4CalcClavier);
-        pushButtonEnter->setObjectName(QStringLiteral("pushButtonEnter"));
-
-        clavierUndoRedoEnter->addWidget(pushButtonEnter);
-
-
-        vue5Calc->addLayout(clavierUndoRedoEnter);
-
-
-        vue4Calc->addLayout(vue5Calc);
-
-        vue6Calc = new QHBoxLayout();
-        vue6Calc->setSpacing(6);
-        vue6Calc->setObjectName(QStringLiteral("vue6Calc"));
+        layoutWidget = new QWidget(Calculatrice);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(40, 230, 601, 136));
+        layoutWidget->setMinimumSize(QSize(601, 0));
+        operateurSpeciaux = new QHBoxLayout(layoutWidget);
+        operateurSpeciaux->setSpacing(6);
+        operateurSpeciaux->setContentsMargins(11, 11, 11, 11);
+        operateurSpeciaux->setObjectName(QStringLiteral("operateurSpeciaux"));
+        operateurSpeciaux->setContentsMargins(0, 0, 0, 0);
         boutonSpeciaux = new QGridLayout();
         boutonSpeciaux->setSpacing(6);
         boutonSpeciaux->setObjectName(QStringLiteral("boutonSpeciaux"));
-        pushButtonSwap = new QPushButton(vue4CalcClavier);
+        pushButtonSwap = new QPushButton(layoutWidget);
         pushButtonSwap->setObjectName(QStringLiteral("pushButtonSwap"));
         pushButtonSwap->setAutoRepeatDelay(300);
         pushButtonSwap->setAutoDefault(false);
@@ -455,7 +436,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonSwap, 3, 0, 1, 1);
 
-        pushButtonDen = new QPushButton(vue4CalcClavier);
+        pushButtonDen = new QPushButton(layoutWidget);
         pushButtonDen->setObjectName(QStringLiteral("pushButtonDen"));
         pushButtonDen->setAutoRepeatDelay(300);
         pushButtonDen->setAutoDefault(false);
@@ -463,7 +444,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonDen, 0, 3, 1, 1);
 
-        pushButtonLastArg = new QPushButton(vue4CalcClavier);
+        pushButtonLastArg = new QPushButton(layoutWidget);
         pushButtonLastArg->setObjectName(QStringLiteral("pushButtonLastArg"));
         pushButtonLastArg->setAutoRepeatDelay(300);
         pushButtonLastArg->setAutoDefault(false);
@@ -471,7 +452,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonLastArg, 3, 2, 1, 1);
 
-        pushButtoNot = new QPushButton(vue4CalcClavier);
+        pushButtoNot = new QPushButton(layoutWidget);
         pushButtoNot->setObjectName(QStringLiteral("pushButtoNot"));
         pushButtoNot->setAutoRepeatDelay(300);
         pushButtoNot->setAutoDefault(false);
@@ -479,7 +460,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtoNot, 2, 1, 1, 1);
 
-        pushButtonAnd = new QPushButton(vue4CalcClavier);
+        pushButtonAnd = new QPushButton(layoutWidget);
         pushButtonAnd->setObjectName(QStringLiteral("pushButtonAnd"));
         pushButtonAnd->setAutoRepeatDelay(300);
         pushButtonAnd->setAutoDefault(false);
@@ -487,7 +468,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonAnd, 1, 3, 1, 1);
 
-        pushButtonNeg = new QPushButton(vue4CalcClavier);
+        pushButtonNeg = new QPushButton(layoutWidget);
         pushButtonNeg->setObjectName(QStringLiteral("pushButtonNeg"));
         pushButtonNeg->setAutoRepeatDelay(300);
         pushButtonNeg->setAutoDefault(false);
@@ -495,7 +476,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonNeg, 0, 1, 1, 1);
 
-        pushButtonNum = new QPushButton(vue4CalcClavier);
+        pushButtonNum = new QPushButton(layoutWidget);
         pushButtonNum->setObjectName(QStringLiteral("pushButtonNum"));
         pushButtonNum->setAutoRepeatDelay(300);
         pushButtonNum->setAutoDefault(false);
@@ -503,7 +484,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonNum, 0, 2, 1, 1);
 
-        pushButtonDup = new QPushButton(vue4CalcClavier);
+        pushButtonDup = new QPushButton(layoutWidget);
         pushButtonDup->setObjectName(QStringLiteral("pushButtonDup"));
         pushButtonDup->setAutoRepeatDelay(300);
         pushButtonDup->setAutoDefault(false);
@@ -511,7 +492,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonDup, 2, 2, 1, 1);
 
-        pushButtonDrop = new QPushButton(vue4CalcClavier);
+        pushButtonDrop = new QPushButton(layoutWidget);
         pushButtonDrop->setObjectName(QStringLiteral("pushButtonDrop"));
         pushButtonDrop->setAutoRepeatDelay(300);
         pushButtonDrop->setAutoDefault(false);
@@ -519,7 +500,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonDrop, 2, 3, 1, 1);
 
-        pushButtonIm = new QPushButton(vue4CalcClavier);
+        pushButtonIm = new QPushButton(layoutWidget);
         pushButtonIm->setObjectName(QStringLiteral("pushButtonIm"));
         pushButtonIm->setAutoRepeatDelay(300);
         pushButtonIm->setAutoDefault(false);
@@ -527,7 +508,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonIm, 1, 2, 1, 1);
 
-        pushButtonLastop = new QPushButton(vue4CalcClavier);
+        pushButtonLastop = new QPushButton(layoutWidget);
         pushButtonLastop->setObjectName(QStringLiteral("pushButtonLastop"));
         pushButtonLastop->setAutoRepeatDelay(300);
         pushButtonLastop->setAutoDefault(false);
@@ -535,7 +516,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonLastop, 3, 1, 1, 1);
 
-        pushButtonIft = new QPushButton(vue4CalcClavier);
+        pushButtonIft = new QPushButton(layoutWidget);
         pushButtonIft->setObjectName(QStringLiteral("pushButtonIft"));
         pushButtonIft->setAutoRepeatDelay(300);
         pushButtonIft->setAutoDefault(false);
@@ -543,7 +524,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonIft, 3, 3, 1, 1);
 
-        pushButtonDollar = new QPushButton(vue4CalcClavier);
+        pushButtonDollar = new QPushButton(layoutWidget);
         pushButtonDollar->setObjectName(QStringLiteral("pushButtonDollar"));
         pushButtonDollar->setAutoRepeatDelay(300);
         pushButtonDollar->setAutoDefault(false);
@@ -551,7 +532,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonDollar, 1, 0, 1, 1);
 
-        pushButtonRe = new QPushButton(vue4CalcClavier);
+        pushButtonRe = new QPushButton(layoutWidget);
         pushButtonRe->setObjectName(QStringLiteral("pushButtonRe"));
         pushButtonRe->setAutoRepeatDelay(300);
         pushButtonRe->setAutoDefault(false);
@@ -559,7 +540,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonRe, 1, 1, 1, 1);
 
-        pushButtonOr = new QPushButton(vue4CalcClavier);
+        pushButtonOr = new QPushButton(layoutWidget);
         pushButtonOr->setObjectName(QStringLiteral("pushButtonOr"));
         pushButtonOr->setAutoRepeatDelay(300);
         pushButtonOr->setAutoDefault(false);
@@ -567,7 +548,7 @@ public:
 
         boutonSpeciaux->addWidget(pushButtonOr, 2, 0, 1, 1);
 
-        pushButtonDiv = new QPushButton(vue4CalcClavier);
+        pushButtonDiv = new QPushButton(layoutWidget);
         pushButtonDiv->setObjectName(QStringLiteral("pushButtonDiv"));
         pushButtonDiv->setAutoRepeatDelay(300);
         pushButtonDiv->setAutoDefault(false);
@@ -576,267 +557,127 @@ public:
         boutonSpeciaux->addWidget(pushButtonDiv, 0, 0, 1, 1);
 
 
-        vue6Calc->addLayout(boutonSpeciaux);
+        operateurSpeciaux->addLayout(boutonSpeciaux);
 
-        pushButtonClear = new QPushButton(vue4CalcClavier);
+        EvEdStFo = new QVBoxLayout();
+        EvEdStFo->setSpacing(6);
+        EvEdStFo->setObjectName(QStringLiteral("EvEdStFo"));
+        pushButtonEval = new QPushButton(layoutWidget);
+        pushButtonEval->setObjectName(QStringLiteral("pushButtonEval"));
+
+        EvEdStFo->addWidget(pushButtonEval);
+
+        pushButtonEdit = new QPushButton(layoutWidget);
+        pushButtonEdit->setObjectName(QStringLiteral("pushButtonEdit"));
+
+        EvEdStFo->addWidget(pushButtonEdit);
+
+        pushButtonSto = new QPushButton(layoutWidget);
+        pushButtonSto->setObjectName(QStringLiteral("pushButtonSto"));
+
+        EvEdStFo->addWidget(pushButtonSto);
+
+        pushButtonForget = new QPushButton(layoutWidget);
+        pushButtonForget->setObjectName(QStringLiteral("pushButtonForget"));
+
+        EvEdStFo->addWidget(pushButtonForget);
+
+
+        operateurSpeciaux->addLayout(EvEdStFo);
+
+        EntCleUndRed = new QVBoxLayout();
+        EntCleUndRed->setSpacing(6);
+        EntCleUndRed->setObjectName(QStringLiteral("EntCleUndRed"));
+        pushButtonEnter = new QPushButton(layoutWidget);
+        pushButtonEnter->setObjectName(QStringLiteral("pushButtonEnter"));
+
+        EntCleUndRed->addWidget(pushButtonEnter);
+
+        pushButtonClear = new QPushButton(layoutWidget);
         pushButtonClear->setObjectName(QStringLiteral("pushButtonClear"));
 
-        vue6Calc->addWidget(pushButtonClear);
+        EntCleUndRed->addWidget(pushButtonClear);
 
+        pushButtonUndo = new QPushButton(layoutWidget);
+        pushButtonUndo->setObjectName(QStringLiteral("pushButtonUndo"));
 
-        vue4Calc->addLayout(vue6Calc);
+        EntCleUndRed->addWidget(pushButtonUndo);
 
-        clavierLettres = new QGridLayout();
-        clavierLettres->setSpacing(6);
-        clavierLettres->setObjectName(QStringLiteral("clavierLettres"));
-        pushButtonQ = new QPushButton(vue4CalcClavier);
-        pushButtonQ->setObjectName(QStringLiteral("pushButtonQ"));
-        pushButtonQ->setMaximumSize(QSize(50, 16777215));
+        pushButtonRedo = new QPushButton(layoutWidget);
+        pushButtonRedo->setObjectName(QStringLiteral("pushButtonRedo"));
 
-        clavierLettres->addWidget(pushButtonQ, 2, 2, 1, 1);
+        EntCleUndRed->addWidget(pushButtonRedo);
 
-        pushButtonR = new QPushButton(vue4CalcClavier);
-        pushButtonR->setObjectName(QStringLiteral("pushButtonR"));
-        pushButtonR->setMaximumSize(QSize(50, 16777215));
 
-        clavierLettres->addWidget(pushButtonR, 2, 3, 1, 1);
+        operateurSpeciaux->addLayout(EntCleUndRed);
 
-        pushButtonJ = new QPushButton(vue4CalcClavier);
-        pushButtonJ->setObjectName(QStringLiteral("pushButtonJ"));
-        pushButtonJ->setMaximumSize(QSize(50, 16777215));
+        vuePile = new QTableWidget(Calculatrice);
+        vuePile->setObjectName(QStringLiteral("vuePile"));
+        vuePile->setGeometry(QRect(39, 40, 601, 141));
+        vuePile->setMinimumSize(QSize(601, 30));
+        tabWidget->addTab(Calculatrice, QString());
+        Options = new QWidget();
+        Options->setObjectName(QStringLiteral("Options"));
+        layoutWidget_3 = new QWidget(Options);
+        layoutWidget_3->setObjectName(QStringLiteral("layoutWidget_3"));
+        layoutWidget_3->setGeometry(QRect(20, 20, 211, 301));
+        formulaireParam = new QVBoxLayout(layoutWidget_3);
+        formulaireParam->setSpacing(6);
+        formulaireParam->setContentsMargins(11, 11, 11, 11);
+        formulaireParam->setObjectName(QStringLiteral("formulaireParam"));
+        formulaireParam->setContentsMargins(0, 0, 0, 0);
+        label1 = new QLabel(layoutWidget_3);
+        label1->setObjectName(QStringLiteral("label1"));
 
-        clavierLettres->addWidget(pushButtonJ, 1, 2, 1, 1);
+        formulaireParam->addWidget(label1);
 
-        pushButtonO = new QPushButton(vue4CalcClavier);
-        pushButtonO->setObjectName(QStringLiteral("pushButtonO"));
-        pushButtonO->setMaximumSize(QSize(50, 16777215));
+        checkBoxPar = new QVBoxLayout();
+        checkBoxPar->setSpacing(6);
+        checkBoxPar->setObjectName(QStringLiteral("checkBoxPar"));
+        checkClavier = new QCheckBox(layoutWidget_3);
+        checkClavier->setObjectName(QStringLiteral("checkClavier"));
 
-        clavierLettres->addWidget(pushButtonO, 2, 0, 1, 1);
+        checkBoxPar->addWidget(checkClavier);
 
-        pushButtonX = new QPushButton(vue4CalcClavier);
-        pushButtonX->setObjectName(QStringLiteral("pushButtonX"));
-        pushButtonX->setMaximumSize(QSize(50, 16777215));
+        checkSond = new QCheckBox(layoutWidget_3);
+        checkSond->setObjectName(QStringLiteral("checkSond"));
+        checkSond->setMinimumSize(QSize(200, 0));
 
-        clavierLettres->addWidget(pushButtonX, 3, 2, 1, 1);
+        checkBoxPar->addWidget(checkSond);
 
-        pushButtonS = new QPushButton(vue4CalcClavier);
-        pushButtonS->setObjectName(QStringLiteral("pushButtonS"));
-        pushButtonS->setMaximumSize(QSize(50, 16777215));
 
-        clavierLettres->addWidget(pushButtonS, 2, 4, 1, 1);
+        formulaireParam->addLayout(checkBoxPar);
 
-        pushButtonD = new QPushButton(vue4CalcClavier);
-        pushButtonD->setObjectName(QStringLiteral("pushButtonD"));
-        pushButtonD->setMaximumSize(QSize(50, 16777215));
+        lcdNumber = new QLCDNumber(layoutWidget_3);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
 
-        clavierLettres->addWidget(pushButtonD, 0, 3, 1, 1);
+        formulaireParam->addWidget(lcdNumber);
 
-        pushButtonH = new QPushButton(vue4CalcClavier);
-        pushButtonH->setObjectName(QStringLiteral("pushButtonH"));
-        pushButtonH->setMaximumSize(QSize(50, 16777215));
+        taillePile = new QHBoxLayout();
+        taillePile->setSpacing(6);
+        taillePile->setObjectName(QStringLiteral("taillePile"));
+        label2 = new QLabel(layoutWidget_3);
+        label2->setObjectName(QStringLiteral("label2"));
 
-        clavierLettres->addWidget(pushButtonH, 1, 0, 1, 1);
+        taillePile->addWidget(label2);
 
-        pushButtonN = new QPushButton(vue4CalcClavier);
-        pushButtonN->setObjectName(QStringLiteral("pushButtonN"));
-        pushButtonN->setMaximumSize(QSize(50, 16777215));
+        verticalSlider = new QSlider(layoutWidget_3);
+        verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
+        verticalSlider->setMinimum(1);
+        verticalSlider->setMaximum(9);
+        verticalSlider->setOrientation(Qt::Vertical);
 
-        clavierLettres->addWidget(pushButtonN, 1, 6, 1, 1);
+        taillePile->addWidget(verticalSlider);
 
-        pushButtonZ = new QPushButton(vue4CalcClavier);
-        pushButtonZ->setObjectName(QStringLiteral("pushButtonZ"));
-        pushButtonZ->setMaximumSize(QSize(50, 16777215));
 
-        clavierLettres->addWidget(pushButtonZ, 3, 4, 1, 1);
+        formulaireParam->addLayout(taillePile);
 
-        pushButtonV = new QPushButton(vue4CalcClavier);
-        pushButtonV->setObjectName(QStringLiteral("pushButtonV"));
-        pushButtonV->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonV, 3, 0, 1, 1);
-
-        pushButtonI = new QPushButton(vue4CalcClavier);
-        pushButtonI->setObjectName(QStringLiteral("pushButtonI"));
-        pushButtonI->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonI, 1, 1, 1, 1);
-
-        pushButtonK = new QPushButton(vue4CalcClavier);
-        pushButtonK->setObjectName(QStringLiteral("pushButtonK"));
-        pushButtonK->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonK, 1, 3, 1, 1);
-
-        pushButtonP = new QPushButton(vue4CalcClavier);
-        pushButtonP->setObjectName(QStringLiteral("pushButtonP"));
-        pushButtonP->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonP, 2, 1, 1, 1);
-
-        pushButtonB = new QPushButton(vue4CalcClavier);
-        pushButtonB->setObjectName(QStringLiteral("pushButtonB"));
-        pushButtonB->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonB, 0, 1, 1, 1);
-
-        pushButtonF = new QPushButton(vue4CalcClavier);
-        pushButtonF->setObjectName(QStringLiteral("pushButtonF"));
-        pushButtonF->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonF, 0, 5, 1, 1);
-
-        pushButtonW = new QPushButton(vue4CalcClavier);
-        pushButtonW->setObjectName(QStringLiteral("pushButtonW"));
-        pushButtonW->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonW, 3, 1, 1, 1);
-
-        pushButtonL = new QPushButton(vue4CalcClavier);
-        pushButtonL->setObjectName(QStringLiteral("pushButtonL"));
-        pushButtonL->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonL, 1, 4, 1, 1);
-
-        pushButtonC = new QPushButton(vue4CalcClavier);
-        pushButtonC->setObjectName(QStringLiteral("pushButtonC"));
-        pushButtonC->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonC, 0, 2, 1, 1);
-
-        pushButtonA = new QPushButton(vue4CalcClavier);
-        pushButtonA->setObjectName(QStringLiteral("pushButtonA"));
-        pushButtonA->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonA, 0, 0, 1, 1);
-
-        pushButtonU = new QPushButton(vue4CalcClavier);
-        pushButtonU->setObjectName(QStringLiteral("pushButtonU"));
-
-        clavierLettres->addWidget(pushButtonU, 2, 6, 1, 1);
-
-        pushButtonT = new QPushButton(vue4CalcClavier);
-        pushButtonT->setObjectName(QStringLiteral("pushButtonT"));
-        pushButtonT->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonT, 2, 5, 1, 1);
-
-        pushButtonE = new QPushButton(vue4CalcClavier);
-        pushButtonE->setObjectName(QStringLiteral("pushButtonE"));
-        pushButtonE->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonE, 0, 4, 1, 1);
-
-        pushButtonM = new QPushButton(vue4CalcClavier);
-        pushButtonM->setObjectName(QStringLiteral("pushButtonM"));
-        pushButtonM->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonM, 1, 5, 1, 1);
-
-        pushButtonY = new QPushButton(vue4CalcClavier);
-        pushButtonY->setObjectName(QStringLiteral("pushButtonY"));
-        pushButtonY->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonY, 3, 3, 1, 1);
-
-        pushButtonG = new QPushButton(vue4CalcClavier);
-        pushButtonG->setObjectName(QStringLiteral("pushButtonG"));
-        pushButtonG->setMaximumSize(QSize(50, 16777215));
-
-        clavierLettres->addWidget(pushButtonG, 0, 6, 1, 1);
-
-        pushButtonSpace = new QPushButton(vue4CalcClavier);
-        pushButtonSpace->setObjectName(QStringLiteral("pushButtonSpace"));
-
-        clavierLettres->addWidget(pushButtonSpace, 3, 6, 1, 1);
-
-
-        vue4Calc->addLayout(clavierLettres);
-
-
-        vue3Calc->addWidget(vue4CalcClavier);
-
-
-        vue2Calc->addLayout(vue3Calc);
-
-
-        vue1Calc->addLayout(vue2Calc);
-
-        Application->addTab(calc, QString());
-        param = new QWidget();
-        param->setObjectName(QStringLiteral("param"));
-        layoutWidget1 = new QWidget(param);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 10, 530, 511));
-        vue1Param = new QVBoxLayout(layoutWidget1);
-        vue1Param->setSpacing(6);
-        vue1Param->setContentsMargins(11, 11, 11, 11);
-        vue1Param->setObjectName(QStringLiteral("vue1Param"));
-        vue1Param->setContentsMargins(0, 0, 0, 0);
-        parametre = new QVBoxLayout();
-        parametre->setSpacing(6);
-        parametre->setObjectName(QStringLiteral("parametre"));
-        labelParam = new QLabel(layoutWidget1);
-        labelParam->setObjectName(QStringLiteral("labelParam"));
-
-        parametre->addWidget(labelParam);
-
-        checkBoxClavier = new QCheckBox(layoutWidget1);
-        checkBoxClavier->setObjectName(QStringLiteral("checkBoxClavier"));
-
-        parametre->addWidget(checkBoxClavier);
-
-        checkBoxBip = new QCheckBox(layoutWidget1);
-        checkBoxBip->setObjectName(QStringLiteral("checkBoxBip"));
-
-        parametre->addWidget(checkBoxBip);
-
-
-        vue1Param->addLayout(parametre);
-
-        vue2Param = new QHBoxLayout();
-        vue2Param->setSpacing(6);
-        vue2Param->setObjectName(QStringLiteral("vue2Param"));
-        variables = new QVBoxLayout();
-        variables->setSpacing(6);
-        variables->setObjectName(QStringLiteral("variables"));
-        labelVar = new QLabel(layoutWidget1);
-        labelVar->setObjectName(QStringLiteral("labelVar"));
-
-        variables->addWidget(labelVar);
-
-        textEditVar = new QTextEdit(layoutWidget1);
-        textEditVar->setObjectName(QStringLiteral("textEditVar"));
-
-        variables->addWidget(textEditVar);
-
-
-        vue2Param->addLayout(variables);
-
-        programmes = new QVBoxLayout();
-        programmes->setSpacing(6);
-        programmes->setObjectName(QStringLiteral("programmes"));
-        labelProg = new QLabel(layoutWidget1);
-        labelProg->setObjectName(QStringLiteral("labelProg"));
-
-        programmes->addWidget(labelProg);
-
-        textEditProg = new QTextEdit(layoutWidget1);
-        textEditProg->setObjectName(QStringLiteral("textEditProg"));
-
-        programmes->addWidget(textEditProg);
-
-
-        vue2Param->addLayout(programmes);
-
-
-        vue1Param->addLayout(vue2Param);
-
-        Application->addTab(param, QString());
+        tabWidget->addTab(Options, QString());
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
 
-        Application->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(0);
         pushButtonSwap->setDefault(false);
         pushButtonDen->setDefault(false);
         pushButtonLastArg->setDefault(false);
@@ -861,56 +702,21 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        AffichagePile->setText(QApplication::translate("MainWindow", "Messages :", 0));
-        label5->setText(QApplication::translate("MainWindow", "5:", 0));
-        labelPile5->setText(QString());
-        label4->setText(QApplication::translate("MainWindow", "4:", 0));
-        labelPile4->setText(QString());
-        label3->setText(QApplication::translate("MainWindow", "3:", 0));
-        label2->setText(QApplication::translate("MainWindow", "2:", 0));
-        labelPile2->setText(QString());
-        label1->setText(QApplication::translate("MainWindow", "1:", 0));
-        labelPile1->setText(QString());
-        labelPile3->setText(QString());
         pushBoutonDel->setText(QApplication::translate("MainWindow", "<--", 0));
-        pushButton1->setText(QApplication::translate("MainWindow", "1", 0));
-        pushButton4->setText(QApplication::translate("MainWindow", "4", 0));
         pushButton7->setText(QApplication::translate("MainWindow", "7", 0));
-        pushButton2->setText(QApplication::translate("MainWindow", "2", 0));
-        pushButton5->setText(QApplication::translate("MainWindow", "5", 0));
+        pushButton4->setText(QApplication::translate("MainWindow", "4", 0));
+        pushButton9->setText(QApplication::translate("MainWindow", "9", 0));
+        pushButton1->setText(QApplication::translate("MainWindow", "1", 0));
+        pushButton6->setText(QApplication::translate("MainWindow", "6", 0));
         pushButton8->setText(QApplication::translate("MainWindow", "8", 0));
         pushButton3->setText(QApplication::translate("MainWindow", "3", 0));
-        pushButton6->setText(QApplication::translate("MainWindow", "6", 0));
-        pushButton9->setText(QApplication::translate("MainWindow", "9", 0));
+        pushButton2->setText(QApplication::translate("MainWindow", "2", 0));
+        pushButton5->setText(QApplication::translate("MainWindow", "5", 0));
         pushButton0->setText(QApplication::translate("MainWindow", "0", 0));
         pushButtonPlus->setText(QApplication::translate("MainWindow", "+", 0));
         pushButtonMoins->setText(QApplication::translate("MainWindow", "-", 0));
         pushButtonMul->setText(QApplication::translate("MainWindow", "*", 0));
         pushButtonDiv1->setText(QApplication::translate("MainWindow", "/", 0));
-        pushButtonEval->setText(QApplication::translate("MainWindow", "EVAL", 0));
-        pushButtonSto->setText(QApplication::translate("MainWindow", "STO", 0));
-        pushButtonUndo->setText(QApplication::translate("MainWindow", "UNDO", 0));
-        pushButtonEdit->setText(QApplication::translate("MainWindow", "EDIT", 0));
-        pushButtonForget->setText(QApplication::translate("MainWindow", "FORGET", 0));
-        pushButtonRedo->setText(QApplication::translate("MainWindow", "REDO", 0));
-        pushButtonEnter->setText(QApplication::translate("MainWindow", "ENTER", 0));
-        pushButtonSwap->setText(QApplication::translate("MainWindow", "SWAP", 0));
-        pushButtonDen->setText(QApplication::translate("MainWindow", "DEN", 0));
-        pushButtonLastArg->setText(QApplication::translate("MainWindow", "LASTARG", 0));
-        pushButtoNot->setText(QApplication::translate("MainWindow", "NOT", 0));
-        pushButtonAnd->setText(QApplication::translate("MainWindow", "AND", 0));
-        pushButtonNeg->setText(QApplication::translate("MainWindow", "NEG", 0));
-        pushButtonNum->setText(QApplication::translate("MainWindow", "NUM", 0));
-        pushButtonDup->setText(QApplication::translate("MainWindow", "DUP", 0));
-        pushButtonDrop->setText(QApplication::translate("MainWindow", "DROP", 0));
-        pushButtonIm->setText(QApplication::translate("MainWindow", "IM", 0));
-        pushButtonLastop->setText(QApplication::translate("MainWindow", "LASTOP", 0));
-        pushButtonIft->setText(QApplication::translate("MainWindow", "IFT", 0));
-        pushButtonDollar->setText(QApplication::translate("MainWindow", "$", 0));
-        pushButtonRe->setText(QApplication::translate("MainWindow", "RE", 0));
-        pushButtonOr->setText(QApplication::translate("MainWindow", "OR", 0));
-        pushButtonDiv->setText(QApplication::translate("MainWindow", "DIV", 0));
-        pushButtonClear->setText(QApplication::translate("MainWindow", "CLEAR", 0));
         pushButtonQ->setText(QApplication::translate("MainWindow", "Q", 0));
         pushButtonR->setText(QApplication::translate("MainWindow", "R", 0));
         pushButtonJ->setText(QApplication::translate("MainWindow", "J", 0));
@@ -937,14 +743,37 @@ public:
         pushButtonM->setText(QApplication::translate("MainWindow", "M", 0));
         pushButtonY->setText(QApplication::translate("MainWindow", "Y", 0));
         pushButtonG->setText(QApplication::translate("MainWindow", "G", 0));
-        pushButtonSpace->setText(QApplication::translate("MainWindow", "__", 0));
-        Application->setTabText(Application->indexOf(calc), QApplication::translate("MainWindow", "Calc", 0));
-        labelParam->setText(QApplication::translate("MainWindow", "Param\303\250tres :", 0));
-        checkBoxClavier->setText(QApplication::translate("MainWindow", "Clavier Cliquable", 0));
-        checkBoxBip->setText(QApplication::translate("MainWindow", "Bip Sonore", 0));
-        labelVar->setText(QApplication::translate("MainWindow", "Variables :", 0));
-        labelProg->setText(QApplication::translate("MainWindow", "Programmes :", 0));
-        Application->setTabText(Application->indexOf(param), QApplication::translate("MainWindow", "Param", 0));
+        pushButtonSpace->setText(QApplication::translate("MainWindow", "_", 0));
+        pushButtonSwap->setText(QApplication::translate("MainWindow", "SWAP", 0));
+        pushButtonDen->setText(QApplication::translate("MainWindow", "DEN", 0));
+        pushButtonLastArg->setText(QApplication::translate("MainWindow", "LASTARG", 0));
+        pushButtoNot->setText(QApplication::translate("MainWindow", "NOT", 0));
+        pushButtonAnd->setText(QApplication::translate("MainWindow", "AND", 0));
+        pushButtonNeg->setText(QApplication::translate("MainWindow", "NEG", 0));
+        pushButtonNum->setText(QApplication::translate("MainWindow", "NUM", 0));
+        pushButtonDup->setText(QApplication::translate("MainWindow", "DUP", 0));
+        pushButtonDrop->setText(QApplication::translate("MainWindow", "DROP", 0));
+        pushButtonIm->setText(QApplication::translate("MainWindow", "IM", 0));
+        pushButtonLastop->setText(QApplication::translate("MainWindow", "LASTOP", 0));
+        pushButtonIft->setText(QApplication::translate("MainWindow", "IFT", 0));
+        pushButtonDollar->setText(QApplication::translate("MainWindow", "$", 0));
+        pushButtonRe->setText(QApplication::translate("MainWindow", "RE", 0));
+        pushButtonOr->setText(QApplication::translate("MainWindow", "OR", 0));
+        pushButtonDiv->setText(QApplication::translate("MainWindow", "DIV", 0));
+        pushButtonEval->setText(QApplication::translate("MainWindow", "EVAL", 0));
+        pushButtonEdit->setText(QApplication::translate("MainWindow", "EDIT", 0));
+        pushButtonSto->setText(QApplication::translate("MainWindow", "STO", 0));
+        pushButtonForget->setText(QApplication::translate("MainWindow", "FORGET", 0));
+        pushButtonEnter->setText(QApplication::translate("MainWindow", "ENTER", 0));
+        pushButtonClear->setText(QApplication::translate("MainWindow", "CLEAR", 0));
+        pushButtonUndo->setText(QApplication::translate("MainWindow", "UNDO", 0));
+        pushButtonRedo->setText(QApplication::translate("MainWindow", "REDO", 0));
+        tabWidget->setTabText(tabWidget->indexOf(Calculatrice), QApplication::translate("MainWindow", "Calculatrice", 0));
+        label1->setText(QApplication::translate("MainWindow", "Modification des param\303\250tres", 0));
+        checkClavier->setText(QApplication::translate("MainWindow", "Clavier", 0));
+        checkSond->setText(QApplication::translate("MainWindow", "Sonds", 0));
+        label2->setText(QApplication::translate("MainWindow", "Taille de la pile :", 0));
+        tabWidget->setTabText(tabWidget->indexOf(Options), QApplication::translate("MainWindow", "Options", 0));
     } // retranslateUi
 
 };

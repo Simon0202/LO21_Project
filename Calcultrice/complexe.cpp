@@ -11,7 +11,7 @@ void Complexe::afficher(std::ostream& f) const
     a->afficher(f);
     f<<"+";
     b->afficher(f);
-    f<<"i";
+    f<<"i"<< std::endl;
 }
 
 //Pb fonction ci dessous;
