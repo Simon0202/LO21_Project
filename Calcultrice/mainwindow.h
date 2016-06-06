@@ -1,7 +1,21 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
+#include <QWidget>
+#include <QDebug>
+#include <QVector>
+#include <QStringList>
+#include <QTableView>
+#include <QAction>
+#include <QMenuBar>
+#include <QTableWidgetItem>
+#include <QSettings>
+#include <QStandardPaths>
+#include <QShortcut>
+#include <QSlider>
+#include "pile.h"
+#include "controleur.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -15,7 +29,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void refresh();
+    void on_lineEdit_returnPressed();
+
+
 private slots:
+    void setMaxAffiche(int);
+
+
     //*********
     //Clavier09
     //*********
@@ -81,7 +103,6 @@ private slots:
     //Clear && Enter && Undo && Redo
     //******************************
     void on_pushButtonClear_released();
-    void on_pushButtonEnter_released();
     void on_pushButtonUndo_released();
     void on_pushButtonRedo_released();
 
@@ -92,21 +113,18 @@ private slots:
     void on_pushButtonDiv_released();
     void on_pushButtonNeg_released();
 
-    //********
-    //CheckBox
-    //********
-    void on_checkBoxClavier_clicked();
-
-
-
-
     void on_pushButtonSpace_released();
+    void on_checkClavier_clicked();
 
-    void on_lineEdit_returnPressed();
+    //void on_lineEdit_returnPressed();
+
+
+
+    //void on_verticalSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
-    unsigned int nbLabel = 5;
+
 };
 
 #endif // MAINWINDOW_H

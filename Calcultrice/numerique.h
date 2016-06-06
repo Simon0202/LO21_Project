@@ -5,6 +5,7 @@
 
 
 
+
 class Numerique : public LitteraleAbstraite {
 
 public :
@@ -20,6 +21,8 @@ public :
 
     //Clonage d'une donnee (DUP)
         virtual LitteraleAbstraite* clone() const = 0;
+    //Parseur
+    virtual QString toString() const=0;
 
     virtual bool EstNul();
 

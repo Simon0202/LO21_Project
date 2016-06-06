@@ -1,5 +1,11 @@
 #include "complexe.h"
 #include"reel.h"
+#include"entier.h"
+#include "rationnel.h"
+#include "litteraleabstraite.h"
+#include "controleur.h"
+#include <QDebug>
+
 
 Complexe::Complexe(){
    a=new Reel;
@@ -11,10 +17,13 @@ void Complexe::afficher(std::ostream& f) const
     a->afficher(f);
     f<<"+";
     b->afficher(f);
+<<<<<<< HEAD
     f<<"i"<< std::endl;
+=======
+    f<<"i"<<std::endl;
+>>>>>>> 5db77839505caf60cd191a3971d9dfbd7d3f2869
 }
 
-//Pb fonction ci dessous;
 LitteraleAbstraite* Complexe::clone() const
 {
     return new Complexe(a->clone(),b->clone());
@@ -34,34 +43,51 @@ Complexe::Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im)
         throw "Un complexe ne peut etre forme que de nombres.";
 }
 
-/*
-Complexe::Complexe(Numerique *d)
-{
-        // On identifie le type numerique de la donnee entree en parametre.
-        Complexe* test = dynamic_cast< Complexe*>(d);
-        Reel* test1 = dynamic_cast< Reel*>(d);
-        Rationnel* test2 = dynamic_cast< Rationnel*>(d);
-        Entier* test3 = dynamic_cast< Entier*>(d);
-
-        //selon le type entree, la conversion s'effectue.
-        if (test) {
-                    a=test->a;
-                    b=test->b;
-        }
-        else if (test1){
-                   a=test1;
-                   b=new Reel;
-                  }
-        else if (test2){
-                   a=test2;
-                   b= new Rationnel;
-                  }
-        else if (test3){
-                   a=test3;
-                   b=new Entier;
-                  }
-
-        else throw "Erreur inattendue au niveau de la formation d'un complexe par une donne. Cf complexe.cpp";
-
+//Méthode toString
+QString Complexe::toString() const{
+    QString im = getI()->toString();
+    if(getI()>0){
+        if(im=="1") im="";
+        return getR()->toString() + " + " + im + "i";
+    }
+    else{
+        im.remove('-');
+        if(im=="1") im="";
+        return getR()->toString() + " - " + im + "i";
+    }
 }
-*/
+
+
+Complexe::Complexe(const QString& pRe, const QString& pIm){
+    if(typeLitteral(pRe)=="Entier")
+        a = new Entier(pRe);
+    else if(typeLitteral(pRe)=="Reel")
+        a = new Reel(pRe);
+    else if(typeLitteral(pRe)=="Rationnel"){
+        Rationnel* rat = new Rationnel(pRe);
+        rat->simplifier();
+        if(rat->getDenumerateur()->getVal() == 1 || rat->getNumerateur()->getVal() ==0){
+            Entier* e = new Entier(rat->getNumerateur()->getVal());
+            a = e;
+        }
+        else{
+            a = rat;
+        }
+    }
+
+    if(typeLitteral(pIm)=="Entier")
+        b = new Entier(pIm);
+    else if(typeLitteral(pIm)=="Reel")
+        b = new Reel(pIm);
+    else if(typeLitteral(pIm)=="Rationnel"){
+        Rationnel* rat = new Rationnel(pIm);
+        rat->simplifier();
+        if(rat->getDenumerateur()->getVal() == 1 || rat->getNumerateur()->getVal() ==0){
+            Entier* e = new Entier(rat->getNumerateur()->getVal());
+            b = e;
+        }
+        else{
+            b = rat;
+        }
+    }
+}

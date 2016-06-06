@@ -36,6 +36,11 @@ void Rationnel::simplifier(){
 }
 
 
+Rationnel::Rationnel(double n, double d){
+    _num = new Entier(n);
+    _denum = new Entier(d);
+    simplifier();
+}
 
 
 
@@ -52,40 +57,14 @@ Rationnel& Rationnel::operator=(const Rationnel& n){
     return *this;
 }
 
-/*
-Rationnel operator+( Rationnel& a,  Rationnel& b){
-
-
-    Entier valDenum( a.getDenumerateur().getVal() * b.getDenumerateur().getVal());
-    Entier valNum( a.getNumerateur().getVal()*b.getDenumerateur().getVal() + b.getNumerateur().getVal()*a.getDenumerateur().getVal() );
-
-    Rationnel resultat(valNum, valDenum);
-    return resultat;
+//Methode toString()
+QString Rationnel::toString() const {
+    return _num->toString() + "/" + _denum->toString();
 }
 
-Rationnel operator-( Rationnel& a,  Rationnel& b){
-    Entier valDenum( a.getDenumerateur().getVal() * b.getDenumerateur().getVal());
-    Entier valNum( a.getNumerateur().getVal()*b.getDenumerateur().getVal() - b.getNumerateur().getVal()*a.getDenumerateur().getVal() );
-
-    Rationnel resultat(valNum, valDenum);
-    return resultat;
+Rationnel::Rationnel(const QString& s):_num(new Entier(s.split('/').at(0).toInt())), _denum(new Entier(s.split('/').at(1).toInt())){
+    if (s.split('/').at(1) == "0") {
+        throw ComputerException("Le denominateur ne peut pas etre nul!");
+    }
+    simplifier();
 }
-
-Rationnel operator*( Rationnel& a,  Rationnel& b){
-
-    Entier valNum( a.getNumerateur().getVal()*b.getNumerateur().getVal() );
-    Entier valDenum( a.getDenumerateur().getVal()*b.getDenumerateur().getVal() );
-
-    Rationnel resultat(valNum, valDenum);
-    return resultat;
-}
-
-Rationnel operator/( Rationnel& a,  Rationnel& b){
-
-    Entier valNum( a.getNumerateur().getVal()*b.getDenumerateur().getVal() );
-    Entier valDenum( a.getDenumerateur().getVal()*b.getNumerateur().getVal() );
-
-    Rationnel resultat(valNum, valDenum);
-    return resultat;
-}
-*/

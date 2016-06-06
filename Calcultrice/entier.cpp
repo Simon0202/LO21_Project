@@ -11,6 +11,12 @@ Entier& Entier::operator=(const Entier& n)
         _val = n._val;
     return *this;
 }
+
+//Méthode toString
+QString Entier::toString() const {
+    return QString::number(_val);
+}
+
 /*
 Entier operator+(Entier& a,  Entier& b){
 

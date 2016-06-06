@@ -16,71 +16,47 @@ public:
     //virtual const LitteraleAbstraite* creer(QString c)=0;
 };
 
-
+//Fabrique d'entier
 class FabEntier: public Fabrique{
-
 public:
 
     //virtual const LitteraleAbstraite* creer(QString c);
     Entier* Fabriquer(long int i);
-
-
 };
 
+//Fabrique de réel
 class FabReel: public Fabrique{
-
 public:
     //virtual const LitteraleAbstraite* creer(QString c);
     Reel* Fabriquer(float r);
-
-
 };
 
+//Fabrique de complexe
 class FabComplexe: public Fabrique{
-
-
 public:
-
     //virtual const LitteraleAbstraite* creer(QString c);
    Complexe* Fabriquer(Numerique* l1, Numerique* l2);
-
-
 };
 
+//FabriqueRationnel
 class FabRationnel: public Fabrique{
-
-
 public:
     //virtual const LitteraleAbstraite* creer(QString c);
     Rationnel* Fabriquer(Entier* l1, Entier* l2);
-
-
-
 };
 
 class FabExpression: public Fabrique{
-
-
-
 public:
 
     //virtual const LitteraleAbstraite* creer(QString c);
     //Expression* Fabriquer();
-
-
-
 };
 
 class FabProgramme: public Fabrique{
-
-
 public:
 
     //virtual const LitteraleAbstraite* creer(QString c);
     //Programme* Fabriquer();
-
-
-
 };
 
 

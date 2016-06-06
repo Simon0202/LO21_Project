@@ -10,6 +10,7 @@ private:
 public:
     //Constructeur
     Reel(float v=0) : _val(v){}
+    Reel(const QString& s):_val(s.toDouble()){};
 
     //Accesseurs
     float getVal() const {return _val;}
@@ -19,6 +20,7 @@ public:
     //Héritage de Numerique
     void afficher(std::ostream& f=std::cout) const { f<<_val; }
     virtual LitteraleAbstraite *clone() const;
+    virtual QString toString() const;
 
     //A implémenter dans stratégie
     //virtual void setSign() {_val=(-_val);}

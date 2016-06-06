@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,14 +25,15 @@ SOURCES += main.cpp\
     expression.cpp \
     atome.cpp \
     pile.cpp \
-    factory.cpp \
     memento.cpp \
     fabrique.cpp \
     strategiecalcul.cpp \
     strategieaddition.cpp \
     strategiemultiplication.cpp \
     strategiesoustraction.cpp \
-    strategiedivision.cpp
+    strategiedivision.cpp \
+    computerexception.cpp \
+    controleur.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
@@ -42,13 +45,15 @@ HEADERS  += mainwindow.h \
     expression.h \
     atome.h \
     pile.h \
-    factory.h \
     memento.h \
     fabrique.h \
     strategiecalcul.h \
     strategieaddition.h \
     strategiemultiplication.h \
     strategiesoustraction.h \
-    strategiedivision.h
+    strategiedivision.h \
+    computerexception.h \
+    controleur.h \
+    operateur.h
 
 FORMS    += mainwindow.ui

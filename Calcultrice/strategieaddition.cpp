@@ -2,6 +2,9 @@
 #include "strategiemultiplication.h"
 #include"strategiedivision.h"
 
+
+
+
 Entier* StrategieAddition::Calcul(Entier* l1,Entier* l2){
 
     FabEntier f;
@@ -351,21 +354,3 @@ Complexe* StrategieAddition::Calcul(Complexe* l1,Rationnel* l2){
     StrategieAddition a;
     return a.Calcul(l2,l1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
