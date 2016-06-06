@@ -1,7 +1,7 @@
 #ifndef COMPLEXE_H
 #define COMPLEXE_H
 
-
+#include "litteraleabstraite.h"
 #include "numerique.h"
 
 //Rajouter un destructeur
@@ -13,20 +13,28 @@ private:
 
 public:
     Complexe();
-    Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
-    Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
     ~Complexe(){
         delete a;
         delete b;
     }
+    Complexe(Numerique *Re,Numerique *Im): a(Re), b(Im){}
+    Complexe(LitteraleAbstraite* Re, LitteraleAbstraite* Im);
+    Complexe(const QString& pRe, const QString& pIm);
+    Numerique* getR() const{return a;}
+    Numerique* getI() const{return b;}
 
+    //A implémenter dans stratégie
+    //inline void setSign(){a->setSign();b->setSign();}
 
-    Numerique* getR() const {return a;}
-    Numerique* getI() const {return b;}
+    //On cree un complexe a partir d'un nombre reel et on met b a zero. */
+    //Complexe(Numerique* d);
 
     //Héritage
-    void afficher(std::ostream& f=std::cout) const;
-    //virtual QString toString() const;
+    virtual void afficher(std::ostream& f=std::cout) const;
+    virtual QString toString() const;
+
+
+    //virtual void setSign();
 
     //Pb de fonction ci dessous
     virtual LitteraleAbstraite* clone() const;

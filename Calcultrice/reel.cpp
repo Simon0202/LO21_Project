@@ -6,6 +6,13 @@ LitteraleAbstraite *Reel::clone() const
 }
 
 
+//Méthode toString
+QString Reel::toString() const {
+    return QString::number(_val);
+}
+
+
+//Faut il les enlever
 Reel& Reel::operator=(const Reel& n)
 {
     if(this != &n)
@@ -41,6 +48,10 @@ Reel operator/( Reel& a,  Reel& b){
     return resultat;
 }
 
-QString Reel::toString() const {
-    return QString::number(_val);
-}
+
+
+
+
+
+
+

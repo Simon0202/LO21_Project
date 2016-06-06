@@ -10,6 +10,7 @@ private:
 public:
     //Constructeur
     Reel(float v=0) : _val(v){}
+    Reel(const QString& s):_val(s.toDouble()){};
 
     //Accesseurs
     float getVal() const {return _val;}

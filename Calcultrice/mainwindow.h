@@ -7,13 +7,14 @@
 #include <QStringList>
 #include <QTableView>
 #include <QAction>
-#include <QTableWidgetItem>
 #include <QMenuBar>
+#include <QTableWidgetItem>
 #include <QSettings>
 #include <QStandardPaths>
 #include <QShortcut>
 #include <QSlider>
 #include "pile.h"
+#include "controleur.h"
 
 
 namespace Ui {
@@ -31,6 +32,7 @@ public:
 public slots:
     void refresh();
     void on_lineEdit_returnPressed();
+
 
 private slots:
     void setMaxAffiche(int);
@@ -112,8 +114,17 @@ private slots:
     void on_pushButtonNeg_released();
 
     void on_pushButtonSpace_released();
+    void on_checkClavier_clicked();
+
+    //void on_lineEdit_returnPressed();
+
+
+
+    //void on_verticalSlider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

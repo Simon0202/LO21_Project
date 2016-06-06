@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "pile.h"
 #include "litteraleabstraite.h"
+#include <QDebug>
 #include <QVector>
 #include <qiterator.h>
 
@@ -10,16 +11,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    Pile* pile = Pile::getInstance();
-    QSettings settings;
     ui->setupUi(this);
 
+    Pile* pile = Pile::getInstance();
+    pile->setMaxAffiche(ui->verticalSlider->value());
+
     ui->vuePile->setRowCount(pile->getMaxAffiche());
-    settings.setValue("Pile", pile->getMaxAffiche());
     ui->vuePile->setColumnCount(1);
     ui->vuePile->verticalHeader()->setSectionResizeMode (QHeaderView::Fixed);
 
     QStringList numberList;
+
     for(unsigned int i = pile->getMaxAffiche(); i>0; i--) {
         QString str = QString::number(i);
         str += " :";
@@ -37,41 +39,71 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(pile,SIGNAL(modificationEtat()),this,SLOT(refresh()));
 
     // first message
-    pile->setMessage("Bienvenue !");
+    ui->message->setText("Bienvenue !");
 
-    //keyboard enabled at start
-    settings.setValue("Clavier", true);
+    ui->lineEdit->setFocus(Qt::OtherFocusReason);
+
+    ui->checkClavier->setChecked(true);
+    ui->checkSond->setChecked(true);
+
 
     refresh();
 }
 
+
 void MainWindow::refresh(){
     Pile* pile = Pile::getInstance();
-    unsigned int nb = 0;
+
     // delete everything
     for(unsigned int i=0; i<pile->getMaxAffiche(); i++)
         ui->vuePile->item(i,0)->setText("");
+
     // update
-    QVectorIterator<LitteraleAbstraite*> it(*pile->getStack());
-    for(it.toBack() ; it.hasPrevious() && nb<pile->getMaxAffiche(); nb++){
-    ui->vuePile->item(pile->getMaxAffiche()-1-nb,0)->setText(it.previous()->toString());
+    unsigned int nb = 0;
+    QStack<LitteraleAbstraite*>::const_iterator it;
+
+    for(it = pile->getIteratorEnd() - 1 ; it != pile->getIteratorBegin() - 1 && nb < pile->getMaxAffiche(); nb++, --it) {
+        ui->vuePile->item(pile->getMaxAffiche() - nb - 1, 0)->setText((*it)->toString());
     }
 }
 
-void MainWindow::setMaxAffiche(int i) {
+void MainWindow::on_lineEdit_returnPressed()
+{
     Pile* pile = Pile::getInstance();
-    pile->setMaxAffiche(i);
-    ui->vuePile->setRowCount(i);
+    Controleur* controleur = Controleur::getInstance();
+
+    pile->setMessage("");
+
+    QString c = ui->lineEdit->text();
+
+    try {
+        controleur->parse(c);
+    } catch(ComputerException c) {
+        pile->setMessage(c.getInfo());
+    }
+
+    ui->lineEdit->clear();
+    emit pile->modificationEtat();
+}
+
+
+
+void MainWindow::setMaxAffiche(int n) {
+    Pile* pile = Pile::getInstance();
+    pile->setMaxAffiche(n);
+    ui->vuePile->setRowCount(n);
     QStringList numberList;
-    for(unsigned int i = pile->getMaxAffiche(); i>0; i--) {
+
+    for(unsigned int i = n; i>0; i--) {
         QString str = QString::number(i);
         str += " :";
         numberList << str;
         // creation of the item of each line initialized with an empty string (chaine vide).
         ui->vuePile->setItem(i-1, 0, new QTableWidgetItem(""));
     }
+
     ui->vuePile->setVerticalHeaderLabels(numberList);
-    ui->vuePile->setFixedHeight(pile->getMaxAffiche() * ui->vuePile->rowHeight(0)+2);
+    ui->vuePile->setFixedHeight(n * ui->vuePile->rowHeight(0)+2);
     emit pile->modificationEtat();
 
 }
@@ -81,6 +113,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 //*********
 //Clavier09
@@ -148,8 +182,6 @@ void MainWindow::on_pushButtonPlus_released(){ui->lineEdit->insert("+");}
 //Clear && Enter && Undo && Redo
 //******************************
 void MainWindow::on_pushButtonClear_released(){ui->lineEdit->clear();}
-
-//void MainWindow::on_pushButtonEnter_released(){}
 void MainWindow::on_pushButtonUndo_released(){ui->lineEdit->undo();}
 void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->redo();}
 
@@ -162,13 +194,29 @@ void MainWindow::on_pushButtonDiv_released(){ui->lineEdit->insert("DIV");}
 void MainWindow::on_pushButtonNeg_released(){ui->lineEdit->insert("NEG");}
 
 
+void MainWindow::on_pushButtonSpace_released()
+{    ui->lineEdit->insert(" ");}
+
 //********
 //CheckBox
 //********
-void MainWindow::on_pushButtonSpace_released()
-{    ui->lineEdit->insert(" ");
+
+
+
+
+
+void MainWindow::on_checkClavier_clicked()
+{
+    ui->clavierSaisie1->setDisabled(ui->checkClavier->isChecked());
+    ui->clavierSaisie1->setEnabled(ui->checkClavier->isChecked());
 }
 
+/*
+void MainWindow::on_verticalSlider_valueChanged(int value)
+{
+    Pile *pile = Pile::getInstance();
+    pile->setMaxAffiche(value);
+    refresh();
 
-
-
+}
+*/

@@ -2,6 +2,7 @@
 #define ENTIER_H
 
 #include "numerique.h"
+#include <QDebug>
 
 class Entier : public Numerique
 {
@@ -10,6 +11,8 @@ private:
 public:
     //conversion implicite lors de l'initialisation de l'attribut.
     Entier(double val=1):_val(val){}
+    Entier(const QString& s):_val(s.toInt()){};
+
 
 
     //Accesseurs
@@ -30,5 +33,11 @@ public:
 
     QString type(){return "entier";}
 };
-
+/*
+Entier operator+( Entier  &a,  Entier  &b);
+Entier operator-( Entier  &a,  Entier  &b);
+Entier operator*( Entier  &a,  Entier  &b);
+Entier operator/( Entier  &a,  Entier  &b);
+Entier operator%( Entier  &a,  Entier  &b);
+*/
 #endif // ENTIER_H

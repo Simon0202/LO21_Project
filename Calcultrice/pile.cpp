@@ -1,13 +1,14 @@
 #include "pile.h"
-#include "atome.h"
-#include "complexe.h"
-#include "entier.h"
-#include "reel.h"
-#include "fabrique.h"
-#include "computerexception.h"
-
+#include <QDebug>
 
 Pile* Pile::instance = nullptr;
+
+Pile::Pile(): message(""), maxAffiche(0) {
+}
+
+Pile::~Pile() {
+    libererInstance();
+}
 
 Pile* Pile::getInstance() {
     if (!instance)
@@ -28,7 +29,7 @@ void Pile::setMessage(const QString& msg) {
     message = msg;
 }
 
-void Pile::setMaxAffiche(int i) {
+void Pile::setMaxAffiche(unsigned int i) {
     maxAffiche = i;
 }
 
@@ -36,15 +37,12 @@ unsigned int Pile::getMaxAffiche() const {
     return maxAffiche;
 }
 
-QStack<LitteraleAbstraite*>* Pile::getStack() {
-    return &stack;
-}
-
 
 void Pile::push(LitteraleAbstraite *lit) {
     stack.push(lit);
     emit modificationEtat();
 }
+
 
 
 LitteraleAbstraite* Pile::pop(){
@@ -60,3 +58,24 @@ LitteraleAbstraite* Pile::top() const{
     else
         return stack.top();
 }
+
+
+int Pile::getLength() const {
+    return stack.length();
+}
+
+bool Pile::isEmpty() {
+    return stack.isEmpty();
+}
+
+
+QStack<LitteraleAbstraite*>::const_iterator Pile::getIteratorBegin() const {
+    QStack<LitteraleAbstraite*>::const_iterator i = stack.constBegin();
+    return i;
+}
+
+QStack<LitteraleAbstraite*>::const_iterator Pile::getIteratorEnd() const {
+    QStack<LitteraleAbstraite*>::const_iterator i = stack.constEnd();
+    return i;
+}
+

@@ -15,7 +15,7 @@ ComputerException::ComputerException(const QString &str, const int n) {
 
 void ComputerException::playBeep() const {
     QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl("qrc:/beep-07.wav"));
+    player->setMedia(QUrl("qrc:/beep.wav"));
     player->setVolume(50);
     player->play();
 }
