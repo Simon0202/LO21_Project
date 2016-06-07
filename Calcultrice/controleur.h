@@ -29,7 +29,7 @@ public:
 
 
     void applyOperatorNum(const QString& op, const int nbOp);
-        void applyOperatorPile(const QString& op, const int nbOp);
+    void applyOperatorPile(const QString& op, const int nbOp);
     void applyOperator(const QString& op);
 
 };
