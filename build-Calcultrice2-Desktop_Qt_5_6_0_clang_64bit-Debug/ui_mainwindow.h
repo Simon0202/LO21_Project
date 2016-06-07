@@ -116,6 +116,7 @@ public:
     QPushButton *pushButtonUndo;
     QPushButton *pushButtonRedo;
     QTableWidget *vuePile;
+    QLineEdit *message;
     QWidget *Options;
     QWidget *layoutWidget_3;
     QVBoxLayout *formulaireParam;
@@ -132,19 +133,19 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(722, 581);
+        MainWindow->resize(765, 622);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setMinimumSize(QSize(610, 581));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 10, 681, 551));
+        tabWidget->setGeometry(QRect(20, 10, 711, 581));
         tabWidget->setMinimumSize(QSize(650, 550));
         Calculatrice = new QWidget();
         Calculatrice->setObjectName(QStringLiteral("Calculatrice"));
         horizontalLayoutWidget = new QWidget(Calculatrice);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(39, 190, 601, 33));
+        horizontalLayoutWidget->setGeometry(QRect(39, 230, 601, 33));
         horizontalLayoutWidget->setMinimumSize(QSize(601, 0));
         ligneSaisie = new QHBoxLayout(horizontalLayoutWidget);
         ligneSaisie->setSpacing(6);
@@ -163,7 +164,7 @@ public:
 
         clavierSaisie1 = new QWidget(Calculatrice);
         clavierSaisie1->setObjectName(QStringLiteral("clavierSaisie1"));
-        clavierSaisie1->setGeometry(QRect(30, 370, 621, 136));
+        clavierSaisie1->setGeometry(QRect(30, 410, 621, 136));
         clavierSaisie = new QHBoxLayout(clavierSaisie1);
         clavierSaisie->setSpacing(6);
         clavierSaisie->setContentsMargins(11, 11, 11, 11);
@@ -418,7 +419,7 @@ public:
 
         layoutWidget = new QWidget(Calculatrice);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(40, 230, 601, 136));
+        layoutWidget->setGeometry(QRect(40, 270, 601, 136));
         layoutWidget->setMinimumSize(QSize(601, 0));
         operateurSpeciaux = new QHBoxLayout(layoutWidget);
         operateurSpeciaux->setSpacing(6);
@@ -613,8 +614,13 @@ public:
 
         vuePile = new QTableWidget(Calculatrice);
         vuePile->setObjectName(QStringLiteral("vuePile"));
-        vuePile->setGeometry(QRect(39, 40, 601, 141));
-        vuePile->setMinimumSize(QSize(601, 30));
+        vuePile->setGeometry(QRect(39, 70, 601, 141));
+        vuePile->horizontalHeader()->setVisible(false);
+        vuePile->horizontalHeader()->setStretchLastSection(true);
+        message = new QLineEdit(Calculatrice);
+        message->setObjectName(QStringLiteral("message"));
+        message->setGeometry(QRect(40, 10, 601, 21));
+        message->setMinimumSize(QSize(601, 0));
         tabWidget->addTab(Calculatrice, QString());
         Options = new QWidget();
         Options->setObjectName(QStringLiteral("Options"));
@@ -650,6 +656,7 @@ public:
 
         lcdNumber = new QLCDNumber(layoutWidget_3);
         lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setProperty("intValue", QVariant(4));
 
         formulaireParam->addWidget(lcdNumber);
 
@@ -665,6 +672,7 @@ public:
         verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
         verticalSlider->setMinimum(1);
         verticalSlider->setMaximum(9);
+        verticalSlider->setSliderPosition(4);
         verticalSlider->setOrientation(Qt::Vertical);
 
         taillePile->addWidget(verticalSlider);
@@ -676,8 +684,9 @@ public:
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
+        QObject::connect(verticalSlider, SIGNAL(valueChanged(int)), lcdNumber, SLOT(display(int)));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         pushButtonSwap->setDefault(false);
         pushButtonDen->setDefault(false);
         pushButtonLastArg->setDefault(false);

@@ -209,6 +209,7 @@ Complexe* StrategieAddition::Calcul(Entier* l1,Complexe* l2){
         }
 
 
+
         return f.Fabriquer(numR,l2->getI());
 }
 

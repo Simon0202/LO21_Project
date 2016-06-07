@@ -2,13 +2,10 @@
 #include <QApplication>
 #include <QDebug>
 #include<iostream>
-<<<<<<< HEAD
 #include"strategieaddition.h"
 #include"entier.h"
-=======
-#include "entier.h"
 #include "complexe.h"
->>>>>>> 5db77839505caf60cd191a3971d9dfbd7d3f2869
+
 
 
 int main(int argc, char *argv[])
