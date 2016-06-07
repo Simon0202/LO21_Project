@@ -149,10 +149,10 @@ Numerique* StrategieMultiplication::Calcul(Rationnel* l1,Rationnel* l2){
     }
 
     if (rai1!=NULL){
-        if(er2!= NULL){
+        if(ei2!= NULL){
         numR_2= c.Calcul(rai1,ei2);
         }
-        else if(rr2!= NULL){
+        else if(ri2!= NULL){
         numR_2= c.Calcul(rai1,ri2);
         }
         else if(rai2!= NULL){
@@ -353,7 +353,8 @@ Rationnel* StrategieMultiplication::Calcul(Entier* l1,Rationnel* l2){
     FabRationnel f;
     StrategieMultiplication s;
 
-    return f.Fabriquer(s.Calcul(l1,l2->getNumerateur()),l2->getDenumerateur());
+    Entier* den = dynamic_cast<Entier*> (l2->getDenumerateur()->clone());
+    return f.Fabriquer(s.Calcul(l1,l2->getNumerateur()),den);
 
 
 
@@ -370,22 +371,14 @@ Rationnel* StrategieMultiplication::Calcul(Rationnel* l1,Entier* l2){
 Reel* StrategieMultiplication::Calcul(Reel* l1,Rationnel* l2){
 //LIBERATION MEMOIRE INTERMEDIAIRE
 
-    StrategieDivision d;
-    StrategieMultiplication a;
-    Numerique* res_intermediaire = d.Calcul(l2->getNumerateur(),l2->getDenumerateur());
-    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
-        Entier* e= dynamic_cast<Entier*>(res_intermediaire);
-        Reel* res = a.Calcul(l1,e);
-        delete e;
-        return res;
-    }
-    else{
-        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
-        Reel* res = a.Calcul(l1,r);
-        delete r;
-        return res;
-    }
 
+    StrategieMultiplication a;
+    // Ici on n'utilise pas strattegie divise car on veut que le resultat de la division soit un entier
+    FabReel f;
+    Reel* res_intermediaire = f.Fabriquer(l2->getNumerateur()->getVal()/l2->getDenumerateur()->getVal());
+    Reel* res= a.Calcul(l1,res_intermediaire);
+    delete res_intermediaire;
+    return res;
 
 }
 

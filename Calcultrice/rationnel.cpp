@@ -37,9 +37,14 @@ void Rationnel::simplifier(){
 
 
 Rationnel::Rationnel(double n, double d){
+    if (n!=0 && d!= 0){
     _num = new Entier(n);
     _denum = new Entier(d);
     simplifier();
+    }
+    else{
+        throw "le rationnel entré n'est pas valide";
+    }
 }
 
 
