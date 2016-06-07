@@ -18,10 +18,7 @@ void Complexe::afficher(std::ostream& f) const
     f<<"+";
     b->afficher(f);
     f<<"i"<<std::endl;
-<<<<<<< HEAD
 
-=======
->>>>>>> 327f8428e7ab21df40fee67442aad56088f2f710
 }
 
 LitteraleAbstraite* Complexe::clone() const
