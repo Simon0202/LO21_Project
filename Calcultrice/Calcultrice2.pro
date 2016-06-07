@@ -57,3 +57,6 @@ HEADERS  += mainwindow.h \
     operateur.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    sounds.qrc

@@ -265,11 +265,15 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 Entier* y = dynamic_cast<Entier*>(temp2);
                 LitteraleAbstraite *res = stratAdd.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isReel(temp2)){
                 Reel* y = dynamic_cast<Reel*>(temp2);
                 LitteraleAbstraite *res = stratAdd.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isRationnel(temp2)){
                 Rationnel* y = dynamic_cast<Rationnel*>(temp2);
@@ -404,11 +408,15 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 Entier* y = dynamic_cast<Entier*>(temp2);
                 LitteraleAbstraite *res = stratSous.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isReel(temp2)){
                 Reel* y = dynamic_cast<Reel*>(temp2);
                 LitteraleAbstraite *res = stratSous.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isRationnel(temp2)){
                 Rationnel* y = dynamic_cast<Rationnel*>(temp2);
@@ -543,11 +551,15 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 Entier* y = dynamic_cast<Entier*>(temp2);
                 LitteraleAbstraite *res = stratMul.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isReel(temp2)){
                 Reel* y = dynamic_cast<Reel*>(temp2);
                 LitteraleAbstraite *res = stratMul.Calcul(x,y);
                 pile->push(res);
+                delete x;
+                delete y;
             }
             else if(isRationnel(temp2)){
                 Rationnel* y = dynamic_cast<Rationnel*>(temp2);
