@@ -74,12 +74,14 @@ void MainWindow::on_lineEdit_returnPressed()
 
     pile->setMessage("");
 
+
     QString c = ui->lineEdit->text();
 
     try {
         controleur->parse(c);
     } catch(ComputerException c) {
         pile->setMessage(c.getInfo());
+
     }
 
     ui->lineEdit->clear();

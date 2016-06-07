@@ -47,9 +47,9 @@ Numerique* StrategieSoustraction::Calcul(Complexe* l1,Complexe* l2){
         else if(rr2!= NULL){
         numR= c.Calcul(er1,rr2);
         }
-        //else if(rar2!= NULL){
-        //numR= c.Calcul(er1,rar2);
-        //}
+        else if(rar2!= NULL){
+        numR= c.Calcul(er1,rar2);
+        }
     }
     if (rr1!=NULL){
         if(er2!= NULL){
@@ -58,58 +58,58 @@ Numerique* StrategieSoustraction::Calcul(Complexe* l1,Complexe* l2){
         else if(rr2!= NULL){
         numR= c.Calcul(rr1,rr2);
         }
-        //else if(rar2!= NULL){
-        //numR= c.Calcul(rr1,rar2);
-        //}
+        else if(rar2!= NULL){
+        numR= c.Calcul(rr1,rar2);
+        }
     }
 
     if (rar1!=NULL){
-        //if(er2!= NULL){
-        //numR= c.Calcul(rar1,er2);
-        //}
-        //else if(rr2!= NULL){
-        //numR= c.Calcul(rar1,rr2);
-        //}
-        //else if(rar2!= NULL){
-        //numR= c.Calcul(rar1,rar2);
-        //}
+        if(er2!= NULL){
+        numR= c.Calcul(rar1,er2);
+        }
+        else if(rr2!= NULL){
+        numR= c.Calcul(rar1,rr2);
+        }
+        else if(rar2!= NULL){
+        numR= c.Calcul(rar1,rar2);
+        }
     }
 
     //Numerique partie Imaginaire: soustraction des parties imaginaires
 
     if (ei1!=NULL){
-        if(er2!= NULL){
+        if(ei2!= NULL){
         numI= c.Calcul(ei1,ei2);
         }
-        else if(rr2!= NULL){
+        else if(ri2!= NULL){
         numI= c.Calcul(ei1,ri2);
         }
-        //else if(ra2!= NULL){
-        //numI= c.Calcul(ei1,rai2);
-        //}
+        else if(rai2!= NULL){
+        numI= c.Calcul(ei1,rai2);
+        }
     }
     if (ri1!=NULL){
-        if(er2!= NULL){
+        if(ei2!= NULL){
         numI= c.Calcul(ri1,ei2);
         }
-        else if(rr2!= NULL){
+        else if(ri2!= NULL){
         numI= c.Calcul(ri1,ri2);
         }
-       //else if(ra2!= NULL){
-        //numI= c.Calcul(ri1,rai2);
-        //}
+        else if(rai2!= NULL){
+        numI= c.Calcul(ri1,rai2);
+        }
     }
 
     if (rai1!=NULL){
-        //if(er2!= NULL){
-        //numI= c.Calcul(rai1,ei2);
-        //}
-        //else if(rr2!= NULL){
-        //numI= c.Calcul(rai1,ri2);
-        //}
-        //else if(ra2!= NULL){
-        //numI= c.Calcul(rai1,rai2);
-        //}
+        if(ei2!= NULL){
+        numI= c.Calcul(rai1,ei2);
+        }
+        else if(ri2!= NULL){
+        numI= c.Calcul(rai1,ri2);
+        }
+        else if(rai2!= NULL){
+        numI= c.Calcul(rai1,rai2);
+        }
     }
 
     Complexe* res= f.Fabriquer(numR,numI);
@@ -160,12 +160,12 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
      else if (rr2 != NULL){
          numR= c.Calcul(l1,rr2);
      }
-     //else if (rar2 != NULL){
-         //numR= c.Calcul(l1,rar2);
-     //}
+     else if (rar2 != NULL){
+         numR= c.Calcul(l1,rar2);
+     }
 
-
-     return f.Fabriquer(numR,l2->getI());
+     Numerique* im= dynamic_cast <Numerique*> (l2->getI()->clone());
+     return f.Fabriquer(numR,im);
 
 
 
@@ -205,8 +205,8 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
          //numR= c.Calcul(l1,rar2);
      //}
 
-
-     return f.Fabriquer(numR,l2->getI());
+     Numerique* im= dynamic_cast <Numerique*> (l2->getI()->clone());
+     return f.Fabriquer(numR,im);
 
 
  }
@@ -291,21 +291,14 @@ Numerique* StrategieSoustraction::Calcul(Rationnel* l1,Entier* l2){
 Reel* StrategieSoustraction::Calcul(Reel* l1,Rationnel* l2){
 //LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
 
-    StrategieDivision d;
+
     StrategieSoustraction a;
-    Numerique* res_intermediaire = d.Calcul(l2->getNumerateur(),l2->getDenumerateur());
-    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
-    Entier* e= dynamic_cast<Entier*>(res_intermediaire);
-    Reel* res = a.Calcul(l1,e);
-    delete e;
-    return res;
-    }
-    else{
-        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
-        Reel* res = a.Calcul(l1,r);
-        delete r;
-        return res;
-    }
+    // On n'utilise pas strategie division ici car on veut que la division de deux entiers renvoie un reel
+    FabReel f;
+    Reel* res_intermediaire = f.Fabriquer((l2->getNumerateur()->getVal())/(l2->getDenumerateur()->getVal()));
+    Reel* resultat = a.Calcul(l1,res_intermediaire);
+    delete res_intermediaire;
+    return resultat;
 
 
 }
@@ -313,7 +306,11 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Rationnel* l2){
 Reel* StrategieSoustraction::Calcul(Rationnel* l1,Reel* l2){
 
     StrategieSoustraction a;
-    return a.Calcul(l2,l1);
+    FabReel f;
+    Reel* res_intermediaire = f.Fabriquer((l1->getNumerateur()->getVal())/(l1->getDenumerateur()->getVal()));
+    Reel* resultat= a.Calcul(res_intermediaire,l2);
+    delete res_intermediaire;
+    return resultat;
 
 }
 

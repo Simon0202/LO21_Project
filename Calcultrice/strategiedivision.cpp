@@ -12,7 +12,12 @@ Numerique* StrategieDivision::Calcul(Entier* l1,Entier* l2){
     }
     else{
         FabRationnel f;
-        return f.Fabriquer(l1,l2);
+
+        Entier* lit1= dynamic_cast<Entier*>(l1->clone());
+        Entier* lit2= dynamic_cast<Entier*>(l2->clone());
+
+
+        return f.Fabriquer(lit1,lit2);
 
     }
 
@@ -69,7 +74,8 @@ Numerique* StrategieDivision::Calcul(Entier* l1,Rationnel* l2){
     FabRationnel f;
     StrategieMultiplication m;
     Rationnel* res;
-    res = f.Fabriquer(m.Calcul(l1,l2->getDenumerateur()),l2->getNumerateur());
+    Entier* den= dynamic_cast <Entier*> (l2->getNumerateur()->clone());
+    res = f.Fabriquer(m.Calcul(l1,l2->getDenumerateur()),den);
     if (res->getDenumerateur()->getVal() ==1){
         FabEntier e;
         Entier* nouv;
@@ -88,7 +94,8 @@ Numerique* StrategieDivision::Calcul(Rationnel* l1,Entier* l2){
     FabRationnel f;
     StrategieMultiplication m;
     Rationnel* res;
-    res = f.Fabriquer(l1->getNumerateur(),m.Calcul(l1->getDenumerateur(),l2));
+    Entier* num= dynamic_cast <Entier*> (l1->getNumerateur()->clone());
+    res = f.Fabriquer(num,m.Calcul(l1->getDenumerateur(),l2));
     if (res->getDenumerateur()->getVal() ==1){
         FabEntier e;
         Entier* nouv;

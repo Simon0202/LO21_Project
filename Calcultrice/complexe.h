@@ -34,9 +34,9 @@ public:
     virtual QString toString() const;
 
 
-    //virtual void setSign();
 
-    //Pb de fonction ci dessous
+
+
     virtual LitteraleAbstraite* clone() const;
 
     bool EstNul(){return (a->EstNul() && b->EstNul());}

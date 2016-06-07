@@ -23,7 +23,9 @@ void Complexe::afficher(std::ostream& f) const
 
 LitteraleAbstraite* Complexe::clone() const
 {
-    return new Complexe(a->clone(),b->clone());
+    Numerique* ac = dynamic_cast <Numerique*> (a->clone());
+    Numerique* bc = dynamic_cast <Numerique*> (b->clone());
+    return new Complexe(ac,bc);
 }
 
 

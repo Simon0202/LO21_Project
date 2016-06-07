@@ -13,6 +13,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+
+
+
 /*
     Entier e1(5);
     Entier e2(2);

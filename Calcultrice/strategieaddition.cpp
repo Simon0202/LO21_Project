@@ -121,24 +121,24 @@ if (rar1!=NULL){
 //Numerique partie Imaginaire: addition des parties imaginaires
 
 if (ei1!=NULL){
-    if(er2!= NULL){
+    if(ei2!= NULL){
     numI= c.Calcul(ei1,ei2);
     }
-    else if(rr2!= NULL){
+    else if(ri2!= NULL){
     numI= c.Calcul(ei1,ri2);
     }
-    else if(rar2!= NULL){
+    else if(rai2!= NULL){
     numI= c.Calcul(ei1,rai2);
     }
 }
 if (ri1!=NULL){
-    if(er2!= NULL){
+    if(ei2!= NULL){
     numI= c.Calcul(ri1,ei2);
     }
-    else if(rr2!= NULL){
+    else if(ri2!= NULL){
     numI= c.Calcul(ri1,ri2);
     }
-    else if(rar2!= NULL){
+    else if(rai2!= NULL){
     numI= c.Calcul(ri1,rai2);
     }
 }
@@ -147,10 +147,10 @@ if (rai1!=NULL){
     if(er2!= NULL){
     numI= c.Calcul(rai1,ei2);
     }
-    else if(rr2!= NULL){
+    else if(ri2!= NULL){
     numI= c.Calcul(rai1,ri2);
     }
-    else if(rar2!= NULL){
+    else if(rai2!= NULL){
     numI= c.Calcul(rai1,rai2);
     }
 }
@@ -210,7 +210,9 @@ Complexe* StrategieAddition::Calcul(Entier* l1,Complexe* l2){
 
 
 
-        return f.Fabriquer(numR,l2->getI());
+        Numerique* im = dynamic_cast<Numerique*>(l2->getI()->clone());
+
+        return f.Fabriquer(numR,im);
 }
 
 Complexe* StrategieAddition::Calcul(Complexe* l1,Entier* l2){
@@ -244,8 +246,8 @@ Complexe* StrategieAddition::Calcul(Reel* l1,Complexe* l2){
         numR= c.Calcul(l1,rar2);
     }
 
-
-    return f.Fabriquer(numR,l2->getI());
+    Numerique* im = dynamic_cast <Numerique*> ((l2->getI())->clone());
+    return f.Fabriquer(numR,im);
 
 
 }
@@ -291,21 +293,14 @@ Numerique* StrategieAddition::Calcul(Rationnel* l1,Entier* l2){
 Reel* StrategieAddition::Calcul(Reel* l1,Rationnel* l2){
 //LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
 
-    StrategieDivision d;
     StrategieAddition a;
-    Numerique* res_intermediaire = d.Calcul(l2->getNumerateur(),l2->getDenumerateur());
-    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
-        Entier* e= dynamic_cast<Entier*>(res_intermediaire);
-        Reel* res = a.Calcul(l1,e);
-        delete e;
-        return res;
-    }
-    else{
-        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
-        Reel* res = a.Calcul(l1,r);
-        delete r;
-        return res;
-    }
+    FabReel f;
+    // Ci dessous division particuliere de deux entier (on n'utilise pas la strategie car on veut un resultat reel)
+    Reel* res_intermediaire = f.Fabriquer((l2->getNumerateur()->getVal())/(l2->getDenumerateur()->getVal()));
+
+    Reel* resultat= a.Calcul(l1,res_intermediaire);
+    delete res_intermediaire;
+    return resultat;
 
 
 }
@@ -341,8 +336,8 @@ Complexe* StrategieAddition::Calcul(Rationnel* l1,Complexe* l2){
         numR= c.Calcul(l1,rar2);
     }
 
-
-    return f.Fabriquer(numR,l2->getI());
+    Numerique* im= dynamic_cast<Numerique*>(l2->getI()->clone());
+    return f.Fabriquer(numR,im);
 
 
 

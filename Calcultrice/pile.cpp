@@ -1,5 +1,6 @@
 #include "pile.h"
 #include <QDebug>
+#include"mainwindow.h"
 
 Pile* Pile::instance = nullptr;
 

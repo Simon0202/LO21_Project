@@ -46,7 +46,9 @@ Rationnel::Rationnel(double n, double d){
 
 LitteraleAbstraite* Rationnel::clone() const
 {
-    return new Rationnel(_num,_denum);
+    Entier* num = dynamic_cast <Entier*> (_num->clone());
+    Entier* den = dynamic_cast <Entier*> (_denum->clone());
+    return new Rationnel(num,den);
 }
 
 Rationnel& Rationnel::operator=(const Rationnel& n){
