@@ -135,8 +135,8 @@ Reel* StrategieSoustraction::Calcul(Entier* l1,Reel* l2){
 }
 Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
 
-    StrategieSoustraction c;
-    return c.Calcul(l2,l1);
+    FabReel f;
+    return f.Fabriquer(l1->getVal()-l2->getVal());
 
 }
 
@@ -175,8 +175,31 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
 
  Complexe* StrategieSoustraction::Calcul(Complexe* l1,Entier* l2){
 
+     FabComplexe f;
      StrategieSoustraction c;
-     return c.Calcul(l2,l1);
+     Numerique* numR;
+     Entier* er1;
+     Reel* rr1;
+     Rationnel* rar1;
+
+     er1=dynamic_cast<Entier*>(l1->getR());
+     rr1=dynamic_cast<Reel*>(l1->getR());
+     rar1=dynamic_cast<Rationnel*>(l1->getR());
+
+     if (er1 != NULL){
+         numR= c.Calcul(er1,l2);
+     }
+     else if (rr1 != NULL){
+         numR= c.Calcul(rr1,l2);
+     }
+     else if (rar1 != NULL){
+         numR= c.Calcul(rar1,l2);
+     }
+
+     Numerique* im= dynamic_cast <Numerique*> (l1->getI()->clone());
+     return f.Fabriquer(numR,im);
+
+
 
 
 
@@ -201,9 +224,9 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
      else if (rr2 != NULL){
          numR= c.Calcul(l1,rr2);
      }
-     //else if (rar2 != NULL){
-         //numR= c.Calcul(l1,rar2);
-     //}
+     else if (rar2 != NULL){
+         numR= c.Calcul(l1,rar2);
+     }
 
      Numerique* im= dynamic_cast <Numerique*> (l2->getI()->clone());
      return f.Fabriquer(numR,im);
@@ -213,8 +236,30 @@ Reel* StrategieSoustraction::Calcul(Reel* l1,Entier* l2){
 
  Complexe* StrategieSoustraction::Calcul(Complexe* l1,Reel* l2){
 
+     FabComplexe f;
      StrategieSoustraction c;
-     return c.Calcul(l2,l1);
+     Numerique* numR;
+     Entier* er1;
+     Reel* rr1;
+     Rationnel* rar1;
+
+     er1=dynamic_cast<Entier*>(l1->getR());
+     rr1=dynamic_cast<Reel*>(l1->getR());
+     rar1=dynamic_cast<Rationnel*>(l1->getR());
+
+     if (er1 != NULL){
+         numR= c.Calcul(er1,l2);
+     }
+     else if (rr1 != NULL){
+         numR= c.Calcul(rr1,l2);
+     }
+     else if (rar1 != NULL){
+         numR= c.Calcul(rar1,l2);
+     }
+
+     Numerique* im= dynamic_cast <Numerique*> (l1->getI()->clone());
+     return f.Fabriquer(numR,im);
+
 
 
  }
@@ -264,7 +309,8 @@ Numerique* StrategieSoustraction::Calcul(Entier* l1,Rationnel* l2){
         StrategieSoustraction a;
         Rationnel* res;
         Entier* res_intermediaire1 = m.Calcul(l1,l2->getDenumerateur());
-        res = f.Fabriquer(a.Calcul(res_intermediaire1,l2->getNumerateur()),l2->getDenumerateur());
+        Entier* den = dynamic_cast <Entier*> (l2->getDenumerateur()->clone());
+        res = f.Fabriquer(a.Calcul(res_intermediaire1,l2->getNumerateur()),den);
         if(res->getDenumerateur()->getVal() == 1){
             FabEntier f;
             Entier* nouv;
@@ -280,10 +326,27 @@ Numerique* StrategieSoustraction::Calcul(Entier* l1,Rationnel* l2){
 
 }
 
+//A refaiire
 Numerique* StrategieSoustraction::Calcul(Rationnel* l1,Entier* l2){
 
-    StrategieSoustraction a;
-    return a.Calcul(l2,l1);
+    //LIBERATION MEMOIRE DES LITTERALES INTERMEDIAIRES CREES
+
+        FabRationnel f;
+        StrategieMultiplication m;
+        StrategieSoustraction a;
+        Rationnel* res;
+        Entier* res_intermediaire1 = m.Calcul(l2,l1->getDenumerateur());
+        Entier* den = dynamic_cast <Entier*> (l1->getDenumerateur()->clone());
+        res = f.Fabriquer(a.Calcul(l1->getNumerateur(),res_intermediaire1),den);
+        if(res->getDenumerateur()->getVal() == 1){
+            FabEntier f;
+            Entier* nouv;
+            nouv = f.Fabriquer(res->getNumerateur()->getVal());
+            delete res;
+            return nouv;
+        }
+        else {return res;}
+
 
 }
 
@@ -338,8 +401,8 @@ Complexe* StrategieSoustraction::Calcul(Rationnel* l1,Complexe* l2){
         numR= c.Calcul(l1,rar2);
     }
 
-
-    return f.Fabriquer(numR,l2->getI());
+    Numerique* im= dynamic_cast<Numerique*> (l2->getI()->clone());
+    return f.Fabriquer(numR,im);
 
 
 
@@ -347,8 +410,29 @@ Complexe* StrategieSoustraction::Calcul(Rationnel* l1,Complexe* l2){
 
 Complexe* StrategieSoustraction::Calcul(Complexe* l1,Rationnel* l2){
 
-    StrategieSoustraction a;
-    return a.Calcul(l2,l1);
+    FabComplexe f;
+    StrategieSoustraction c;
+    Numerique* numR;
+    Entier* er2;
+    Reel* rr2;
+    Rationnel* rar2;
+
+    er2=dynamic_cast<Entier*>(l1->getR());
+    rr2=dynamic_cast<Reel*>(l1->getR());
+    rar2=dynamic_cast<Rationnel*>(l1->getR());
+
+    if (er2 != NULL){
+        numR= c.Calcul(er2,l2);
+    }
+    else if (rr2 != NULL){
+        numR= c.Calcul(rr2,l2);
+    }
+    else if (rar2 != NULL){
+        numR= c.Calcul(rar2,l2);
+    }
+
+    Numerique* im= dynamic_cast<Numerique*> (l1->getI()->clone());
+    return f.Fabriquer(numR,im);
 }
 
 

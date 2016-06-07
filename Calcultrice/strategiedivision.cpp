@@ -112,19 +112,12 @@ Numerique* StrategieDivision::Calcul(Rationnel* l1,Entier* l2){
 Reel* StrategieDivision::Calcul(Reel* l1,Rationnel* l2){
 
     StrategieDivision d;
-    Numerique* res_intermediaire = d.Calcul(l2->getNumerateur(),l2->getDenumerateur());
-    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
-        Entier* e= dynamic_cast<Entier*>(res_intermediaire);
-        Reel* res = d.Calcul(l1,e);
-        delete e;
-        return res;
-    }
-    else{
-        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
-        Reel* res = d.Calcul(l1,r);
-        delete r;
-        return res;
-    }
+    FabReel f;
+    //Ici on n'utilise pas la strategie division car on veut recuperer reel
+    Reel* res_intermediaire = f.Fabriquer(l2->getNumerateur()->getVal()/l2->getDenumerateur()->getVal());
+    Reel* res=d.Calcul(l1,res_intermediaire);
+    delete res_intermediaire;
+    return res;
 
 
 
@@ -133,20 +126,12 @@ Reel* StrategieDivision::Calcul(Reel* l1,Rationnel* l2){
 Reel* StrategieDivision::Calcul(Rationnel* l1,Reel* l2){
 
     StrategieDivision d;
-    Numerique* res_intermediaire = d.Calcul(l1->getNumerateur(),l1->getDenumerateur());
-    if (dynamic_cast<Entier*>(res_intermediaire) != NULL){
-        Entier* e= dynamic_cast<Entier*>(res_intermediaire);
-        Reel* res = d.Calcul(e,l2);
-        delete e;
-        return res;
-    }
-    else{
-        Reel* r = dynamic_cast<Reel*>(res_intermediaire);
-        Reel* res = d.Calcul(r,l2);
-        delete r;
-        return res;
-    }
-
+    FabReel f;
+    //Ici on n'utilise pas la strategie division car on veut recuperer reel
+    Reel* res_intermediaire = f.Fabriquer(l1->getNumerateur()->getVal()/l1->getDenumerateur()->getVal());
+    Reel* res=d.Calcul(res_intermediaire,l2);
+    delete res_intermediaire;
+    return res;
 
 }
 
@@ -157,9 +142,9 @@ Complexe* StrategieDivision::Calcul(Complexe* l1,Entier* l2){
     Numerique* numR;
     Numerique* numI;
 
-    Entier *er2,*ei2,*ercarre,*eicarre;
-    Reel *rr2,*ri2,*rrcarre,*ricarre;
-    Rationnel *rar2,*rai2,*rarcarre,*raicarre;
+    Entier *er2,*ei2;
+    Reel *rr2,*ri2;
+    Rationnel *rar2,*rai2;
 
 
 
@@ -206,9 +191,9 @@ Complexe* StrategieDivision::Calcul(Complexe* l1,Reel* l2){
     Numerique* numR;
     Numerique* numI;
 
-    Entier *er2,*ei2,*ercarre,*eicarre;
-    Reel *rr2,*ri2,*rrcarre,*ricarre;
-    Rationnel *rar2,*rai2,*rarcarre,*raicarre;
+    Entier *er2,*ei2;
+    Reel *rr2,*ri2;
+    Rationnel *rar2,*rai2;
 
 
 
@@ -255,9 +240,9 @@ Complexe* StrategieDivision::Calcul(Complexe* l1,Rationnel* l2){
     Numerique* numR;
     Numerique* numI;
 
-    Entier *er2,*ei2,*ercarre,*eicarre;
-    Reel *rr2,*ri2,*rrcarre,*ricarre;
-    Rationnel *rar2,*rai2,*rarcarre,*raicarre;
+    Entier *er2,*ei2;
+    Reel *rr2,*ri2;
+    Rationnel *rar2,*rai2;
 
 
 
@@ -393,10 +378,10 @@ Numerique* StrategieDivision::Calcul(Complexe* l1,Complexe* l2){
     }
 
     if (rai1!=NULL){
-        if(er2!= NULL){
+        if(ei2!= NULL){
         numR_2= c.Calcul(rai1,ei2);
         }
-        else if(rr2!= NULL){
+        else if(ri2!= NULL){
         numR_2= c.Calcul(rai1,ri2);
         }
         else if(rai2!= NULL){
@@ -633,25 +618,25 @@ Numerique* StrategieDivision::Calcul(Complexe* l1,Complexe* l2){
                     }
                     if (rrcarre!=NULL){
                         if(eicarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,eicarre);
+                        Diviseur= a.Calcul(rrcarre,eicarre);
                         }
                         else if(ricarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,ricarre);
+                        Diviseur= a.Calcul(rrcarre,ricarre);
                         }
                         else if(raicarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,raicarre);
+                        Diviseur= a.Calcul(rrcarre,raicarre);
                         }
                     }
 
                     if (rarcarre!=NULL){
                         if(eicarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,eicarre);
+                        Diviseur= a.Calcul(rarcarre,eicarre);
                         }
                         else if(ricarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,ricarre);
+                        Diviseur= a.Calcul(rarcarre,ricarre);
                         }
                         else if(raicarre!= NULL){
-                        Diviseur= a.Calcul(ercarre,raicarre);
+                        Diviseur= a.Calcul(rarcarre,raicarre);
                         }
                     }
 
@@ -673,32 +658,43 @@ Numerique* StrategieDivision::Calcul(Complexe* l1,Complexe* l2){
                     }
 
                     if (resultat->getI()->EstNul()){
-                        FabEntier f;
-                        Numerique* nouv = resultat->getR();
+
+                        Numerique* nouv = dynamic_cast<Numerique*> (resultat->getR()->clone());
+
                         delete resultat;
                         delete numR_1;
                         delete numR_2;
                         delete numI_1;
                         delete numI_2;
-                        delete numR;
-                        delete numI;
                         delete rcarre;
                         delete icarre;
-                        delete Diviseur;
                         delete res_intermed;
+                        /*
+
+                        delete numR;
+                        delete numI;
+                        delete Diviseur;
+
+                        */
                         return nouv;
                     }
                     else{
+
                         delete numR_1;
                         delete numR_2;
                         delete numI_1;
                         delete numI_2;
-                        delete numR;
-                        delete numI;
                         delete rcarre;
                         delete icarre;
-                        delete Diviseur;
                         delete res_intermed;
+
+                        /*
+
+                        delete numR;
+                        delete numI;
+                        delete Diviseur;
+
+                        */
                         return resultat;
                     }
 
