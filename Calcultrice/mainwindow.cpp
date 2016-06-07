@@ -213,12 +213,31 @@ void MainWindow::on_checkClavier_clicked()
     ui->clavierSaisie1->setEnabled(ui->checkClavier->isChecked());
 }
 
-/*
+
 void MainWindow::on_verticalSlider_valueChanged(int value)
 {
     Pile *pile = Pile::getInstance();
     pile->setMaxAffiche(value);
+    ui->vuePile->setRowCount(pile->getMaxAffiche());
+    ui->vuePile->setColumnCount(1);
+    ui->vuePile->verticalHeader()->setSectionResizeMode (QHeaderView::Fixed);
+
+    QStringList numberList;
+
+    for(unsigned int i = pile->getMaxAffiche(); i>0; i--) {
+        QString str = QString::number(i);
+        str += " :";
+        numberList << str;
+        // creation of the item of each line initialized with an empty string (chaine vide).
+        ui->vuePile->setItem(i-1, 0, new QTableWidgetItem(""));
+    }
+    ui->vuePile->setVerticalHeaderLabels(numberList);
+
+
+    // inhibit modification
+    ui->vuePile->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     refresh();
 
 }
-*/
+
