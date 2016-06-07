@@ -67,7 +67,8 @@ SOURCES       = ../Calcultrice/main.cpp \
 		../Calcultrice/strategiesoustraction.cpp \
 		../Calcultrice/strategiedivision.cpp \
 		../Calcultrice/computerexception.cpp \
-		../Calcultrice/controleur.cpp moc_mainwindow.cpp \
+		../Calcultrice/controleur.cpp qrc_sounds.cpp \
+		moc_mainwindow.cpp \
 		moc_pile.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -89,6 +90,7 @@ OBJECTS       = main.o \
 		strategiedivision.o \
 		computerexception.o \
 		controleur.o \
+		qrc_sounds.o \
 		moc_mainwindow.o \
 		moc_pile.o
 DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
@@ -210,6 +212,7 @@ DIST          = ../../../../Qt/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf \
+		../Calcultrice/.qmake.stash \
 		../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -401,6 +404,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 		../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -423,6 +427,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 		../../../../Qt/5.6/clang_64/mkspecs/features/yacc.prf \
 		../../../../Qt/5.6/clang_64/mkspecs/features/lex.prf \
 		../Calcultrice/Calcultrice2.pro \
+		../Calcultrice/sounds.qrc \
 		../../../../Qt/5.6/clang_64/lib/QtMultimedia.framework/QtMultimedia.prl \
 		../../../../Qt/5.6/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		../../../../Qt/5.6/clang_64/lib/QtGui.framework/QtGui.prl \
@@ -548,6 +553,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 ../../../../Qt/5.6/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.6/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/default_pre.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -570,6 +576,7 @@ Makefile: ../Calcultrice/Calcultrice2.pro ../../../../Qt/5.6/clang_64/mkspecs/ma
 ../../../../Qt/5.6/clang_64/mkspecs/features/yacc.prf:
 ../../../../Qt/5.6/clang_64/mkspecs/features/lex.prf:
 ../Calcultrice/Calcultrice2.pro:
+../Calcultrice/sounds.qrc:
 ../../../../Qt/5.6/clang_64/lib/QtMultimedia.framework/QtMultimedia.prl:
 ../../../../Qt/5.6/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 ../../../../Qt/5.6/clang_64/lib/QtGui.framework/QtGui.prl:
@@ -604,6 +611,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../Calcultrice/sounds.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calcultrice/mainwindow.h ../Calcultrice/litteraleabstraite.h ../Calcultrice/numerique.h ../Calcultrice/entier.h ../Calcultrice/rationnel.h ../Calcultrice/reel.h ../Calcultrice/complexe.h ../Calcultrice/expression.h ../Calcultrice/atome.h ../Calcultrice/pile.h ../Calcultrice/memento.h ../Calcultrice/fabrique.h ../Calcultrice/strategiecalcul.h ../Calcultrice/strategieaddition.h ../Calcultrice/strategiemultiplication.h ../Calcultrice/strategiesoustraction.h ../Calcultrice/strategiedivision.h ../Calcultrice/computerexception.h ../Calcultrice/controleur.h ../Calcultrice/operateur.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calcultrice/main.cpp ../Calcultrice/mainwindow.cpp ../Calcultrice/litteraleabstraite.cpp ../Calcultrice/numerique.cpp ../Calcultrice/entier.cpp ../Calcultrice/rationnel.cpp ../Calcultrice/reel.cpp ../Calcultrice/complexe.cpp ../Calcultrice/expression.cpp ../Calcultrice/atome.cpp ../Calcultrice/pile.cpp ../Calcultrice/memento.cpp ../Calcultrice/fabrique.cpp ../Calcultrice/strategiecalcul.cpp ../Calcultrice/strategieaddition.cpp ../Calcultrice/strategiemultiplication.cpp ../Calcultrice/strategiesoustraction.cpp ../Calcultrice/strategiedivision.cpp ../Calcultrice/computerexception.cpp ../Calcultrice/controleur.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Calcultrice/mainwindow.ui $(DISTDIR)/
@@ -628,8 +636,13 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_sounds.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_sounds.cpp
+qrc_sounds.cpp: ../Calcultrice/sounds.qrc \
+		../Calcultrice/beep.wav
+	/Users/admin/Qt/5.6/clang_64/bin/rcc -name sounds ../Calcultrice/sounds.qrc -o qrc_sounds.cpp
+
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_pile.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_pile.cpp
@@ -731,7 +744,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1228,7 +1241,9 @@ strategiedivision.o: ../Calcultrice/strategiedivision.cpp ../Calcultrice/strateg
 		../Calcultrice/rationnel.h \
 		../Calcultrice/complexe.h \
 		../Calcultrice/fabrique.h \
-		../Calcultrice/strategiemultiplication.h
+		../Calcultrice/strategiemultiplication.h \
+		../Calcultrice/strategieaddition.h \
+		../Calcultrice/strategiesoustraction.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o strategiedivision.o ../Calcultrice/strategiedivision.cpp
 
 computerexception.o: ../Calcultrice/computerexception.cpp ../Calcultrice/computerexception.h \
@@ -1283,6 +1298,9 @@ controleur.o: ../Calcultrice/controleur.cpp ../Calcultrice/litteraleabstraite.h 
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/QRegularExpressionMatch \
 		../../../../Qt/5.6/clang_64/lib/QtCore.framework/Headers/qregularexpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controleur.o ../Calcultrice/controleur.cpp
+
+qrc_sounds.o: qrc_sounds.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_sounds.o qrc_sounds.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
