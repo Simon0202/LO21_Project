@@ -18,6 +18,7 @@ static const QMap<QString, int> opsNum{
     {"$", 2},
     {"RE", 1},
     {"IM", 1},
+    {"NOT", 1}
     };
 
 static const QMap<QString, int> opsPile {
@@ -30,7 +31,8 @@ static const QMap<QString, int> opsPile {
     {"FORGET", 1},
     {"EDIT", 1},
     {"IFT", 2},
-    {"DROP", 0}
+    {"DROP", 0},
+
 };
 
 

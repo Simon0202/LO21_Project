@@ -33,11 +33,4 @@ public:
 
     QString type(){return "entier";}
 };
-/*
-Entier operator+( Entier  &a,  Entier  &b);
-Entier operator-( Entier  &a,  Entier  &b);
-Entier operator*( Entier  &a,  Entier  &b);
-Entier operator/( Entier  &a,  Entier  &b);
-Entier operator%( Entier  &a,  Entier  &b);
-*/
 #endif // ENTIER_H

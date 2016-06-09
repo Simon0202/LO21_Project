@@ -54,6 +54,9 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::refresh(){
     Pile* pile = Pile::getInstance();
 
+    // the message
+    ui->message->setText(pile->getMessage());
+
     // delete everything
     for(unsigned int i=0; i<pile->getMaxAffiche(); i++)
         ui->vuePile->item(i,0)->setText("");
@@ -72,6 +75,7 @@ void MainWindow::on_lineEdit_returnPressed()
     Pile* pile = Pile::getInstance();
     Controleur* controleur = Controleur::getInstance();
 
+    //Efface le message d'erreur
     pile->setMessage("");
 
 
@@ -174,16 +178,16 @@ void MainWindow::on_pushBoutonDel_clicked()
 //**********
 //ClavierOpe
 //**********
-void MainWindow::on_pushButtonDiv1_released(){ui->lineEdit->insert("/");}
-void MainWindow::on_pushButtonMul_released(){ui->lineEdit->insert("*");}
-void MainWindow::on_pushButtonMoins_released(){ui->lineEdit->insert("-");}
-void MainWindow::on_pushButtonPlus_released(){ui->lineEdit->insert("+");}
+void MainWindow::on_pushButtonDiv1_released(){ui->lineEdit->insert("/");ui->lineEdit->returnPressed();}
+void MainWindow::on_pushButtonMul_released(){ui->lineEdit->insert("*");ui->lineEdit->returnPressed();}
+void MainWindow::on_pushButtonMoins_released(){ui->lineEdit->insert("-");ui->lineEdit->returnPressed();}
+void MainWindow::on_pushButtonPlus_released(){ui->lineEdit->insert("+");ui->lineEdit->returnPressed();}
 
 
 //******************************
 //Clear && Enter && Undo && Redo
 //******************************
-void MainWindow::on_pushButtonClear_released(){ui->lineEdit->clear();}
+void MainWindow::on_pushButtonClear_released(){ui->lineEdit->insert("CLEAR");ui->lineEdit->returnPressed();}
 void MainWindow::on_pushButtonUndo_released(){ui->lineEdit->undo();}
 void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->redo();}
 
@@ -191,9 +195,9 @@ void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->redo();}
 //****************
 //Boutton Speciaux
 //****************
-void MainWindow::on_pushButtonDollar_released(){ui->lineEdit->insert("$");}
-void MainWindow::on_pushButtonDiv_released(){ui->lineEdit->insert("DIV");}
-void MainWindow::on_pushButtonNeg_released(){ui->lineEdit->insert("NEG");}
+void MainWindow::on_pushButtonDollar_released(){ui->lineEdit->insert("$");ui->lineEdit->returnPressed();}
+void MainWindow::on_pushButtonDiv_released(){ui->lineEdit->insert("DIV");ui->lineEdit->returnPressed();}
+void MainWindow::on_pushButtonNeg_released(){ui->lineEdit->insert("NEG");ui->lineEdit->returnPressed();}
 
 
 void MainWindow::on_pushButtonSpace_released()
@@ -241,3 +245,70 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 
 }
 
+void MainWindow::playSound(){
+    QMediaPlayer* player = new QMediaPlayer;
+    player->setMedia(QUrl("qrc:/beep.wav"));
+    player->setVolume(50);
+    player->play();
+}
+
+
+
+void MainWindow::on_pushButtonDup_released()
+{
+    ui->lineEdit->insert("DUP");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonSwap_released()
+{
+    ui->lineEdit->insert("SWAP");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonDrop_released()
+{
+    ui->lineEdit->insert("DROP");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtoNot_released()
+{
+    ui->lineEdit->insert("NOT");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonNeg_clicked()
+{
+    ui->lineEdit->insert("NEG");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonRe_clicked()
+{
+    ui->lineEdit->insert("RE");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonNum_released()
+{
+    ui->lineEdit->insert("NUM");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonIm_released()
+{
+    ui->lineEdit->insert("IM");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonDen_released()
+{
+    ui->lineEdit->insert("DEN");
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonEnter_released()
+{
+    ui->lineEdit->returnPressed();
+}

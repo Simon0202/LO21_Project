@@ -15,6 +15,7 @@
 
 class Controleur {
 private:
+    QString lastOp;
     static Controleur* instance;
     Controleur() {}
      ~Controleur();

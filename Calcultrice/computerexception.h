@@ -8,12 +8,12 @@
 class ComputerException {
 private:
     QString info;
-    void playBeep() const;
 
 public:
-
+    ComputerException(){}
     ComputerException(const QString& str, const int n=-1);
     QString getInfo() const;
+
 };
 #endif // COMPUTEREXCEPTION_H
 

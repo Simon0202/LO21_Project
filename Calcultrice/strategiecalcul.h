@@ -13,10 +13,6 @@
 class StrategieCalcul
 {
 public:
-
-
-
-
 };
 
 #endif // STRATEGIECALCUL_H

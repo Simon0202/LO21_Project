@@ -9,6 +9,7 @@ Pile::Pile(): message(""), maxAffiche(0) {
 
 Pile::~Pile() {
     libererInstance();
+
 }
 
 Pile* Pile::getInstance() {

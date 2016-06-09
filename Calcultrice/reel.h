@@ -22,9 +22,6 @@ public:
     virtual LitteraleAbstraite *clone() const;
     virtual QString toString() const;
 
-    //A implémenter dans stratégie
-    //virtual void setSign() {_val=(-_val);}
-
     //Permet l'affectation Reel-Reel
     Reel& operator=(const Reel& n);
 
@@ -32,7 +29,7 @@ public:
 
     QString type(){return "reel";}
 };
-
+   //Utilise t on ces methodes ??
    Reel operator+( Reel& a,  Reel& b);
    Reel operator-( Reel& a,  Reel& b);
    Reel operator*( Reel& a,  Reel& b);

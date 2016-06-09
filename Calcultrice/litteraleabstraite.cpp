@@ -9,17 +9,14 @@
 #include "strategiesoustraction.h"
 #include "strategiemultiplication.h"
 #include "controleur.h"
+#include "computerexception.h"
 #include <QDebug>
-/*
-StrategieAddition stratAdd;
-StrategieMultiplication stratMul;
-StrategieSoustraction stratSous;
-StrategieDivision stratDiv;
-*/
+
 //Litteral
 LitteraleAbstraite* LitteraleAbstraite::createLitteral(const QString& value, const QString& type) {
     if (type == "Entier") {
         return new Entier(value.toInt());
+        throw ComputerException("Creation Entier");
     }
     else if (type == "Reel") {
             int e;
@@ -80,6 +77,9 @@ LitteraleAbstraite* LitteraleAbstraite::createLitteral(const QString& value, con
         qDebug()<<"bla";
         Atome* a = new Atome(value);
        }*/
+    else{
+        throw ComputerException("Type Inconnu");
+    }
 }
 
 
@@ -105,29 +105,3 @@ bool isComplexe(LitteraleAbstraite* l){
     Complexe *c = dynamic_cast<Complexe*>(l);
     return c!=nullptr;
 }
-/*
-template<class T>
-bool isEntier(T& a){
-    Entier *e = dynamic_cast<Entier*>(&a);
-    return e!=nullptr;
-}
-
-template<class T>
-bool isReel(T& a){
-    Reel *r = dynamic_cast<Reel*>(&a);
-    return r!=nullptr;
-}
-
-template<class T>
-bool isRationnel(T& a){
-    Rationnel *r = dynamic_cast<Rationnel*>(&a);
-    return r!=nullptr;
-}
-
-template<class T>
-bool isComplexe(T& a){
-    Complexe *c = dynamic_cast<Complexe*>(&a);
-    return c!=nullptr;
-}
-
-*/
