@@ -975,7 +975,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
         }
         else{
             pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
-            throw ComputerException("Erreur : L'opérateur NUM s'applique sur une opérande rationnelle ou entière");
+            throw ComputerException("Erreur : L'opérateur DEN s'applique sur une opérande rationnelle ou entière");
         }
     }
     else if(op=="RE"){
@@ -997,7 +997,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
         }
         else{
             pile->push(temp1);
-            throw ComputerException("Impossible de prendre la partie Reelle");
+            throw ComputerException("Impossible de prendre la partie Imaginaire");
 
         }
     }
