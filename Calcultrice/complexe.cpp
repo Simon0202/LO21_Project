@@ -4,6 +4,7 @@
 #include "rationnel.h"
 #include "litteraleabstraite.h"
 #include "controleur.h"
+#include"strategiemultiplication.h"
 #include <QDebug>
 
 
@@ -93,24 +94,22 @@ Complexe::Complexe(const QString& pRe, const QString& pIm){
 
 Complexe* Complexe::conjugue(){
 
+    StrategieMultiplication m;
     Numerique* i= getI();
+    Entier* neg= new Entier(-1);
+    Numerique* pr= dynamic_cast<Numerique*>(getR()->clone());
 
     if (isEntier(i)){
-        Entier* e = dynamic_cast<Entier*>(i);
-        Entier* newi = new Entier(-(e->getVal()));
-        return new Complexe(getR(),newi);
+        Entier* e= dynamic_cast<Entier*>(i);
+        return new Complexe(pr,m.Calcul(neg,e));
     }
     else if (isReel(i)){
-        Reel* r = dynamic_cast<Reel*>(i);
-        Reel* newi = new Reel(-(r->getVal()));
-        return new Complexe(getR(),newi);
+        Reel* r= dynamic_cast<Reel*>(i);
+        return new Complexe(pr,m.Calcul(neg,r));
     }
     else{
         Rationnel* ra= dynamic_cast<Rationnel*>(i);
-        Entier* e= new Entier(-(ra->getNumerateur()->getVal()));
-        Rationnel* newra = new Rationnel(e,ra->getDenumerateur());
-        return new Complexe(getR(),newra);
+        return new Complexe(pr,m.Calcul(neg,ra));
     }
-
 
 }

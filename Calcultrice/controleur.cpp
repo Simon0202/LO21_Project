@@ -669,7 +669,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            /* Pas de div d'un reel par un complexe
+
             else if(isComplexe(temp2)){
                 Complexe* y = dynamic_cast<Complexe*>(temp2);
                 LitteraleAbstraite *res = stratDiv.Calcul(x,y);
@@ -677,7 +677,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            */
+
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
         }//Fin du cas des réels pour l'opérateur /
 
@@ -705,7 +705,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            /* Pas de div d'un rationnel par un complexe
+
             else if(isComplexe(temp2)){
                 Complexe* y = dynamic_cast<Complexe*>(temp2);
                 LitteraleAbstraite *res = stratDiv.Calcul(x,y);
@@ -713,7 +713,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            */
+
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
         }//Fin du cas des rationnels pour /
 

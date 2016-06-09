@@ -338,6 +338,18 @@ Numerique* StrategieMultiplication::Calcul(Rationnel* l1,Rationnel* l2){
 
 //------------------------------------------------------------------------------------------------------------------
         Complexe* res = f.Fabriquer(numR,numI);
+
+        if(res->getI()->EstNul()){
+
+            Numerique* nouv = dynamic_cast<Numerique*>(res->getR()->clone());
+            delete res;
+            delete numR_1;
+            delete numR_2;
+            delete numI_1;
+            delete numI_2;
+            return nouv;
+
+        }
         delete numR_1;
         delete numR_2;
         delete numI_1;

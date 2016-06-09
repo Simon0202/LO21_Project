@@ -698,12 +698,6 @@ Numerique* StrategieDivision::Calcul(Complexe* l1,Complexe* l2){
                         return resultat;
                     }
 
-
-
-
-
-
-
 }
 
 
@@ -727,6 +721,57 @@ Complexe* StrategieDivision::Calcul(Entier* l1,Complexe* l2){
         Rationnel* e=dynamic_cast<Rationnel*>(newCtoE);
         return d.Calcul(newEtoC,e);
     }
+
+
+}
+
+
+Complexe* StrategieDivision::Calcul(Reel* l1,Complexe* l2){
+
+    StrategieMultiplication m;
+    StrategieDivision d;
+    Complexe* conjugue= l2->conjugue();
+    Numerique* newCtoE= m.Calcul(l2,conjugue);
+    Complexe* newEtoC=m.Calcul(l1,conjugue);
+
+    if(isEntier(newCtoE)){
+        Entier* e=dynamic_cast<Entier*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+    else if(isReel(newCtoE)){
+        Reel* e=dynamic_cast<Reel*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+    else {
+        Rationnel* e=dynamic_cast<Rationnel*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+
+
+}
+
+Complexe* StrategieDivision::Calcul(Rationnel* l1,Complexe* l2){
+
+    StrategieMultiplication m;
+    StrategieDivision d;
+    Complexe* conjugue= l2->conjugue();
+    Numerique* newCtoE= m.Calcul(l2,conjugue);
+    Complexe* newEtoC=m.Calcul(l1,conjugue);
+
+    if(isEntier(newCtoE)){
+        Entier* e=dynamic_cast<Entier*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+    else if(isReel(newCtoE)){
+        Reel* e=dynamic_cast<Reel*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+    else {
+        Rationnel* e=dynamic_cast<Rationnel*>(newCtoE);
+        return d.Calcul(newEtoC,e);
+    }
+
+
 
 
 }
