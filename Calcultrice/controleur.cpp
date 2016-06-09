@@ -1002,6 +1002,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
         }
     }
    else if(op == "NOT") {
+        pile->push(temp1);
         throw ComputerException("NOT n'est pas pris en charge par l'application");
     }
 
