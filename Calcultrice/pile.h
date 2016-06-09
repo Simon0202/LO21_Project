@@ -10,6 +10,7 @@
 #include "atome.h"
 #include "controleur.h"
 #include "computerexception.h"
+#include "memento.h"
 
 class Pile : public QObject {
     Q_OBJECT
@@ -36,6 +37,10 @@ public:
     LitteraleAbstraite* top() const;
     QStack<LitteraleAbstraite*>::const_iterator getIteratorBegin() const;
     QStack<LitteraleAbstraite*>::const_iterator getIteratorEnd() const;
+    void clear();
+    void sauvegarde();
+    void undo();
+    void redo();
 
 signals:
     void modificationEtat();

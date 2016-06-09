@@ -1,6 +1,8 @@
 #include "pile.h"
 #include <QDebug>
 #include"mainwindow.h"
+#include <QStack>
+#include "memento.h"
 
 Pile* Pile::instance = nullptr;
 
@@ -80,4 +82,85 @@ QStack<LitteraleAbstraite*>::const_iterator Pile::getIteratorEnd() const {
     QStack<LitteraleAbstraite*>::const_iterator i = stack.constEnd();
     return i;
 }
+
+void Pile::clear(){
+
+    while(!isEmpty())
+        pop();
+
+
+}
+
+void Pile::sauvegarde(){
+
+    // On supprime les valeurs existante du memento undo
+    M_Undo::getInstance()->clear();
+
+    //On sauvegarde la pile dans le memento undo
+    QStack<LitteraleAbstraite*>::const_iterator it;
+    for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
+        M_Undo::getInstance()->push((*it)->clone());
+
+    }
+
+
+
+}
+
+void Pile::undo(){
+
+    if(M_Undo::undomarche){
+    //On sauvegarde la pile dans le memento redo (redo est vide au debut de chaque execution d'un undo car diff d'un REDO)
+        QStack<LitteraleAbstraite*>::const_iterator it;
+        for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
+            M_Redo::getInstance()->push((*it)->clone());
+        }
+    qDebug() << "sauvegarde de la pile effectuee";
+
+
+    // On supprime les valeurs existante de la pile
+    Pile::getInstance()->clear();
+
+
+    qDebug() << "clear effectue";
+
+    //On remplace la pile par le memento undo
+    for(it=M_Undo::getInstance()->getIteratorBegin();it!=M_Undo::getInstance()->getIteratorEnd();it++){
+        Pile::getInstance()->push((*it)->clone());
+
+    }
+    M_Undo::undomarche=0;
+    emit modificationEtat();
+    }
+    else throw ComputerException("UNDO deja realisé");
+}
+
+void Pile::redo(){
+
+    if(M_Redo::redomarche){
+
+    //On supprime les valeurs de la pile
+    Pile::getInstance()->clear();
+
+    QStack<LitteraleAbstraite*>::const_iterator it;
+    //On remplace la pile par le memento redo
+    for(it=M_Redo::getInstance()->getIteratorBegin();it!=M_Redo::getInstance()->getIteratorEnd();it++){
+        Pile::getInstance()->push((*it)->clone());
+
+
+    }
+    M_Redo::redomarche= 0;
+    emit modificationEtat();
+    }
+    else throw ComputerException("REDO deja realisé");
+}
+
+
+
+
+
+
+
+
+
 

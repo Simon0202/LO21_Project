@@ -28,6 +28,10 @@ public:
     virtual void afficher(std::ostream& f=std::cout) const;
     virtual QString toString() const;
 
+
+    Complexe* conjugue();
+
+
     virtual LitteraleAbstraite* clone() const;
 
     bool EstNul(){return (a->EstNul() && b->EstNul());}

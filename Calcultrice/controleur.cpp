@@ -18,6 +18,12 @@ Controleur* Controleur::instance = nullptr;
 
 
 void Controleur::parse(const QString& com) {
+
+    // A chaque execution du parseur (entree) on fait:
+    //Sauvegarde de la pile dans le memento si UNDO n'est pas appele
+    //On efface le M_Redo si REDO n'est pas appelée : voir controleur::process
+
+
     if(com == "")
         throw ComputerException("La ligne de commande est vide !");
 
@@ -85,6 +91,19 @@ QStringList Controleur::manualSplit(const QString& com) {
 void Controleur::process(const QString word) {
     QString type = typeLitteral(word);
     Pile* pile = Pile::getInstance();
+
+    if(word!="UNDO" ){
+         M_Undo::undomarche= 1;
+         if(M_Redo::redomarche){
+         Pile::getInstance()->sauvegarde();
+         }
+    }
+    if(word!="REDO"){
+        M_Redo::redomarche= 1;
+        if(M_Undo::undomarche){
+        M_Redo::getInstance()->clear();
+        }
+    }
 
     if(isOperator(word)) {
         try {
@@ -615,7 +634,6 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            /* Pas de div d'un entier par un complexe
             else if(isComplexe(temp2)){
                 Complexe* y = dynamic_cast<Complexe*>(temp2);
                 LitteraleAbstraite *res = stratDiv.Calcul(x,y);
@@ -623,7 +641,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete x;
                 delete y;
             }
-            */
+
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
         }//Fin du cas des entiers pour l'opérateur /
 
@@ -1025,6 +1043,31 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
         while(!pile->isEmpty())
             pile->pop();
     }
+
+    else if(op== "UNDO"){
+     try {
+        Pile::getInstance()->undo();
+      } catch(ComputerException e) {
+          pile->setMessage(e.getInfo());
+      }
+
+
+    }
+    else if(op=="REDO"){
+    try {
+        if (M_Redo::getInstance()->isEmpty()){
+            throw ComputerException("Pas de Undo pour faire un Redo");
+        }
+        else{
+            Pile::getInstance()->redo();
+
+        }
+    }catch(ComputerException e) {
+            pile->setMessage(e.getInfo());
+        }
+
+    }
+
 }
 
 Controleur* Controleur::getInstance() {
