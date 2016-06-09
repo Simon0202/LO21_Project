@@ -33,6 +33,8 @@ public:
 public slots:
     void refresh();
     void on_lineEdit_returnPressed();
+    void activerBipOpt(bool s);
+
 
 
 private slots:
