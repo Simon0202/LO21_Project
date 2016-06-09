@@ -27,6 +27,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void playSound();
     ~MainWindow();
 
 public slots:
@@ -116,11 +117,28 @@ private slots:
     void on_pushButtonSpace_released();
     void on_checkClavier_clicked();
 
-    //void on_lineEdit_returnPressed();
+    void on_verticalSlider_valueChanged(int value);
 
 
+    void on_pushButtonDup_released();
 
-    //void on_verticalSlider_valueChanged(int value);
+    void on_pushButtonSwap_released();
+
+    void on_pushButtonDrop_released();
+
+    void on_pushButtoNot_released();
+
+    void on_pushButtonNeg_clicked();
+
+    void on_pushButtonRe_clicked();
+
+    void on_pushButtonNum_released();
+
+    void on_pushButtonIm_released();
+
+    void on_pushButtonDen_released();
+
+    void on_pushButtonEnter_released();
 
 private:
     Ui::MainWindow *ui;

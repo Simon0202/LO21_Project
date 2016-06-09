@@ -7,6 +7,7 @@
 //------------------------------------------------------------------
 
 M_Undo* M_Undo::instance = nullptr;
+bool M_Undo::undomarche =0;
 
 M_Undo::M_Undo(): message(""), maxAffiche(0){
 }
@@ -82,6 +83,7 @@ void M_Undo::clear(){
 //------------------------------------------------------------------
 
 M_Redo* M_Redo::instance = nullptr;
+bool M_Redo::redomarche=0;
 
 M_Redo::M_Redo(): message(""), maxAffiche(0){
 }

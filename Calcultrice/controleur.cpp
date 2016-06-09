@@ -20,15 +20,12 @@ Controleur* Controleur::instance = nullptr;
 void Controleur::parse(const QString& com) {
 
     // A chaque execution du parseur (entree) on fait:
-    //Sauvegarde de la pile dans le memento
-    Pile::getInstance()->sauvegarde();
+    //Sauvegarde de la pile dans le memento si UNDO n'est pas appele
     //On efface le M_Redo si REDO n'est pas appelée : voir controleur::process
 
 
     if(com == "")
         throw ComputerException("La ligne de commande est vide !");
-
-    Pile* pile = Pile::getInstance();
 
     QStringList words = manualSplit(com);
 
@@ -95,25 +92,35 @@ void Controleur::process(const QString word) {
     QString type = typeLitteral(word);
     Pile* pile = Pile::getInstance();
 
-    if(word!="REDO"){
+    if(word!="UNDO" ){
+         M_Undo::undomarche= 1;
+         Pile::getInstance()->sauvegarde();
+    }
+    if(word!="REDO" ){
+        M_Redo::redomarche= 1;
         M_Redo::getInstance()->clear();
     }
 
     if(isOperator(word)) {
         try {
             applyOperator(word);
-        } catch(ComputerException c) {
+        }
+        catch(ComputerException c) {
+            pile->setMessage(c.getInfo());
+        }
+        lastOp = word;
+    }
+    else if(type != "Inconnu") {
+        try {
+            pile->push(LitteraleAbstraite::createLitteral(word, type));
+        }
+        catch (ComputerException c) {
             pile->setMessage(c.getInfo());
         }
 
-    } else if(type != "Inconnu") {
-        try {
-            pile->push(LitteraleAbstraite::createLitteral(word, type));
-        } catch (ComputerException c) {
-            pile->setMessage(c.getInfo());
-        }
-    } else {
-        pile->setMessage("Commande inconnue !");
+    }
+    else {
+        throw ComputerException("Commande inconnue !");
     }
 
 }
@@ -161,8 +168,8 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
 
     LitteraleAbstraite *temp1 = pile->pop();
 
-    if(nbOp==2){
-        LitteraleAbstraite *temp2 = pile->pop();
+    if(nbOp==2) {
+    LitteraleAbstraite *temp2 = pile->pop();
     //********
     //ADDITION
     //********
@@ -176,6 +183,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 pile->push(res);
                 delete x;
                 delete y;
+                throw ComputerException("Creation d'un Entier");
             }
             else if(isReel(temp2)){
                 Reel* y = dynamic_cast<Reel*>(temp2);
@@ -183,6 +191,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 pile->push(res);
                 delete x;
                 delete y;
+
             }
             else if(isRationnel(temp2)){
                 Rationnel* y = dynamic_cast<Rationnel*>(temp2);
@@ -267,7 +276,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des rationnels
+        }//Fin du cas des rationnels pour +
 
         //Debut du cas des complexes
         else if(isComplexe(temp1)){
@@ -301,15 +310,15 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des complexes
+        }//Fin du cas des complexes pour +
         //Impossible de faire un opérateur binaire
         else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-     }
+     }//Fin des additions
 
     //************
     //SOUSTRACTION
     //************
-    else if(op=="-"){
+    else if(op=="-") {
         //Debut du cas des entiers
         if(isEntier(temp1)){
             Entier* x = dynamic_cast<Entier*>(temp1);
@@ -342,7 +351,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des entiers pour l'opérateur +
+        }//Fin du cas des entiers pour l'opérateur -
 
         //Debut du cas des Réels
         else if(isReel(temp1)){
@@ -376,7 +385,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des réels pour l'opérateur +
+        }//Fin du cas des réels pour l'opérateur -
 
         //Debut du cas des rationnels
         else if(isRationnel(temp1)){
@@ -410,7 +419,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des rationnels
+        }//Fin du cas des rationnels pour -
 
         //Debut du cas des complexes
         else if(isComplexe(temp1)){
@@ -444,15 +453,15 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des complexes
+        }//Fin du cas des complexes pour -
         //Impossible de faire un opérateur binaire
         else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-     }
+     }//Fin soustraction
 
     //**************
     //MULTIPLICATION
     //**************
-    else if(op=="*"){
+    else if(op=="*") {
         //Debut du cas des entiers
         if(isEntier(temp1)){
             Entier* x = dynamic_cast<Entier*>(temp1);
@@ -485,7 +494,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des entiers pour l'opérateur +
+        }//Fin du cas des entiers pour l'opérateur *
 
         //Debut du cas des Réels
         else if(isReel(temp1)){
@@ -519,7 +528,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des réels pour l'opérateur +
+        }//Fin du cas des réels pour l'opérateur *
 
         //Debut du cas des rationnels
         else if(isRationnel(temp1)){
@@ -553,7 +562,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des rationnels
+        }//Fin du cas des rationnels pour *
 
         //Debut du cas des complexes
         else if(isComplexe(temp1)){
@@ -587,16 +596,16 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des complexes
+        }//Fin du cas des complexes pour *
         //Impossible de faire un opérateur binaire
         else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-    }
+    }//Fin Multiplication
 
     //********
     //DIVISION
     //********
 
-    else if(op=="/"){
+    else if(op=="/") {
         //Debut du cas des entiers
         if(isEntier(temp1)){
             Entier* x = dynamic_cast<Entier*>(temp1);
@@ -702,7 +711,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
             }
             */
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des rationnels
+        }//Fin du cas des rationnels pour /
 
         //Debut du cas des complexes
         else if(isComplexe(temp1)){
@@ -736,93 +745,263 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
                 delete y;
             }
             else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-        }//Fin du cas des complexes
-      }
-}
-else{throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
-/*
-    else if(op=="DIV"){
-        if(isEntier(x) && isEntier(y)){
-            Litteral *res
-            try{
-                res = div(*y, *x);
-                pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
-            }catch(ComputerException c){
-                pile->setMessage(c.getInfo());
-                pile->push(Litteral::createLitteral(y->toString(), typeLitteral(y->toString())));
-                pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
+        }//Fin du cas des complexes pour /
+      }//Fin Division
+
+    //DEBUT DE DIV
+    else if(op=="DIV") {
+        //Debut du cas des entiers
+        if(isEntier(temp1)){
+            Entier* x = dynamic_cast<Entier*>(temp1);
+            if(isEntier(temp2)){
+                Entier* y = dynamic_cast<Entier*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
             }
-        }
-        else{
-            pile->push(Litteral::createLitteral(y->toString(), typeLitteral(y->toString())));
-            pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
-            throw ComputerException("Erreur : L'opérateur DIV s'applique sur des opérandes entières");
-        }
-    }
+            else if(isReel(temp2)){
+                Reel* y = dynamic_cast<Reel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isRationnel(temp2)){
+                Rationnel* y = dynamic_cast<Rationnel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            /* Pas de div d'un entier par un complexe
+            else if(isComplexe(temp2)){
+                Complexe* y = dynamic_cast<Complexe*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            */
+            else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
+        }//Fin du cas des entiers pour l'opérateur /
+
+        //Debut du cas des Réels
+        else if(isReel(temp1)){
+            Reel* x = dynamic_cast<Reel*>(temp1);
+            if(isEntier(temp2)){
+                Entier* y = dynamic_cast<Entier*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isReel(temp2)){
+                Reel* y = dynamic_cast<Reel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isRationnel(temp2)){
+                Rationnel* y = dynamic_cast<Rationnel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            /* Pas de div d'un reel par un complexe
+            else if(isComplexe(temp2)){
+                Complexe* y = dynamic_cast<Complexe*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            */
+            else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
+        }//Fin du cas des réels pour l'opérateur /
+
+        //Debut du cas des rationnels
+        else if(isRationnel(temp1)){
+            Rationnel* x = dynamic_cast<Rationnel*>(temp1);
+            if(isEntier(temp2)){
+                Entier* y = dynamic_cast<Entier*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isReel(temp2)){
+                Reel* y = dynamic_cast<Reel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isRationnel(temp2)){
+                Rationnel* y = dynamic_cast<Rationnel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            /* Pas de div d'un rationnel par un complexe
+            else if(isComplexe(temp2)){
+                Complexe* y = dynamic_cast<Complexe*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            */
+            else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
+        }//Fin du cas des rationnels pour /
+
+        //Debut du cas des complexes
+        else if(isComplexe(temp1)){
+            Complexe* x = dynamic_cast<Complexe*>(temp1);
+            if(isEntier(temp2)){
+                Entier* y = dynamic_cast<Entier*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isReel(temp2)){
+                Reel* y = dynamic_cast<Reel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isRationnel(temp2)){
+                Rationnel* y = dynamic_cast<Rationnel*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isComplexe(temp2)){
+                Complexe* y = dynamic_cast<Complexe*>(temp2);
+                LitteraleAbstraite *res = stratDiv.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else{ throw ComputerException("Erreur : Un opérateur numérique ne peut pas être appliqué");}
+        }//Fin du cas des complexes pour /
+      }//Fin DIV
+
+
+
+    /*
     else if(op=="MOD"){
-        if(isEntier(x) && isEntier(y)){
-            Litteral *res;
-            try{
-                res = mod(*y, *x);
-                pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
-            }catch(ComputerException c){
-                pile->setMessage(c.getInfo());
-                pile->push(Litteral::createLitteral(y->toString(), typeLitteral(y->toString())));
-                pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
+
+    }*/
+
+    else if(op=="$"){
+        if((isEntier(temp1) || isReel(temp1) || isRationnel(temp1)) && (isEntier(temp2) || isReel(temp2) || isRationnel(temp2))){
+            LitteraleAbstraite *res = new Complexe(temp2, temp1);
+            pile->push(LitteraleAbstraite::createLitteral(res->toString(), typeLitteral(res->toString())));
+        }
+        else{
+            pile->push(LitteraleAbstraite::createLitteral(temp2->toString(), typeLitteral(temp2->toString())));
+            pile->push(LitteraleAbstraite::createLitteral(temp2->toString(), typeLitteral(temp2->toString())));
+            throw ComputerException("Erreur : L'opérateur $ s'applique sur des opérandes entières, réelles ou rationnelles");
+        }
+    }
+}//Fin de nbOp == 2
+    if(op=="NEG"){
+                Entier *x= new Entier(-1);
+            if(isEntier(temp1)){
+                Entier* y = dynamic_cast<Entier*>(temp1);
+                LitteraleAbstraite *res = stratMul.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
             }
-        }
-        else{
-            pile->push(Litteral::createLitteral(y->toString(), typeLitteral(y->toString())));
-            pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
-            throw ComputerException("Erreur : L'opérateur MOD s'applique sur des opérandes entières");
-        }
-    }
-    else if(op=="NEG"){
-        Litteral *res = neg(*x);
-        pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
-    }
+            else if(isReel(temp1)){
+                Reel* y = dynamic_cast<Reel*>(temp1);
+                LitteraleAbstraite *res = stratMul.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isRationnel(temp1)){
+                Rationnel* y = dynamic_cast<Rationnel*>(temp1);
+                LitteraleAbstraite *res = stratMul.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else if(isComplexe(temp1)){
+                Complexe* y = dynamic_cast<Complexe*>(temp1);
+                LitteraleAbstraite *res = stratMul.Calcul(x,y);
+                pile->push(res);
+                delete x;
+                delete y;
+            }
+            else{ throw ComputerException("impossible de prendre la négation");}
+        }//fin operateur NEG
     else if(op=="NUM"){
-        if(isRationnel(*x) || isEntier(*x)){
-            Litteral *res;
-            res = num(*x);
-            pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
+        if(isRationnel(temp1)){
+            LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getNumerateur();
+            pile->push(temp1);
+            pile->push(resR);
+        }
+        else if(isEntier(temp1)){
+                pile->push(temp1->clone());
+                pile->push(temp1->clone());
         }
         else{
-            pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
+            pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
             throw ComputerException("Erreur : L'opérateur NUM s'applique sur une opérande rationnelle ou entière");
         }
     }
     else if(op=="DEN"){
-        if(isRationnel(x) || isEntier(x)){
-            Litteral *res;
-            res = den(*x);
-            pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
+        if(isRationnel(temp1)){
+            LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getDenumerateur();
+            pile->push(temp1);
+            pile->push(resR);
+        }
+        else if (isEntier(temp1)){
+            pile->push(temp1->clone());
+            pile->push(temp1->clone());
         }
         else{
-            pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
+            pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
             throw ComputerException("Erreur : L'opérateur NUM s'applique sur une opérande rationnelle ou entière");
         }
     }
-    else if(op=="$"){
-        if((isEntier(x) || isReel(x) || isRationnel(x)) && (isEntier(y) || isReel(y) || isRationnel(y))){
-            Litteral *res = createComplexe(*y, *x);
-            pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
-        }
-        else{
-            pile->push(Litteral::createLitteral(y->toString(), typeLitteral(y->toString())));
-            pile->push(Litteral::createLitteral(x->toString(), typeLitteral(x->toString())));
-            throw ComputerException("Erreur : L'opérateur $ s'applique sur des opérandes entières, réelles ou rationnelles");
-        }
-    }
     else if(op=="RE"){
-        Litteral *res = re(*x);
-        pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
+        if (isComplexe(temp1)){
+        LitteraleAbstraite *resRE = dynamic_cast<Complexe*>(temp1)->getR();
+        pile->push(temp1);
+        pile->push(resRE);
+        }
+        else {
+            pile->push(temp1);
+            throw ComputerException("Impossible de prendre la partie Reelle");
+           }
     }
     else if(op=="IM"){
-        Litteral *res = im(*x);
-        pile->push(Litteral::createLitteral(res->toString(), typeLitteral(res->toString())));
-    }*/
-}
+        if (isComplexe(temp1)){
+        LitteraleAbstraite *resIM = dynamic_cast<Complexe*>(temp1)->getI();
+        pile->push(temp1);
+        pile->push(resIM);
+        }
+        else{
+            pile->push(temp1);
+            throw ComputerException("Impossible de prendre la partie Reelle");
+
+        }
+    }
+   else if(op == "NOT") {
+        throw ComputerException("NOT n'est pas pris en charge par l'application");
+    }
+
+}//Fin de applyOperatorNUm
 
 void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
     Pile *pile = Pile::getInstance();
@@ -831,7 +1010,7 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
 
     if(nbOp != 0) {
         if(pile->getLength() < nbOp)
-            throw ComputerException("Erreur : $ arguments empilés nécessaires", nbOp);
+            throw ComputerException("Erreur : $ arguments empilés nécessaires (applyOperatorPile)", nbOp);
 
         x = pile->pop();
 

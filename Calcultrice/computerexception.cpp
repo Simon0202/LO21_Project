@@ -1,5 +1,7 @@
 #include "computerexception.h"
+#include "mainwindow.h"
 
+//Constructeur
 ComputerException::ComputerException(const QString &str, const int n) {
     if(n==-1){
         info = str;
@@ -8,18 +10,12 @@ ComputerException::ComputerException(const QString &str, const int n) {
         QStringList l = str.split('$', QString::KeepEmptyParts);
         info = l.at(0) + QString::number(n) + l.at(1);
     }
-    QSettings settings;
-    if(settings.value("Bip")==true)
-        playBeep();
+        MainWindow fctUser;
+        fctUser.playSound();
 }
 
-void ComputerException::playBeep() const {
-    QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl("qrc:/beep.wav"));
-    player->setVolume(50);
-    player->play();
-}
 
+//récupère le message
 QString ComputerException::getInfo() const {
     return info;
 }

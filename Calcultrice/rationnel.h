@@ -13,6 +13,7 @@ public:
     static double pgcd(unsigned long int a,unsigned long int b);
     void simplifier();
 
+
     //deux numeriques initialisent le rationnel.
     Rationnel(double n=0 , double d=1);
 
@@ -27,8 +28,6 @@ public:
     Entier* getDenumerateur() const {return _denum;}
 
     //Héritage d'Entier<--Numerique<--LitteraleAbstraite
-    //A implementer dans stratégie
-    //virtual void setSign() {_num.setSign();}
     void afficher(std::ostream& f=std::cout) const { _num->afficher(f); f<<"/"; _denum->afficher(f); }
     virtual LitteraleAbstraite* clone() const;
     virtual QString toString() const;
@@ -42,10 +41,5 @@ public:
 
     QString type(){return "rationnel";}
 };
-
-//Rationnel operator+( Rationnel& a,  Rationnel& b);
-//Rationnel operator-( Rationnel& a,  Rationnel& b);
-//Rationnel operator*( Rationnel& a,  Rationnel& b);
-//Rationnel operator/( Rationnel& a,  Rationnel& b);
 
 #endif // RATIONNEL_H

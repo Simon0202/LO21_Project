@@ -11,6 +11,7 @@ Pile::Pile(): message(""), maxAffiche(0) {
 
 Pile::~Pile() {
     libererInstance();
+
 }
 
 Pile* Pile::getInstance() {
@@ -109,17 +110,21 @@ void Pile::sauvegarde(){
 
 void Pile::undo(){
 
-
+    if(M_Undo::undomarche){
     //On sauvegarde la pile dans le memento redo (redo est vide au debut de chaque execution d'un undo car diff d'un REDO)
         QStack<LitteraleAbstraite*>::const_iterator it;
         for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
         //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
             M_Redo::getInstance()->push((*it)->clone());
         }
+    qDebug() << "sauvegarde de la pile effectuee";
 
 
     // On supprime les valeurs existante de la pile
     Pile::getInstance()->clear();
+
+
+    qDebug() << "clear effectue";
 
     //On remplace la pile par le memento undo
     for(it=M_Undo::getInstance()->getIteratorBegin();it!=M_Undo::getInstance()->getIteratorEnd();it++){
@@ -127,10 +132,14 @@ void Pile::undo(){
         Pile::getInstance()->push((*it)->clone());
 
     }
+    M_Undo::undomarche=0;
     emit modificationEtat();
+    }
 }
 
 void Pile::redo(){
+
+    if(M_Redo::redomarche){
 
     //On supprime les valeurs de la pile
     Pile::getInstance()->clear();
@@ -143,8 +152,9 @@ void Pile::redo(){
 
 
     }
+    M_Redo::redomarche= 0;
     emit modificationEtat();
-
+    }
 }
 
 

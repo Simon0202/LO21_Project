@@ -23,19 +23,13 @@ public:
     Numerique* getR() const{return a;}
     Numerique* getI() const{return b;}
 
-    //A implémenter dans stratégie
-    //inline void setSign(){a->setSign();b->setSign();}
-
-    //On cree un complexe a partir d'un nombre reel et on met b a zero. */
-    //Complexe(Numerique* d);
 
     //Héritage
     virtual void afficher(std::ostream& f=std::cout) const;
     virtual QString toString() const;
 
+
     Complexe* conjugue();
-
-
 
 
     virtual LitteraleAbstraite* clone() const;
