@@ -94,11 +94,15 @@ void Controleur::process(const QString word) {
 
     if(word!="UNDO" ){
          M_Undo::undomarche= 1;
+         if(M_Redo::redomarche){
          Pile::getInstance()->sauvegarde();
+         }
     }
-    if(word!="REDO" ){
+    if(word!="REDO"){
         M_Redo::redomarche= 1;
+        if(M_Undo::undomarche){
         M_Redo::getInstance()->clear();
+        }
     }
 
     if(isOperator(word)) {

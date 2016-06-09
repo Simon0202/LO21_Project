@@ -99,7 +99,6 @@ void Pile::sauvegarde(){
     //On sauvegarde la pile dans le memento undo
     QStack<LitteraleAbstraite*>::const_iterator it;
     for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
-    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
         M_Undo::getInstance()->push((*it)->clone());
 
     }
@@ -114,7 +113,6 @@ void Pile::undo(){
     //On sauvegarde la pile dans le memento redo (redo est vide au debut de chaque execution d'un undo car diff d'un REDO)
         QStack<LitteraleAbstraite*>::const_iterator it;
         for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
-        //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
             M_Redo::getInstance()->push((*it)->clone());
         }
     qDebug() << "sauvegarde de la pile effectuee";
@@ -128,13 +126,13 @@ void Pile::undo(){
 
     //On remplace la pile par le memento undo
     for(it=M_Undo::getInstance()->getIteratorBegin();it!=M_Undo::getInstance()->getIteratorEnd();it++){
-    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
         Pile::getInstance()->push((*it)->clone());
 
     }
     M_Undo::undomarche=0;
     emit modificationEtat();
     }
+    else throw ComputerException("UNDO deja realisé");
 }
 
 void Pile::redo(){
@@ -147,7 +145,6 @@ void Pile::redo(){
     QStack<LitteraleAbstraite*>::const_iterator it;
     //On remplace la pile par le memento redo
     for(it=M_Redo::getInstance()->getIteratorBegin();it!=M_Redo::getInstance()->getIteratorEnd();it++){
-    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
         Pile::getInstance()->push((*it)->clone());
 
 
@@ -155,6 +152,7 @@ void Pile::redo(){
     M_Redo::redomarche= 0;
     emit modificationEtat();
     }
+    else throw ComputerException("REDO deja realisé");
 }
 
 
