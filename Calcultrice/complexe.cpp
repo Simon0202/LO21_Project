@@ -90,3 +90,27 @@ Complexe::Complexe(const QString& pRe, const QString& pIm){
         }
     }
 }
+
+Complexe* Complexe::conjugue(){
+
+    Numerique* i= getI();
+
+    if (isEntier(i)){
+        Entier* e = dynamic_cast<Entier*>(i);
+        Entier* newi = new Entier(-(e->getVal()));
+        return new Complexe(getR(),newi);
+    }
+    else if (isReel(i)){
+        Reel* r = dynamic_cast<Reel*>(i);
+        Reel* newi = new Reel(-(r->getVal()));
+        return new Complexe(getR(),newi);
+    }
+    else{
+        Rationnel* ra= dynamic_cast<Rationnel*>(i);
+        Entier* e= new Entier(-(ra->getNumerateur()->getVal()));
+        Rationnel* newra = new Rationnel(e,ra->getDenumerateur());
+        return new Complexe(getR(),newra);
+    }
+
+
+}

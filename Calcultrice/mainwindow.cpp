@@ -184,8 +184,8 @@ void MainWindow::on_pushButtonPlus_released(){ui->lineEdit->insert("+");}
 //Clear && Enter && Undo && Redo
 //******************************
 void MainWindow::on_pushButtonClear_released(){ui->lineEdit->clear();}
-void MainWindow::on_pushButtonUndo_released(){ui->lineEdit->undo();}
-void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->redo();}
+void MainWindow::on_pushButtonUndo_released(){ui->lineEdit->insert("UNDO");}
+void MainWindow::on_pushButtonRedo_released(){ui->lineEdit->insert("REDO");}
 
 
 //****************

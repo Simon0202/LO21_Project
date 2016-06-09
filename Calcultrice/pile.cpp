@@ -1,6 +1,8 @@
 #include "pile.h"
 #include <QDebug>
 #include"mainwindow.h"
+#include <QStack>
+#include "memento.h"
 
 Pile* Pile::instance = nullptr;
 
@@ -79,4 +81,78 @@ QStack<LitteraleAbstraite*>::const_iterator Pile::getIteratorEnd() const {
     QStack<LitteraleAbstraite*>::const_iterator i = stack.constEnd();
     return i;
 }
+
+void Pile::clear(){
+
+    while(!isEmpty())
+        pop();
+
+
+}
+
+void Pile::sauvegarde(){
+
+    // On supprime les valeurs existante du memento undo
+    M_Undo::getInstance()->clear();
+
+    //On sauvegarde la pile dans le memento undo
+    QStack<LitteraleAbstraite*>::const_iterator it;
+    for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
+    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
+        M_Undo::getInstance()->push((*it)->clone());
+
+    }
+
+
+
+}
+
+void Pile::undo(){
+
+
+    //On sauvegarde la pile dans le memento redo (redo est vide au debut de chaque execution d'un undo car diff d'un REDO)
+        QStack<LitteraleAbstraite*>::const_iterator it;
+        for(it=Pile::getIteratorBegin();it!=Pile::getIteratorEnd();it++){
+        //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
+            M_Redo::getInstance()->push((*it)->clone());
+        }
+
+
+    // On supprime les valeurs existante de la pile
+    Pile::getInstance()->clear();
+
+    //On remplace la pile par le memento undo
+    for(it=M_Undo::getInstance()->getIteratorBegin();it!=M_Undo::getInstance()->getIteratorEnd();it++){
+    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
+        Pile::getInstance()->push((*it)->clone());
+
+    }
+    emit modificationEtat();
+}
+
+void Pile::redo(){
+
+    //On supprime les valeurs de la pile
+    Pile::getInstance()->clear();
+
+    QStack<LitteraleAbstraite*>::const_iterator it;
+    //On remplace la pile par le memento redo
+    for(it=M_Redo::getInstance()->getIteratorBegin();it!=M_Redo::getInstance()->getIteratorEnd();it++){
+    //A VERIFIER ORDRE DE PUSH SINNN PILE A LENVERS
+        Pile::getInstance()->push((*it)->clone());
+
+
+    }
+    emit modificationEtat();
+
+}
+
+
+
+
+
+
+
+
+
 

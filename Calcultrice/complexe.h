@@ -33,6 +33,7 @@ public:
     virtual void afficher(std::ostream& f=std::cout) const;
     virtual QString toString() const;
 
+    Complexe* conjugue();
 
 
 

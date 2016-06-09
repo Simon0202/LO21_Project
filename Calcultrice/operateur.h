@@ -30,7 +30,9 @@ static const QMap<QString, int> opsPile {
     {"FORGET", 1},
     {"EDIT", 1},
     {"IFT", 2},
-    {"DROP", 0}
+    {"DROP", 0},
+    {"UNDO",0},
+    {"REDO",0}
 };
 
 
