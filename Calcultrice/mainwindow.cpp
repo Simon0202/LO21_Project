@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // connection
     connect(pile,SIGNAL(modificationEtat()),this,SLOT(refresh()));
 
+
     // first message
     ui->message->setText("Bienvenue !");
 
@@ -45,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->checkClavier->setChecked(true);
     ui->checkSond->setChecked(true);
+    connect(ui->checkSond, SIGNAL(toggled(bool)), this, SLOT(activerBipOpt(bool)));
 
 
     refresh();
@@ -246,11 +248,20 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 
 }
 
+void MainWindow::activerBipOpt(bool s) {
+    QSettings settings;
+    settings.setValue("Bip", s);
+}
+
 void MainWindow::playSound(){
-    QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl("qrc:/beep.wav"));
-    player->setVolume(50);
-    player->play();
+   QSettings settings;
+   if (settings.value("Bip").toBool())
+{    qDebug()<<"test";
+       QMediaPlayer* player = new QMediaPlayer;
+       player->setMedia(QUrl("qrc:/beep.wav"));
+       player->setVolume(50);
+       player->play();
+}
 }
 
 
