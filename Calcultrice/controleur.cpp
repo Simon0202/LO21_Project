@@ -1176,6 +1176,7 @@ try {
 
         resultat=l.Comparer(temp1,temp2);
 
+        qDebug()<<"resulat vaut :" << (resultat->getVal());
         delete temp1;
         delete temp2;
         pile->push(resultat);

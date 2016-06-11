@@ -1,9 +1,11 @@
 #include "fabrique.h"
+#include<QDebug>
 
 
 //LitteraleAbstraite* FabEntier::creer(QString c)
 
 Entier *FabEntier::Fabriquer(long int i){
+    qDebug()<<"valeur du i "<< i;
     return new Entier(i);
 }
 
