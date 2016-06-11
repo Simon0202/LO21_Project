@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QDebug>
+#include <QCoreApplication>
 #include<iostream>
 #include"strategieaddition.h"
 #include"entier.h"
@@ -13,6 +14,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+    QCoreApplication::setOrganizationName("LO21");
+    QCoreApplication::setOrganizationDomain("LO21LL.com");
+    QCoreApplication::setApplicationName("ZemaComputer");
+    w.setWindowTitle("ZemaComputer");
 
 
 

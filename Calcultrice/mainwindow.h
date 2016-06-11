@@ -130,9 +130,7 @@ private slots:
 
     void on_pushButtoNot_released();
 
-    void on_pushButtonNeg_clicked();
 
-    void on_pushButtonRe_clicked();
 
     void on_pushButtonNum_released();
 
@@ -141,6 +139,8 @@ private slots:
     void on_pushButtonDen_released();
 
     void on_pushButtonEnter_released();
+
+    void on_pushButtonRe_released();
 
 private:
     Ui::MainWindow *ui;

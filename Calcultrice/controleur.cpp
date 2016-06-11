@@ -951,12 +951,10 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="NUM"){
         if(isRationnel(temp1)){
             LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getNumerateur();
-            pile->push(temp1);
             pile->push(resR);
         }
         else if(isEntier(temp1)){
-                pile->push(temp1->clone());
-                pile->push(temp1->clone());
+            pile->push(temp1->clone());
         }
         else{
             pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
@@ -966,11 +964,11 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="DEN"){
         if(isRationnel(temp1)){
             LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getDenumerateur();
-            pile->push(temp1);
+
             pile->push(resR);
         }
         else if (isEntier(temp1)){
-            pile->push(temp1->clone());
+
             pile->push(temp1->clone());
         }
         else{
@@ -981,7 +979,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="RE"){
         if (isComplexe(temp1)){
         LitteraleAbstraite *resRE = dynamic_cast<Complexe*>(temp1)->getR();
-        pile->push(temp1);
+
         pile->push(resRE);
         }
         else {
@@ -992,7 +990,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="IM"){
         if (isComplexe(temp1)){
         LitteraleAbstraite *resIM = dynamic_cast<Complexe*>(temp1)->getI();
-        pile->push(temp1);
+
         pile->push(resIM);
         }
         else{
