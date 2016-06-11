@@ -1,4 +1,5 @@
 #include "fabrique.h"
+#include<QDebug>
 
 
 Entier *FabEntier::Fabriquer(long int e){

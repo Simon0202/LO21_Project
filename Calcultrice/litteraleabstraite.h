@@ -25,8 +25,8 @@ public:
          */
         virtual ~LitteraleAbstraite(){}
     /**
-         * @brief afficher
-         * @param f
+     * @brief afficher is an inherit method from LitteraleAbstraite and it displays the attribut.
+     * @param f is a cout ostream
          */
         virtual void afficher(std::ostream& f=std::cout) const = 0;
     //Clonage d'une donnee (DUP)

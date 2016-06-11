@@ -89,8 +89,7 @@
 
 
 
-         if (res==0){return (f.Fabriquer(0));}
-         if (res==1){return (f.Fabriquer(1));}
+         return(f.Fabriquer(res));
 
 
 }
@@ -178,8 +177,7 @@ Entier* StrategieLogiqueInegal::Comparer(LitteraleAbstraite* x, LitteraleAbstrai
 
 
 
-        if (res==0){return (f.Fabriquer(0));}
-        if (res==1){return (f.Fabriquer(1));}
+        return(f.Fabriquer(res));
 
 
 }
@@ -228,7 +226,7 @@ Entier* StrategieLogiqueInf::Comparer(LitteraleAbstraite* x, LitteraleAbstraite*
             if(ey!= NULL){
                 res= (rx->getVal() < ey->getVal());
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= (rx->getVal() < ry->getVal());
             }
             else if(ray!= NULL){
@@ -245,11 +243,11 @@ Entier* StrategieLogiqueInf::Comparer(LitteraleAbstraite* x, LitteraleAbstraite*
             if(ey!= NULL){
                 res= 0;
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 float fl= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 res= (fl < ry->getVal());
             }
-            if(ray!= NULL){
+            else if(ray!= NULL){
                 float fl1= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 float fl2= (ray->getNumerateur()->getVal()/ray->getDenumerateur()->getVal());
 
@@ -264,7 +262,7 @@ Entier* StrategieLogiqueInf::Comparer(LitteraleAbstraite* x, LitteraleAbstraite*
             if(ey!= NULL){
                 res= 0;
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= 0;
             }
             else if(ray!= NULL){
@@ -286,8 +284,7 @@ Entier* StrategieLogiqueInf::Comparer(LitteraleAbstraite* x, LitteraleAbstraite*
 
 
 
-        if (res==0){return (f.Fabriquer(0));}
-        if (res==1){return (f.Fabriquer(1));}
+       return(f.Fabriquer(res));
 
 
 
@@ -336,7 +333,7 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
             if(ey!= NULL){
                 res= (rx->getVal() <= ey->getVal());
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= (rx->getVal() <= ry->getVal());
             }
             else if(ray!= NULL){
@@ -353,11 +350,11 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
             if(ey!= NULL){
                 res= 0;
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 float fl = (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 res= (fl <= ry->getVal());
             }
-            if(ray!= NULL){
+            else if(ray!= NULL){
                 float fl1= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 float fl2= (ray->getNumerateur()->getVal()/ray->getDenumerateur()->getVal());
 
@@ -372,7 +369,7 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
             if(ey!= NULL){
                 res= 0;
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= 0;
             }
             else if(ray!= NULL){
@@ -394,8 +391,7 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
 
 
 
-        if (res==0){return (f.Fabriquer(0));}
-        if (res==1){return (f.Fabriquer(1));}
+       return(f.Fabriquer(res));
 
 
 
@@ -450,9 +446,9 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
 
                  res= (rx->getVal() > ey->getVal());
 
-                  qDebug()<<"dans res" << res;
+                  qDebug()<<"valeur du res dans le if" << res;
              }
-             if(ry!= NULL){
+             else if(ry!= NULL){
                  res= (rx->getVal() > ry->getVal());
              }
              else if(ray!= NULL){
@@ -462,19 +458,20 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
              else { //cy !=NULL
                  res= 0;
              }
-
+          qDebug()<<"valeur res a la sortie du if avant accolade:" << res;
          }
+         qDebug()<<"valeur res a la sortie du if apres accolade:" << res;
          if (rax!=NULL){
 
              if(ey!= NULL){
                  float fl= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                  res= (fl > ey->getVal());
              }
-             if(ry!= NULL){
+             else if(ry!= NULL){
                  float fl= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                  res= (fl > ry->getVal());
              }
-             if(ray!= NULL){
+             else if(ray!= NULL){
                  float fl1= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                  float fl2= (ray->getNumerateur()->getVal()/ray->getDenumerateur()->getVal());
 
@@ -489,7 +486,7 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
              if(ey!= NULL){
                  res= 0;
              }
-             if(ry!= NULL){
+             else if(ry!= NULL){
                  res= 0;
              }
              else if(ray!= NULL){
@@ -508,11 +505,21 @@ Entier* StrategieLogiqueInfEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
 
          }
 
+         Entier* aenvoyer;
+         int a =1;
+         int b=0;
+        if(res){
+            qDebug()<< "Que vaut res ?" <<res;
+            qDebug()<< "Que vaut a?" << a;
 
+            aenvoyer= f.Fabriquer(a);}
+        else {
+            qDebug() <<"ON EST DANS LE ELSE";
+            aenvoyer= f.Fabriquer(b);}
 
+        qDebug() << "valeur de lentier fabrique a partir du bool" << aenvoyer->getVal();
+        return(aenvoyer);
 
-         if (res==0){return (f.Fabriquer(0));}
-         if (res==1){return (f.Fabriquer(1));}
 
 
 
@@ -564,7 +571,7 @@ Entier* StrategieLogiqueSupEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
             if(ey!= NULL){
                 res= (rx->getVal() >= ey->getVal());
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= (rx->getVal() >= ry->getVal());
             }
             else if(ray!= NULL){
@@ -582,11 +589,11 @@ Entier* StrategieLogiqueSupEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
                 float fl= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 res= (fl >= ey->getVal());
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 float fl= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 res= (fl >= ry->getVal());
             }
-            if(ray!= NULL){
+            else if(ray!= NULL){
                 float fl1= (rax->getNumerateur()->getVal()/rax->getDenumerateur()->getVal());
                 float fl2= (ray->getNumerateur()->getVal()/ray->getDenumerateur()->getVal());
 
@@ -601,7 +608,7 @@ Entier* StrategieLogiqueSupEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
             if(ey!= NULL){
                 res= 0;
             }
-            if(ry!= NULL){
+            else if(ry!= NULL){
                 res= 0;
             }
             else if(ray!= NULL){
@@ -624,8 +631,7 @@ Entier* StrategieLogiqueSupEg::Comparer(LitteraleAbstraite* x, LitteraleAbstrait
 
 
 
-        if (res==0){return (f.Fabriquer(0));}
-        if (res==1){return (f.Fabriquer(1));}
+       return(f.Fabriquer(res));
 
 
 
