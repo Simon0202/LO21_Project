@@ -130,8 +130,6 @@ private slots:
 
     void on_pushButtoNot_released();
 
-
-
     void on_pushButtonNum_released();
 
     void on_pushButtonIm_released();
@@ -141,6 +139,16 @@ private slots:
     void on_pushButtonEnter_released();
 
     void on_pushButtonRe_released();
+
+    void on_pushButtonEg_released();
+
+
+    void on_pushButtonDif_released();
+    void on_pushButtonInf_released();
+    void on_pushButtonSup_released();
+    void on_pushButtonInfEg_released();
+    void on_pushButtonSupEg_released();
+
 
 private:
     Ui::MainWindow *ui;

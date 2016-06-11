@@ -323,3 +323,34 @@ void MainWindow::on_pushButtonRe_released()
     ui->lineEdit->insert("RE");
     ui->lineEdit->returnPressed();
 }
+
+void MainWindow::on_pushButtonEg_released()
+{
+    ui->lineEdit->insert("=");
+    ui->lineEdit->returnPressed();
+}
+void MainWindow::on_pushButtonDif_released()
+{
+    ui->lineEdit->insert("!=");
+    ui->lineEdit->returnPressed();
+}
+void MainWindow::on_pushButtonInf_released()
+{
+    ui->lineEdit->insert("<");
+    ui->lineEdit->returnPressed();
+}
+void MainWindow::on_pushButtonSup_released()
+{
+    ui->lineEdit->insert(">");
+    ui->lineEdit->returnPressed();
+}
+void MainWindow::on_pushButtonInfEg_released()
+{
+    ui->lineEdit->insert("<=");
+    ui->lineEdit->returnPressed();
+}
+void MainWindow::on_pushButtonSupEg_released()
+{
+    ui->lineEdit->insert(">=");
+    ui->lineEdit->returnPressed();
+}

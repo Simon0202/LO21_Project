@@ -4,6 +4,8 @@
 #include "numerique.h"
 #include <QDebug>
 
+
+
 /**
  * @brief The Entier class is the most basic type of LitteraleAbstraite that it inherits few methods.
  */
@@ -39,8 +41,6 @@ public:
      * @param val
      */
     void setVal(double val){_val=val;}
-
-
     /**
      * @brief afficher is an inherit method from LitteraleAbstraite and it displays the attribut.
      * @param f is a cout ostream

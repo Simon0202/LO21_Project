@@ -8,13 +8,8 @@
 #include "strategiedivision.h"
 #include "strategiesoustraction.h"
 #include "strategiemultiplication.h"
-<<<<<<< HEAD
+#include "strategielogique.h"
 
-=======
-#include <QDebug>
-#include <QRegularExpressionMatch>
-#include"strategielogique.h"
->>>>>>> 7f872e351578daa9a54fdd4bb09fb8cd13c38419
 
 StrategieAddition stratAdd;
 StrategieMultiplication stratMul;
@@ -1081,7 +1076,6 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
 void Controleur::applyOperatorLog(const QString& op, const int nbOp){
     Pile *pile = Pile::getInstance();
 try {
-
     if(pile->getLength()<nbOp)
         throw ComputerException("Erreur : $ arguments empilés nécessaires", nbOp);
 
@@ -1096,12 +1090,11 @@ try {
 
     if(op=="="){
 
-
+        qDebug()<<"op vaut =";
         StrategieLogiqueEgal l;
-        Entier* resultat;
+        Entier* resultat(l.Comparer(temp1,temp2));
 
-        resultat=l.Comparer(temp1,temp2);
-
+        qDebug()<<"resultat vaut :"<<resultat;
         delete temp1;
         delete temp2;
         pile->push(resultat);
@@ -1173,11 +1166,12 @@ try {
 
     if(op==">"){
 
-
+        qDebug()<<"op vaut =";
         StrategieLogiqueSup l;
         Entier* resultat;
 
         resultat=l.Comparer(temp1,temp2);
+
 
         delete temp1;
         delete temp2;

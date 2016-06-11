@@ -20,9 +20,14 @@ public:
      * @return
      */
     static LitteraleAbstraite* createLitteralAbstraite(const QString& value, const QString& type);
-    //Destructeur
+    /**
+         * @brief ~LitteraleAbstraite is the default destructor;
+         */
         virtual ~LitteraleAbstraite(){}
-    //Affichage d'une donnee.
+    /**
+         * @brief afficher
+         * @param f
+         */
         virtual void afficher(std::ostream& f=std::cout) const = 0;
     //Clonage d'une donnee (DUP)
         virtual LitteraleAbstraite* clone() const = 0;

@@ -14,6 +14,7 @@ public:
     void simplifier();
 
 
+
     //deux numeriques initialisent le rationnel.
     Rationnel(double n=0 , double d=1);
 
