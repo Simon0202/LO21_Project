@@ -8,7 +8,13 @@
 #include "strategiedivision.h"
 #include "strategiesoustraction.h"
 #include "strategiemultiplication.h"
+<<<<<<< HEAD
 
+=======
+#include <QDebug>
+#include <QRegularExpressionMatch>
+#include"strategielogique.h"
+>>>>>>> 7f872e351578daa9a54fdd4bb09fb8cd13c38419
 
 StrategieAddition stratAdd;
 StrategieMultiplication stratMul;
@@ -135,6 +141,9 @@ QString typeLitteral(const QString& lit){
     }
     else if(isOperatorPile(lit)){
         return "OperatorPile";
+    }
+    else if(isOperatorLog(lit)){
+        return "OperatorLog";
     }
     else if(lit.count('$')==1 || lit.count('i')==1){
         //qDebug()<<"complexe";
@@ -1069,6 +1078,149 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
 
 }
 
+void Controleur::applyOperatorLog(const QString& op, const int nbOp){
+    Pile *pile = Pile::getInstance();
+try {
+
+    if(pile->getLength()<nbOp)
+        throw ComputerException("Erreur : $ arguments empilés nécessaires", nbOp);
+
+    LitteraleAbstraite *temp1 = pile->pop();
+
+    if(nbOp==2) {
+    LitteraleAbstraite *temp2 = pile->pop();
+
+    //********
+    //Egal =
+    //********
+
+    if(op=="="){
+
+
+        StrategieLogiqueEgal l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+
+    //********
+    //Inegal !=
+    //********
+    if(op=="!="){
+
+
+        StrategieLogiqueInegal l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+    //********
+    //Inferieur <
+    //********
+    if(op=="<"){
+
+
+        StrategieLogiqueInf l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+
+    //********
+    //Inferieur ou egal <=
+    //********
+
+    if(op=="<="){
+
+
+        StrategieLogiqueInfEg l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+
+    //********
+    //Superieur >
+    //********
+
+    if(op==">"){
+
+
+        StrategieLogiqueSup l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+
+    //********
+    //Superieur ou egal >=
+    //********
+
+    if(op==">="){
+
+
+        StrategieLogiqueSupEg l;
+        Entier* resultat;
+
+        resultat=l.Comparer(temp1,temp2);
+
+        delete temp1;
+        delete temp2;
+        pile->push(resultat);
+        throw ComputerException("Creation d'un entier");
+
+
+    }
+
+
+
+
+
+
+
+   }//fin de nbOP===2
+    }catch(ComputerException e) {
+            pile->setMessage(e.getInfo());
+        }
+
+}
+
+
 Controleur* Controleur::getInstance() {
     if(!instance)
         instance = new Controleur();
@@ -1078,8 +1230,9 @@ Controleur* Controleur::getInstance() {
 void Controleur::applyOperator(const QString& op) {
     if(isOperatorNum(op))
         applyOperatorNum(op, opsNum.value(op));
-    else
+    else if(isOperatorPile(op))
         applyOperatorPile(op, opsPile.value(op));
+    else applyOperatorLog(op, opsLog.value(op));
 }
 
 void Controleur::libererInstance() {
@@ -1100,7 +1253,11 @@ bool isOperatorPile(const QString& a) {
     return opsPile.contains(a);
 }
 
+bool isOperatorLog(const QString& a) {
+    return opsLog.contains(a);
+}
+
 bool isOperator(const QString& a){
-    return isOperatorNum(a) || isOperatorPile(a);
+    return isOperatorNum(a) || isOperatorPile(a) || isOperatorLog(a);
 }
 

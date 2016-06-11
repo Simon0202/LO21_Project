@@ -72,6 +72,7 @@ public:
      * @param op is an operator. It can be Pile, Numeric or Logical operator
      */
     void applyOperator(const QString& op);
+    void applyOperatorLog(const QString& op, const int nbOp);
 
 };
 
@@ -99,6 +100,7 @@ bool isOperatorPile(const QString& a);
  * @return It returns true of false in case a isn't an operator.
  */
 bool isOperator(const QString& a);
+bool isOperatorLog(const QString& a);
 
 
 

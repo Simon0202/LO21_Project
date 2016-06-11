@@ -64,6 +64,8 @@ public:
     Numerique* getI() const{return b;}
 
 
+
+
     //Héritage
     /**
      * @brief afficher is herited from LitteraleAbstraite. It permits to display the right form of the complexe
