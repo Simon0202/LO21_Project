@@ -38,6 +38,18 @@ static const QMap<QString, int> opsPile {
 
 };
 
+static const QMap<QString, int> opsLog {
+    {"=", 2},
+    {"!=", 2},
+    {"<=", 2},
+    {">=", 2},
+    {"<", 2},
+    {">", 2},
+
+
+};
+
+
 
 
 #endif // OPERATEUR_H

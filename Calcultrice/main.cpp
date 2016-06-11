@@ -16,10 +16,20 @@ int main(int argc, char *argv[])
 
 
 
+  /*
 
-/*
-    Entier e1(5);
-    Entier e2(2);
+    long int e=2;
+    float r=2.1;
+
+    bool res;
+    res =(r>e);
+
+    std::cout << "res est :"<< res<< std::endl;
+
+    res = (r1.getVal() > e1.getVal());
+
+
+
     Complexe c1(&e1,&e2);
     StrategieAddition s;
     Complexe *res = s.Calcul(&c1,&e1);

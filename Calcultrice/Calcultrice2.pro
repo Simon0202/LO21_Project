@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     strategiesoustraction.cpp \
     strategiedivision.cpp \
     computerexception.cpp \
-    controleur.cpp
+    controleur.cpp \
+    strategielogique.cpp
 
 HEADERS  += mainwindow.h \
     litteraleabstraite.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     strategiedivision.h \
     computerexception.h \
     controleur.h \
-    operateur.h
+    operateur.h \
+    strategielogique.h
 
 FORMS    += mainwindow.ui
 

@@ -20,7 +20,7 @@ Reel& Reel::operator=(const Reel& n)
     return *this;
 }
 
-
+/*
 Reel operator+( Reel& a,  Reel& b){
 
     float val=a.getVal()+b.getVal();
@@ -48,7 +48,7 @@ Reel operator/( Reel& a,  Reel& b){
     return resultat;
 }
 
-
+*/
 
 
 

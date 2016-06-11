@@ -24,6 +24,8 @@ public:
     Numerique* getI() const{return b;}
 
 
+
+
     //Héritage
     virtual void afficher(std::ostream& f=std::cout) const;
     virtual QString toString() const;

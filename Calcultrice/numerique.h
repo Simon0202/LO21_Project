@@ -23,6 +23,8 @@ public :
 
     virtual QString type()=0;
 
+
+
 };
 
 #endif // NUMERIQUE_H

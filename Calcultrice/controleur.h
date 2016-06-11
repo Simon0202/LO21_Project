@@ -32,6 +32,7 @@ public:
     void applyOperatorNum(const QString& op, const int nbOp);
     void applyOperatorPile(const QString& op, const int nbOp);
     void applyOperator(const QString& op);
+    void applyOperatorLog(const QString& op, const int nbOp);
 
 };
 
@@ -39,6 +40,7 @@ QString typeLitteral(const QString& lit);
 bool isOperatorNum(const QString& a);
 bool isOperatorPile(const QString& a);
 bool isOperator(const QString& a);
+bool isOperatorLog(const QString& a);
 
 
 
