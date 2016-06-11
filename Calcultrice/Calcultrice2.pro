@@ -27,7 +27,6 @@ SOURCES += main.cpp\
     pile.cpp \
     memento.cpp \
     fabrique.cpp \
-    strategiecalcul.cpp \
     strategieaddition.cpp \
     strategiemultiplication.cpp \
     strategiesoustraction.cpp \
@@ -47,7 +46,6 @@ HEADERS  += mainwindow.h \
     pile.h \
     memento.h \
     fabrique.h \
-    strategiecalcul.h \
     strategieaddition.h \
     strategiemultiplication.h \
     strategiesoustraction.h \

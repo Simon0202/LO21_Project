@@ -12,7 +12,9 @@
 #include "controleur.h"
 #include "computerexception.h"
 
-
+/**
+ * @brief The M_Undo class is made to make the undo action. But we built it for a one shot step action. It is a full Qobject.
+ */
 class M_Undo: public QObject{
 
     Q_OBJECT
@@ -38,6 +40,9 @@ public:
     void clear();
     static bool undomarche;
 };
+
+
+
 
 class M_Redo: public QObject{
 

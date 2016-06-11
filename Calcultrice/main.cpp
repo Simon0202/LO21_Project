@@ -1,11 +1,12 @@
 #include "mainwindow.h"
+#include"strategieaddition.h"
+#include"entier.h"
+#include "complexe.h"
 #include <QApplication>
 #include <QDebug>
 #include <QCoreApplication>
 #include<iostream>
-#include"strategieaddition.h"
-#include"entier.h"
-#include "complexe.h"
+
 
 
 
@@ -20,17 +21,6 @@ int main(int argc, char *argv[])
     w.setWindowTitle("ZemaComputer");
 
 
-
-
-/*
-    Entier e1(5);
-    Entier e2(2);
-    Complexe c1(&e1,&e2);
-    StrategieAddition s;
-    Complexe *res = s.Calcul(&c1,&e1);
-    res->afficher();
-    //Penser à delete
-*/
 
 
     return a.exec();

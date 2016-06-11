@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     Pile* pile = Pile::getInstance();
     pile->setMaxAffiche(ui->verticalSlider->value());
 

@@ -1,9 +1,14 @@
 #ifndef STRATEGIESOUSTRACTION_H
 #define STRATEGIESOUSTRACTION_H
 
-#include"strategiecalcul.h"
+#include "entier.h"
+#include "reel.h"
+#include "rationnel.h"
+#include "complexe.h"
+#include "numerique.h"
+#include "litteraleabstraite.h"
 
-class StrategieSoustraction: public StrategieCalcul{
+class StrategieSoustraction{
 
 
 
@@ -38,15 +43,6 @@ public:
 
         //virtual  Expression* Calcul(Complexe* l1,Expression* l2);
         //virtual  Expression* Calcul(Expression* l1,Complexe* l2);
-
-
-
-
-
-
-
-
-
 };
 
 #endif // STRATEGIESOUSTRACTION_H
