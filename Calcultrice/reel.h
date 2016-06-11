@@ -29,10 +29,6 @@ public:
 
     QString type(){return "reel";}
 };
-   //Utilise t on ces methodes ??
-   Reel operator+( Reel& a,  Reel& b);
-   Reel operator-( Reel& a,  Reel& b);
-   Reel operator*( Reel& a,  Reel& b);
-   Reel operator/( Reel& a,  Reel& b);
+
 
 #endif // REEL_H

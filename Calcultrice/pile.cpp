@@ -1,7 +1,7 @@
-#include "pile.h"
 #include <QDebug>
-#include"mainwindow.h"
 #include <QStack>
+#include "pile.h"
+#include"mainwindow.h"
 #include "memento.h"
 
 Pile* Pile::instance = nullptr;

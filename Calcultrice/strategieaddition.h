@@ -1,12 +1,13 @@
 #ifndef STRATEGIEADDITION_H
 #define STRATEGIEADDITION_H
+#include "entier.h"
+#include "reel.h"
+#include "rationnel.h"
+#include "complexe.h"
+#include "numerique.h"
+#include "litteraleabstraite.h"
 
-#include "strategiecalcul.h"
-
-
-
-
-class StrategieAddition: public StrategieCalcul{
+class StrategieAddition{
 
 public:
 

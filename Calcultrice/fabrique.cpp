@@ -2,29 +2,27 @@
 #include<QDebug>
 
 
+<<<<<<< HEAD
 //LitteraleAbstraite* FabEntier::creer(QString c)
 
 Entier *FabEntier::Fabriquer(long int i){
     qDebug()<<"valeur du i "<< i;
     return new Entier(i);
+=======
+Entier *FabEntier::Fabriquer(long int e){
+    return new Entier(e);
+>>>>>>> acc948888ee0b6947a95eb6ec601ff1f85d7dac0
 }
-
-
-//LitteraleAbstraite* FabReel::creer(QString c);
 
 Reel* FabReel::Fabriquer(float r){
     return new Reel(r);
 }
 
-//LitteraleAbstraite* FabComplexe::creer(QString c);
-
-Complexe* FabComplexe::Fabriquer(Numerique* l1,Numerique* l2){
-    return new Complexe(l1,l2);
+Complexe* FabComplexe::Fabriquer(Numerique* c1,Numerique* c2){
+    return new Complexe(c1,c2);
 }
 
-//LitteraleAbstraite* FabRationnel::creer(QString c);
-
-Rationnel* FabRationnel::Fabriquer(Entier* l1, Entier* l2){
-    return new Rationnel(l1,l2);
+Rationnel* FabRationnel::Fabriquer(Entier* r1, Entier* r2){
+    return new Rationnel(r1,r2);
 }
 

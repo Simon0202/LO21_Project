@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "litteraleabstraite.h"
 #include "entier.h"
 #include "numerique.h"
@@ -10,10 +11,10 @@
 #include "strategiemultiplication.h"
 #include "controleur.h"
 #include "computerexception.h"
-#include <QDebug>
+
 
 //Litteral
-LitteraleAbstraite* LitteraleAbstraite::createLitteral(const QString& value, const QString& type) {
+LitteraleAbstraite* LitteraleAbstraite::createLitteralAbstraite(const QString& value, const QString& type) {
     if (type == "Entier") {
         return new Entier(value.toInt());
         throw ComputerException("Creation Entier");

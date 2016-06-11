@@ -12,6 +12,8 @@ QString Reel::toString() const {
 }
 
 
+<<<<<<< HEAD
+=======
 //Faut il les enlever
 Reel& Reel::operator=(const Reel& n)
 {
@@ -51,6 +53,7 @@ Reel operator/( Reel& a,  Reel& b){
 */
 
 
+>>>>>>> 7f872e351578daa9a54fdd4bb09fb8cd13c38419
 
 
 

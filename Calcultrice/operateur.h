@@ -4,7 +4,9 @@
 #include <QString>
 #include <QMap>
 #include <QList>
-
+/*!
+ * \brief Stores the numeric operators and their arities.
+ */
 static const QMap<QString, int> opsNum{
     {"+", 2},
     {"-", 2},
@@ -21,6 +23,9 @@ static const QMap<QString, int> opsNum{
     {"NOT", 1}
     };
 
+/*!
+ * \brief Stores the Pile operators and their arities.
+ */
 static const QMap<QString, int> opsPile {
     {"DUP", 0},
     {"SWAP", 2},

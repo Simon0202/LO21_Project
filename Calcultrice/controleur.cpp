@@ -1,3 +1,5 @@
+#include <QDebug>
+#include <QRegularExpressionMatch>
 #include "litteraleabstraite.h"
 #include "operateur.h"
 #include "controleur.h"
@@ -6,9 +8,13 @@
 #include "strategiedivision.h"
 #include "strategiesoustraction.h"
 #include "strategiemultiplication.h"
+<<<<<<< HEAD
+
+=======
 #include <QDebug>
 #include <QRegularExpressionMatch>
 #include"strategielogique.h"
+>>>>>>> 7f872e351578daa9a54fdd4bb09fb8cd13c38419
 
 StrategieAddition stratAdd;
 StrategieMultiplication stratMul;
@@ -113,11 +119,10 @@ void Controleur::process(const QString word) {
         catch(ComputerException c) {
             pile->setMessage(c.getInfo());
         }
-        lastOp = word;
     }
     else if(type != "Inconnu") {
         try {
-            pile->push(LitteraleAbstraite::createLitteral(word, type));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(word, type));
         }
         catch (ComputerException c) {
             pile->setMessage(c.getInfo());
@@ -141,15 +146,15 @@ QString typeLitteral(const QString& lit){
         return "OperatorLog";
     }
     else if(lit.count('$')==1 || lit.count('i')==1){
-        qDebug()<<"complexe";
+        //qDebug()<<"complexe";
         return "Complexe";
     }
     else if(lit.count('.') == 1){
-        qDebug()<<"reel";
+        //qDebug()<<"reel";
         return "Reel";
     }
     else if(lit.count('/') == 1) {
-        qDebug()<<"rationnel";
+        //qDebug()<<"rationnel";
         return "Rationnel";
     }
     else if(lit == "0" || (lit.toInt() && lit.count('.') == 0 && (lit[0].isDigit() || (lit[0]=='-' && lit[1].isDigit())))){
@@ -911,11 +916,11 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="$"){
         if((isEntier(temp1) || isReel(temp1) || isRationnel(temp1)) && (isEntier(temp2) || isReel(temp2) || isRationnel(temp2))){
             LitteraleAbstraite *res = new Complexe(temp2, temp1);
-            pile->push(LitteraleAbstraite::createLitteral(res->toString(), typeLitteral(res->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(res->toString(), typeLitteral(res->toString())));
         }
         else{
-            pile->push(LitteraleAbstraite::createLitteral(temp2->toString(), typeLitteral(temp2->toString())));
-            pile->push(LitteraleAbstraite::createLitteral(temp2->toString(), typeLitteral(temp2->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(temp2->toString(), typeLitteral(temp2->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(temp2->toString(), typeLitteral(temp2->toString())));
             throw ComputerException("Erreur : L'opérateur $ s'applique sur des opérandes entières, réelles ou rationnelles");
         }
     }
@@ -955,37 +960,35 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="NUM"){
         if(isRationnel(temp1)){
             LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getNumerateur();
-            pile->push(temp1);
             pile->push(resR);
         }
         else if(isEntier(temp1)){
-                pile->push(temp1->clone());
-                pile->push(temp1->clone());
+            pile->push(temp1->clone());
         }
         else{
-            pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(temp1->toString(), typeLitteral(temp1->toString())));
             throw ComputerException("Erreur : L'opérateur NUM s'applique sur une opérande rationnelle ou entière");
         }
     }
     else if(op=="DEN"){
         if(isRationnel(temp1)){
             LitteraleAbstraite *resR = dynamic_cast<Rationnel*>(temp1)->getDenumerateur();
-            pile->push(temp1);
+
             pile->push(resR);
         }
         else if (isEntier(temp1)){
-            pile->push(temp1->clone());
+
             pile->push(temp1->clone());
         }
         else{
-            pile->push(LitteraleAbstraite::createLitteral(temp1->toString(), typeLitteral(temp1->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(temp1->toString(), typeLitteral(temp1->toString())));
             throw ComputerException("Erreur : L'opérateur DEN s'applique sur une opérande rationnelle ou entière");
         }
     }
     else if(op=="RE"){
         if (isComplexe(temp1)){
         LitteraleAbstraite *resRE = dynamic_cast<Complexe*>(temp1)->getR();
-        pile->push(temp1);
+
         pile->push(resRE);
         }
         else {
@@ -996,7 +999,7 @@ void Controleur::applyOperatorNum(const QString& op, const int nbOp){
     else if(op=="IM"){
         if (isComplexe(temp1)){
         LitteraleAbstraite *resIM = dynamic_cast<Complexe*>(temp1)->getI();
-        pile->push(temp1);
+
         pile->push(resIM);
         }
         else{
@@ -1031,7 +1034,7 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
     if(op == "DUP") {
         try {
             x = pile->top();
-            pile->push(LitteraleAbstraite::createLitteral(x->toString(), typeLitteral(x->toString())));
+            pile->push(LitteraleAbstraite::createLitteralAbstraite(x->toString(), typeLitteral(x->toString())));
         } catch(ComputerException e) {
             pile->setMessage(e.getInfo());
         }
@@ -1042,8 +1045,8 @@ void Controleur::applyOperatorPile(const QString& op, const int nbOp) {
             pile->setMessage(e.getInfo());
         }
     } else if(op == "SWAP") {
-        pile->push(LitteraleAbstraite::createLitteral(x->toString(), typeLitteral(x->toString())));
-        pile->push(LitteraleAbstraite::createLitteral(y->toString(), typeLitteral(y->toString())));
+        pile->push(LitteraleAbstraite::createLitteralAbstraite(x->toString(), typeLitteral(x->toString())));
+        pile->push(LitteraleAbstraite::createLitteralAbstraite(y->toString(), typeLitteral(y->toString())));
     } else if(op == "CLEAR") {
         while(!pile->isEmpty())
             pile->pop();

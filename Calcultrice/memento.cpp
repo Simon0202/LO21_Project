@@ -1,5 +1,5 @@
-#include"memento.h"
 #include <QDebug>
+#include"memento.h"
 #include"mainwindow.h"
 
 //------------------------------------------------------------------

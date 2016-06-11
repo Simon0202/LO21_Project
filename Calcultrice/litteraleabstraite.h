@@ -7,11 +7,19 @@
 #include <QStack>
 #include "computerexception.h"
 
-
+/**
+ * @brief The LitteraleAbstraite class is the main class (Abstract) of the project. Every others litterals herit from it.
+ */
 class LitteraleAbstraite
 {
 public:
-    static LitteraleAbstraite* createLitteral(const QString& value, const QString& type);
+    /**
+     * @brief createLitteralAbstraite
+     * @param value
+     * @param type
+     * @return
+     */
+    static LitteraleAbstraite* createLitteralAbstraite(const QString& value, const QString& type);
     //Destructeur
         virtual ~LitteraleAbstraite(){}
     //Affichage d'une donnee.

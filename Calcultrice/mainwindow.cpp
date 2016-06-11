@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     Pile* pile = Pile::getInstance();
     pile->setMaxAffiche(ui->verticalSlider->value());
 
@@ -224,7 +225,9 @@ void MainWindow::on_checkClavier_clicked()
 void MainWindow::on_verticalSlider_valueChanged(int value)
 {
     Pile *pile = Pile::getInstance();
+
     pile->setMaxAffiche(value);
+
     ui->vuePile->setRowCount(pile->getMaxAffiche());
     ui->vuePile->setColumnCount(1);
     ui->vuePile->verticalHeader()->setSectionResizeMode (QHeaderView::Fixed);
@@ -290,17 +293,7 @@ void MainWindow::on_pushButtoNot_released()
     ui->lineEdit->returnPressed();
 }
 
-void MainWindow::on_pushButtonNeg_clicked()
-{
-    ui->lineEdit->insert("NEG");
-    ui->lineEdit->returnPressed();
-}
 
-void MainWindow::on_pushButtonRe_clicked()
-{
-    ui->lineEdit->insert("RE");
-    ui->lineEdit->returnPressed();
-}
 
 void MainWindow::on_pushButtonNum_released()
 {
@@ -322,5 +315,11 @@ void MainWindow::on_pushButtonDen_released()
 
 void MainWindow::on_pushButtonEnter_released()
 {
+    ui->lineEdit->returnPressed();
+}
+
+void MainWindow::on_pushButtonRe_released()
+{
+    ui->lineEdit->insert("RE");
     ui->lineEdit->returnPressed();
 }

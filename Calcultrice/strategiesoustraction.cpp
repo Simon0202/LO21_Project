@@ -1,6 +1,7 @@
 #include "strategiesoustraction.h"
 #include "strategiemultiplication.h"
 #include "strategiedivision.h"
+#include "fabrique.h"
 
 Entier* StrategieSoustraction::Calcul(Entier* l1,Entier* l2){
     FabEntier f;

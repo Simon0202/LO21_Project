@@ -1,8 +1,13 @@
 #ifndef STRATEGIEDIVISION_H
 #define STRATEGIEDIVISION_H
-#include"strategiecalcul.h"
 
-class StrategieDivision: public StrategieCalcul
+#include "strategiemultiplication.h"
+#include"strategieaddition.h"
+#include"strategiesoustraction.h"
+#include"strategiedivision.h"
+#include"fabrique.h"
+
+class StrategieDivision
 {
 public:
 

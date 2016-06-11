@@ -1,9 +1,8 @@
 #include "strategiemultiplication.h"
-
-#include"strategiecalcul.h"
-#include"strategieaddition.h"
-#include"strategiesoustraction.h"
-#include"strategiedivision.h"
+#include "strategieaddition.h"
+#include "strategiedivision.h"
+#include "strategiesoustraction.h"
+#include "fabrique.h"
 
 
 Entier* StrategieMultiplication::Calcul(Entier* l1,Entier* l2){

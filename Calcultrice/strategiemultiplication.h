@@ -1,10 +1,14 @@
 #ifndef STRATEGIEMULTIPLICATION_H
 #define STRATEGIEMULTIPLICATION_H
 
-#include"strategiecalcul.h"
+#include "entier.h"
+#include "reel.h"
+#include "rationnel.h"
+#include "complexe.h"
+#include "numerique.h"
+#include "litteraleabstraite.h"
 
-
-class StrategieMultiplication: public StrategieCalcul{
+class StrategieMultiplication{
 
 
 public:
@@ -39,10 +43,6 @@ public:
 
     //virtual  Expression* Calcul(Complexe* l1,Expression* l2);
     //virtual  Expression* Calcul(Expression* l1,Complexe* l2);
-
-
-
-
 
 };
 

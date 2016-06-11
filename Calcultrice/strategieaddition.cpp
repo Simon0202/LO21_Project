@@ -2,6 +2,8 @@
 #include "strategiemultiplication.h"
 #include"strategiedivision.h"
 
+#include "fabrique.h"
+
 
 
 
